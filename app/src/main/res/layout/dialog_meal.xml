@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="meal"
+            type="com.naltynbekkz.nulife.model.Meal" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="20dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="120dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/meal_image"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintDimensionRatio="1"
+            app:logoUrl="@{meal.images.standard}"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/discount"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:background="@drawable/background_discount"
+            android:gravity="center"
+            android:paddingHorizontal="8dp"
+            android:text="@{@string/_discount(meal.getDiscount())}"
+            android:textAppearance="@style/ClosedText"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibility="@{meal.price != meal.discountedPrice}"
+            tools:text="-5%"
+            tools:visibility="visible" />
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:text="@{meal.title}"
+            android:textAppearance="@style/TitleText"
+            app:layout_constraintEnd_toStartOf="@id/discount"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/priceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/price"
+            android:textAppearance="@style/BigDetail"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:text="@{@string/_kzt(meal.price)}"
+            android:textAppearance="@style/BigDetail"
+            app:layout_constraintStart_toEndOf="@id/priceTextView"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:strikethrough="@{meal.price != meal.discountedPrice}"
+            tools:text="300kzt" />
+
+        <TextView
+            android:id="@+id/discountedPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:text="@{@string/_kzt(meal.discountedPrice)}"
+            android:textAppearance="@style/MainColor"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@id/price"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:visibility="@{meal.price != meal.discountedPrice}"
+            tools:text="280kzt"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/available"
+            android:textAppearance="@style/Available"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toBottomOf="@id/priceTextView"
+            app:visibility="@{meal.isAvailable()}"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/detailsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/details"
+            android:textAppearance="@style/MediumDetailText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image" />
+
+        <TextView
+            android:id="@+id/details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{meal.details}"
+            android:textAppearance="@style/ImportantDetailText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailsTextView"
+            tools:text="Состав: Говядинаб соус, масло, соль, салат, огурец, хлеб, уксус, сыр, специи" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

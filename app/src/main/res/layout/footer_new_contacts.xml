@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/background_transparent_button"
+        android:drawableStart="@drawable/ic_add"
+        android:drawablePadding="16dp"
+        android:foreground="?android:selectableItemBackground"
+        android:gravity="start|center_vertical"
+        android:paddingHorizontal="16dp"
+        android:text="@string/add_item"
+        android:textAppearance="@style/ButtonText" />
+
+</layout>

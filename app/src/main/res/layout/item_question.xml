@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="question"
+            type="com.naltynbekkz.nulife.model.Question" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/icon_muted"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/arrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_arrow_right_small"
+            app:layout_constraintBottom_toBottomOf="@id/author"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/author" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@{question.getTimePast()}"
+            android:textAppearance="@style/MediumDetailText"
+            app:layout_constraintBottom_toBottomOf="@id/author"
+            app:layout_constraintEnd_toStartOf="@id/arrow"
+            app:layout_constraintTop_toTopOf="@id/author"
+            tools:text="5d" />
+
+        <View
+            android:id="@+id/dot1"
+            android:layout_width="3dp"
+            android:layout_height="3dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/background_dot"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/author"
+            app:layout_constraintEnd_toStartOf="@+id/date"
+            app:layout_constraintTop_toTopOf="@id/author"
+            app:visibility="@{question.answerCount != 0}"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/answerCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="@{question.answerCount}"
+            android:textAppearance="@style/MediumDetailText"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/author"
+            app:layout_constraintEnd_toStartOf="@id/dot1"
+            app:layout_constraintTop_toTopOf="@id/author"
+            app:visibility="@{question.answerCount != 0}"
+            tools:text="5"
+            tools:visibility="visible" />
+
+        <View
+            android:id="@+id/answerIcon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/ic_chat"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/author"
+            app:layout_constraintEnd_toStartOf="@id/answerCount"
+            app:layout_constraintTop_toTopOf="@id/author"
+            app:visibility="@{question.answerCount != 0}"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="@{question.author.name}"
+            android:textAppearance="@style/AuthorText"
+            app:layout_constraintEnd_toStartOf="@+id/imageIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Altynbek Nurtaza" />
+
+        <View
+            android:id="@+id/resolvedIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_resolved"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/title"
+            app:visibility="@{question.resolved}"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:lines="2"
+            android:text="@{question.title}"
+            android:textAppearance="@style/MediumDetailText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/resolvedIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/author"
+            tools:text="Speaking of which, Peter really wants you to come in on Friday to adf sien gone toasdf asdf asdfawflksjhdfl lkjwhelfkja lskfjskdjhfkashdflkh asjfhlwfhalskfjh " />
+
+        <View
+            android:id="@+id/dot2"
+            android:layout_width="3dp"
+            android:layout_height="3dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/background_dot"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/author"
+            app:layout_constraintEnd_toStartOf="@+id/answerIcon"
+            app:layout_constraintTop_toTopOf="@id/author"
+            app:visibility="@{question.images.size != 0}"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/imageCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="@{Integer.toString(question.images.size)}"
+            android:textAppearance="@style/MediumDetailText"
+            app:layout_constraintBottom_toBottomOf="@id/author"
+            app:layout_constraintEnd_toStartOf="@id/dot2"
+            app:layout_constraintTop_toTopOf="@id/author"
+            app:visibility="@{question.images.size != 0}"
+            tools:text="4" />
+
+        <View
+            android:id="@+id/imageIcon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/ic_images"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/author"
+            app:layout_constraintEnd_toStartOf="@id/imageCount"
+            app:layout_constraintTop_toTopOf="@id/author"
+            app:visibility="@{question.images.size != 0}"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

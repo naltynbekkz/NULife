@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/timetable_navigation"
+    app:startDestination="@id/timetableFragment">
+
+    <fragment
+        android:id="@+id/timetableFragment"
+        android:name="com.naltynbekkz.nulife.ui.timetable.front.TimetableFragment"
+        android:label="fragment_timetable"
+        tools:layout="@layout/fragment_timetable" />
+</navigation>

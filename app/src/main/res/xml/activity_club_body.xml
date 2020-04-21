@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- A transition describes an animation via start and end state -->
+    <Transition
+        app:constraintSetEnd="@+id/end"
+        app:constraintSetStart="@+id/start" />
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@id/background"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleX="0.94"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@id/events"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/guideline_body"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@id/underline4"
+            android:layout_width="28dp"
+            android:layout_height="3dp"
+            app:layout_constraintStart_toStartOf="@id/events"
+            app:layout_constraintTop_toBottomOf="@id/events" />
+
+        <Constraint
+            android:id="@id/events_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:scaleX="0.94"
+            app:layout_constraintTop_toBottomOf="@id/underline4" />
+
+        <Constraint
+            android:id="@id/about_us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/guideline_body"
+            app:layout_constraintTop_toBottomOf="@id/events_recycler_view" />
+
+        <Constraint
+            android:id="@id/underline0"
+            android:layout_width="28dp"
+            android:layout_height="3dp"
+            app:layout_constraintStart_toStartOf="@id/about_us"
+            app:layout_constraintTop_toBottomOf="@id/about_us" />
+
+        <Constraint
+            android:id="@id/about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:scaleX="0.94"
+            app:layout_constraintTop_toBottomOf="@id/underline0" />
+
+        <Constraint
+            android:id="@id/join_us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/guideline_body"
+            app:layout_constraintTop_toBottomOf="@id/about" />
+
+        <Constraint
+            android:id="@id/underline1"
+            android:layout_width="28dp"
+            android:layout_height="3dp"
+            app:layout_constraintStart_toStartOf="@id/join_us"
+            app:layout_constraintTop_toBottomOf="@id/join_us" />
+
+        <Constraint
+            android:id="@id/membership"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:scaleX="0.94"
+            app:layout_constraintTop_toBottomOf="@id/underline1" />
+
+        <Constraint
+            android:id="@id/our_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/guideline_body"
+            app:layout_constraintTop_toBottomOf="@id/membership" />
+
+        <Constraint
+            android:id="@id/underline2"
+            android:layout_width="28dp"
+            android:layout_height="3dp"
+            app:layout_constraintStart_toStartOf="@id/about_us"
+            app:layout_constraintTop_toBottomOf="@id/our_team" />
+
+        <Constraint
+            android:id="@id/heads_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:scaleX="0.94"
+            app:layout_constraintTop_toBottomOf="@id/underline2" />
+
+        <Constraint
+            android:id="@id/contactsHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/guideline_body"
+            app:layout_constraintTop_toBottomOf="@id/heads_recycler_view" />
+
+        <Constraint
+            android:id="@id/underline3"
+            android:layout_width="28dp"
+            android:layout_height="3dp"
+            app:layout_constraintStart_toStartOf="@id/about_us"
+            app:layout_constraintTop_toBottomOf="@id/contactsHeader" />
+
+        <Constraint
+            android:id="@id/contacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/guideline_body"
+            app:layout_constraintTop_toBottomOf="@id/underline3" />
+
+    </ConstraintSet>
+
+
+    <!-- Constraints to apply at the end of the animation -->
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@id/background"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="-5dp"
+            android:layout_marginEnd="-5dp"
+            android:scaleX="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@id/events"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@id/underline4"
+            android:layout_width="28dp"
+            android:layout_height="3dp"
+            app:layout_constraintStart_toStartOf="@id/events"
+            app:layout_constraintTop_toBottomOf="@id/events" />
+
+        <Constraint
+            android:id="@id/events_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/underline4" />
+
+        <Constraint
+            android:id="@id/about_us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/events_recycler_view" />
+
+        <Constraint
+            android:id="@id/underline0"
+            android:layout_width="28dp"
+            android:layout_height="3dp"
+            app:layout_constraintStart_toStartOf="@id/about_us"
+            app:layout_constraintTop_toBottomOf="@id/about_us" />
+
+        <Constraint
+            android:id="@id/about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toBottomOf="@id/underline0" />
+
+        <Constraint
+            android:id="@id/join_us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/about" />
+
+        <Constraint
+            android:id="@id/underline1"
+            android:layout_width="28dp"
+            android:layout_height="3dp"
+            app:layout_constraintStart_toStartOf="@id/join_us"
+            app:layout_constraintTop_toBottomOf="@id/join_us" />
+
+        <Constraint
+            android:id="@id/membership"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toBottomOf="@id/underline1" />
+
+        <Constraint
+            android:id="@id/our_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/membership" />
+
+        <Constraint
+            android:id="@id/underline2"
+            android:layout_width="28dp"
+            android:layout_height="3dp"
+            app:layout_constraintStart_toStartOf="@id/about_us"
+            app:layout_constraintTop_toBottomOf="@id/our_team" />
+
+        <Constraint
+            android:id="@id/heads_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toBottomOf="@id/underline2" />
+
+        <Constraint
+            android:id="@id/contactsHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heads_recycler_view" />
+
+        <Constraint
+            android:id="@id/underline3"
+            android:layout_width="28dp"
+            android:layout_height="3dp"
+            app:layout_constraintStart_toStartOf="@id/about_us"
+            app:layout_constraintTop_toBottomOf="@id/contactsHeader" />
+
+        <Constraint
+            android:id="@id/contacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:visibilityMode="ignore"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/underline3" />
+
+    </ConstraintSet>
+</MotionScene>

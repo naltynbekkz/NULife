@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clubs_navigation"
+    app:startDestination="@id/feedFragment">
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.naltynbekkz.nulife.ui.clubs.front.FeedFragment"
+        android:label="fragment_feed"
+        tools:layout="@layout/fragment_feed">
+        <action
+            android:id="@+id/action_feedFragment_to_clubFragment"
+            app:destination="@id/clubFragment" />
+        <action
+            android:id="@+id/action_feedFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clubFragment"
+        android:name="com.naltynbekkz.nulife.ui.clubs.front.ClubFragment"
+        android:label="ClubFragment"
+        tools:layout="@layout/fragment_club">
+        <argument
+            android:name="club_id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_clubFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventFragment"
+        android:name="com.naltynbekkz.nulife.ui.clubs.front.EventFragment"
+        android:label="EventFragment"
+        tools:layout="@layout/fragment_event">
+        <argument
+            android:name="event_id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_eventFragment_to_clubFragment"
+            app:destination="@id/clubFragment" />
+    </fragment>
+</navigation>

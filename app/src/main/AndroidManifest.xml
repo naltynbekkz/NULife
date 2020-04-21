@@ -1,0 +1,98 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.naltynbekkz.nulife">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="com.naltynbekkz.nulife.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.market.front.EditItemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.profile.front.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.timetable.front.NewTaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.timetable.front.EditTaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.timetable.front.NewRoutineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.timetable.front.EditRoutineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.clubs.front.EventsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.clubs.front.ClubsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.market.front.MyItemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.market.front.MyItemsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.market.front.ItemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.market.front.NewItemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.auth.AuthActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.naltynbekkz.nulife.ui.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.naltynbekkz.unilife.DEFAULT_NOTIFICATION_INTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="com.naltynbekkz.nulife.util.notifications.NotificationReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name="com.naltynbekkz.nulife.util.notifications.MyFirebaseMessagingService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_small_notification" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimary" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/cloud_notification_channel_id" />
+
+
+    </application>
+
+</manifest>

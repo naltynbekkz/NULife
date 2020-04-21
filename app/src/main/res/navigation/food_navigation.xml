@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/food_navigation"
+    app:startDestination="@id/foodFragment">
+
+    <fragment
+        android:id="@+id/foodFragment"
+        android:name="com.naltynbekkz.nulife.ui.food.front.FoodFragment"
+        android:label="fragment_food"
+        tools:layout="@layout/fragment_food">
+        <action
+            android:id="@+id/action_foodFragment_to_cafeFragment"
+            app:destination="@id/cafeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cafeFragment"
+        android:name="com.naltynbekkz.nulife.ui.food.front.CafeFragment"
+        android:label="CafeFragment"
+        tools:layout="@layout/fragment_cafe">
+        <argument
+            android:name="cafe_id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_cafeFragment_to_reviewsFragment"
+            app:destination="@id/reviewsFragment" />
+        <action
+            android:id="@+id/action_cafeFragment_to_newReviewFragment"
+            app:destination="@id/newReviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewsFragment"
+        android:name="com.naltynbekkz.nulife.ui.food.front.ReviewsFragment"
+        android:label="ReviewsFragment"
+        tools:layout="@layout/fragment_reviews">
+        <argument
+            android:name="cafe_id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_reviewsFragment_to_newReviewFragment"
+            app:destination="@id/newReviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newReviewFragment"
+        android:name="com.naltynbekkz.nulife.ui.food.front.NewReviewFragment"
+        android:label="NewReviewFragment" >
+        <argument
+            android:name="cafe_id"
+            app:argType="string" />
+        <argument android:name="rating"
+            app:argType="long" />
+    </fragment>
+</navigation>

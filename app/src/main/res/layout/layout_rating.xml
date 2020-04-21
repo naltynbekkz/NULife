@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="five"
+            type="String" />
+
+        <variable
+            name="four"
+            type="String" />
+
+        <variable
+            name="three"
+            type="String" />
+
+        <variable
+            name="two"
+            type="String" />
+
+        <variable
+            name="one"
+            type="String" />
+
+
+        <variable
+            name="fiveSize"
+            type="Integer" />
+
+        <variable
+            name="fourSize"
+            type="Integer" />
+
+        <variable
+            name="threeSize"
+            type="Integer" />
+
+        <variable
+            name="twoSize"
+            type="Integer" />
+
+        <variable
+            name="oneSize"
+            type="Integer" />
+
+        <variable
+            name="rating"
+            type="Float" />
+
+        <variable
+            name="ratingCount"
+            type="Integer" />
+
+    </data>
+
+    <merge tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="180dp" />
+
+        <TextView
+            android:id="@+id/count5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="144dp"
+            android:layout_marginTop="8dp"
+            android:text="@{five}"
+            android:textAppearance="@style/RatingCount"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="12" />
+
+        <TextView
+            android:id="@+id/count4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="144dp"
+            android:layout_marginTop="8dp"
+            android:text="@{four}"
+            android:textAppearance="@style/RatingCount"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/count5"
+            tools:text="5" />
+
+        <TextView
+            android:id="@+id/count3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="144dp"
+            android:layout_marginTop="8dp"
+            android:text="@{three}"
+            android:textAppearance="@style/RatingCount"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/count4"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/count2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="144dp"
+            android:layout_marginTop="8dp"
+            android:text="@{two}"
+            android:textAppearance="@style/RatingCount"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/count3"
+            tools:text="2" />
+
+        <TextView
+            android:id="@+id/count1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="144dp"
+            android:layout_marginTop="8dp"
+            android:text="@{one}"
+            android:textAppearance="@style/RatingCount"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/count2"
+            tools:text="0" />
+
+
+        <View
+            android:id="@+id/star55"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count5"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/count5" />
+
+        <View
+            android:id="@+id/star45"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count4"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/count4" />
+
+        <View
+            android:id="@+id/star35"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count3"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/count3" />
+
+        <View
+            android:id="@+id/star25"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count2"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/count2" />
+
+        <View
+            android:id="@+id/star15"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count1"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/count1" />
+
+        <View
+            android:id="@+id/star54"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count5"
+            app:layout_constraintEnd_toStartOf="@id/star55"
+            app:layout_constraintTop_toTopOf="@id/count5" />
+
+        <View
+            android:id="@+id/star44"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count4"
+            app:layout_constraintEnd_toStartOf="@id/star45"
+            app:layout_constraintTop_toTopOf="@id/count4" />
+
+        <View
+            android:id="@+id/star34"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count3"
+            app:layout_constraintEnd_toStartOf="@id/star35"
+            app:layout_constraintTop_toTopOf="@id/count3" />
+
+        <View
+            android:id="@+id/star24"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count2"
+            app:layout_constraintEnd_toStartOf="@id/star25"
+            app:layout_constraintTop_toTopOf="@id/count2" />
+
+        <View
+            android:id="@+id/star53"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count5"
+            app:layout_constraintEnd_toStartOf="@id/star54"
+            app:layout_constraintTop_toTopOf="@id/count5" />
+
+        <View
+            android:id="@+id/star43"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count4"
+            app:layout_constraintEnd_toStartOf="@id/star44"
+            app:layout_constraintTop_toTopOf="@id/count4" />
+
+        <View
+            android:id="@+id/star33"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count3"
+            app:layout_constraintEnd_toStartOf="@id/star34"
+            app:layout_constraintTop_toTopOf="@id/count3" />
+
+        <View
+            android:id="@+id/star52"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count5"
+            app:layout_constraintEnd_toStartOf="@id/star53"
+            app:layout_constraintTop_toTopOf="@id/count5" />
+
+        <View
+            android:id="@+id/star42"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count4"
+            app:layout_constraintEnd_toStartOf="@id/star43"
+            app:layout_constraintTop_toTopOf="@id/count4" />
+
+        <View
+            android:id="@+id/star51"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/count5"
+            app:layout_constraintEnd_toStartOf="@id/star52"
+            app:layout_constraintTop_toTopOf="@id/count5" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/rating_bar"
+            app:layout_constraintBottom_toBottomOf="@id/count5"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/count5"
+            app:layout_width="@{fiveSize}"
+            tools:layout_width="112dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/rating_bar"
+            app:layout_constraintBottom_toBottomOf="@id/count4"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/count4"
+            app:layout_width="@{fourSize}"
+            tools:layout_width="112dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/rating_bar"
+            app:layout_constraintBottom_toBottomOf="@id/count3"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/count3"
+            app:layout_width="@{threeSize}"
+            tools:layout_width="112dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/rating_bar"
+            app:layout_constraintBottom_toBottomOf="@id/count2"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/count2"
+            app:layout_width="@{twoSize}"
+            tools:layout_width="112dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/rating_bar"
+            app:layout_constraintBottom_toBottomOf="@id/count1"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/count1"
+            app:layout_width="@{oneSize}"
+            tools:layout_width="112dp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/star51"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAppearance="@style/BigRatingText"
+                app:text="@{rating}"
+                tools:text="4.3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@{@string/_reviews(ratingCount)}"
+                android:textAppearance="@style/RatingCount"
+                tools:text="23 reviews" />
+
+
+        </LinearLayout>
+
+    </>
+</layout>

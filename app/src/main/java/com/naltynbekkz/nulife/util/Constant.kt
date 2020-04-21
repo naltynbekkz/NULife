@@ -1,0 +1,25 @@
+package com.naltynbekkz.nulife.util
+
+import android.app.AlarmManager
+
+class Constant {
+
+    companion object {
+        const val MAX_NOTIFICATION_TIME = 2 * AlarmManager.INTERVAL_DAY
+
+        const val USER_COURSE = "user_course"
+        const val QUESTION = "question"
+        const val ANSWER = "answer"
+
+        const val CAFE_ID = "cafe_id"
+
+        const val CLUB_ID = "club_id"
+        const val EVENT_ID = "event_id"
+
+        const val TODAY = "today"
+        const val MONTH = "MONTH"
+
+
+    }
+
+}

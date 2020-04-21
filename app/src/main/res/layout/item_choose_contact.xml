@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="chosen"
+            type="Boolean" />
+
+        <variable
+            name="contact"
+            type="com.naltynbekkz.nulife.model.Contact" />
+    </data>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:alpha="@{chosen ? 1.0f : 0.5f}"
+        android:background="@drawable/background_transparent_button"
+        android:drawableEnd="@{chosen ? @drawable/ic_cancel : @drawable/ic_add}"
+        android:drawablePadding="16dp"
+        android:foreground="?android:selectableItemBackground"
+        android:gravity="start|center_vertical"
+        android:paddingHorizontal="16dp"
+        android:text="@{contact.data}"
+        android:textAppearance="@style/BigDetail"
+        app:setIcon="@{contact.getIcon()}"
+        tools:drawableStart="@drawable/ic_vk"
+        tools:text="vk.me/naltynbekkz" />
+</layout>
