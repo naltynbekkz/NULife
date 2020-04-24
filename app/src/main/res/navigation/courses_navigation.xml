@@ -68,9 +68,6 @@
             android:id="@+id/action_courseFragment_to_newQuestionFragment"
             app:destination="@id/newQuestionFragment" />
         <action
-            android:id="@+id/action_courseFragment_to_editQuestionFragment"
-            app:destination="@id/editQuestionFragment" />
-        <action
             android:id="@+id/action_courseFragment_to_newResourceFragment"
             app:destination="@id/newResourceFragment" />
         <action
@@ -79,6 +76,9 @@
         <action
             android:id="@+id/action_courseFragment_to_newImagesFragment"
             app:destination="@id/newImagesFragment" />
+        <action
+            android:id="@+id/action_courseFragment_to_newTaskFragment"
+            app:destination="@id/newTaskFragment" />
     </fragment>
     <fragment
         android:id="@+id/answersFragment"
@@ -94,9 +94,6 @@
         <action
             android:id="@+id/action_answersFragment_to_newAnswerFragment"
             app:destination="@id/newAnswerFragment" />
-        <action
-            android:id="@+id/action_answersFragment_to_editAnswerFragment"
-            app:destination="@id/editAnswerFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentsFragment"
@@ -125,17 +122,12 @@
         tools:layout="@layout/fragment_new_answer">
         <argument
             android:name="question"
-            app:argType="com.naltynbekkz.nulife.model.Question" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/editAnswerFragment"
-        android:name="com.naltynbekkz.nulife.ui.courses.answers.front.EditAnswerFragment"
-        android:label="EditAnswerFragment"
-        tools:layout="@layout/fragment_new_answer">
+            app:argType="com.naltynbekkz.nulife.model.Question"
+            app:nullable="true" />
         <argument
             android:name="answer"
-            app:argType="com.naltynbekkz.nulife.model.Answer" />
+            app:argType="com.naltynbekkz.nulife.model.Answer"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/newQuestionFragment"
@@ -143,17 +135,13 @@
         android:label="NewQuestionFragment"
         tools:layout="@layout/fragment_new_question">
         <argument
-            android:name="user_course"
-            app:argType="com.naltynbekkz.nulife.model.UserCourse" />
-    </fragment>
-    <fragment
-        android:id="@+id/editQuestionFragment"
-        android:name="com.naltynbekkz.nulife.ui.courses.questions.front.EditQuestionFragment"
-        android:label="EditQuestionFragment"
-        tools:layout="@layout/fragment_new_question">
-        <argument
             android:name="question"
-            app:argType="com.naltynbekkz.nulife.model.Question" />
+            app:argType="com.naltynbekkz.nulife.model.Question"
+            app:nullable="true" />
+        <argument
+            android:name="user_course"
+            app:argType="com.naltynbekkz.nulife.model.UserCourse"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/newResourceFragment"
@@ -167,7 +155,8 @@
     <fragment
         android:id="@+id/newDeadlineFragment"
         android:name="com.naltynbekkz.nulife.ui.courses.deadlines.front.NewDeadlineFragment"
-        android:label="NewDeadlineFragment">
+        android:label="NewDeadlineFragment"
+        tools:layout="@layout/fragment_new_deadline">
         <argument
             android:name="user_course"
             app:argType="com.naltynbekkz.nulife.model.UserCourse" />
@@ -175,9 +164,12 @@
     <fragment
         android:id="@+id/newImagesFragment"
         android:name="com.naltynbekkz.nulife.ui.courses.resources.front.NewImagesFragment"
-        android:label="NewImagesFragment">
+        android:label="NewImagesFragment"
+        tools:layout="@layout/fragment_new_images">
         <argument
             android:name="user_course"
             app:argType="com.naltynbekkz.nulife.model.UserCourse" />
     </fragment>
+
+    <include app:graph="@navigation/new_task_navigation" />
 </navigation>

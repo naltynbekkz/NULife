@@ -1,42 +1,76 @@
 package com.naltynbekkz.nulife.ui.timetable.front
 
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import android.view.*
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.FirebaseDatabase
 import com.naltynbekkz.nulife.R
-import com.naltynbekkz.nulife.databinding.ActivityNewTaskBinding
+import com.naltynbekkz.nulife.databinding.FragmentNewTaskBinding
 import com.naltynbekkz.nulife.di.ViewModelProviderFactory
-import com.naltynbekkz.nulife.model.Occurrence
+import com.naltynbekkz.nulife.model.Associate
+import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.timetable.viewmodel.NewOccurrenceViewModel
 import com.naltynbekkz.nulife.util.Convert
 import javax.inject.Inject
 
-open class NewTaskActivity : AppCompatActivity() {
+class NewTaskFragment : Fragment() {
     @Inject
     lateinit var viewModelProvider: ViewModelProviderFactory
-    lateinit var binding: ActivityNewTaskBinding
-    val viewModel: NewOccurrenceViewModel by viewModels { viewModelProvider.create(this) }
+    private val args: NewTaskFragmentArgs by navArgs()
+    val viewModel: NewOccurrenceViewModel by viewModels {
+        viewModelProvider.create(
+            this,
+            args.toBundle()
+        )
+    }
+
+    lateinit var binding: FragmentNewTaskBinding
     private lateinit var bottomSheet: AssociateBottomSheet
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as MainActivity).timetableComponent.inject(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_new_task)
+        (activity as MainActivity).hideBottomNavigation()
+    }
 
-        setSupportActionBar(binding.toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener {
-            onBackPressed()
+    override fun onDestroy() {
+        super.onDestroy()
+        (activity as MainActivity).showBottomNavigation()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_new_task, container, false)
+        setHasOptionsMenu(true)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        (activity as MainActivity).apply {
+            setSupportActionBar(binding.toolbar)
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            binding.toolbar.setNavigationOnClickListener {
+                onBackPressed()
+            }
         }
 
         binding.startText.setOnClickListener {
@@ -53,7 +87,7 @@ open class NewTaskActivity : AppCompatActivity() {
                         Convert.removeHours((it - Convert.getZoneOffset()) / 1000).timeInMillis / 1000
                 }
                 TimePickerDialog(
-                    this,
+                    requireContext(),
                     TimePickerDialog.OnTimeSetListener { _, h, m ->
                         binding.task = binding.task!!.apply {
                             start = Convert.setSeconds(binding.task!!.start, h, m)
@@ -64,7 +98,7 @@ open class NewTaskActivity : AppCompatActivity() {
                     false
                 ).show()
             }
-            picker.show(supportFragmentManager, picker.toString())
+            picker.show(parentFragmentManager, picker.toString())
         }
 
         binding.endText.setOnClickListener {
@@ -81,7 +115,7 @@ open class NewTaskActivity : AppCompatActivity() {
                 }
                 val a = Convert.getSeconds(binding.task!!.end)
                 TimePickerDialog(
-                    this,
+                    requireContext(),
                     TimePickerDialog.OnTimeSetListener { _, h, m ->
                         binding.task = binding.task!!.apply {
                             end = Convert.setSeconds(binding.task!!.end, h, m)
@@ -92,11 +126,11 @@ open class NewTaskActivity : AppCompatActivity() {
                     false
                 ).show()
             }
-            picker.show(supportFragmentManager, picker.toString())
+            picker.show(parentFragmentManager, picker.toString())
         }
 
         binding.notify.setOnClickListener {
-            MaterialAlertDialogBuilder(this)
+            MaterialAlertDialogBuilder(requireContext())
                 .setTitle("Title")
                 .setItems(
                     R.array.notify_string_array,
@@ -108,14 +142,17 @@ open class NewTaskActivity : AppCompatActivity() {
                     })
                 .show()
         }
+        binding.task = viewModel.task
 
-        init()
+        if (viewModel.task.isNew()) {
+            initNew()
+        } else {
+            initEdit()
+        }
+
     }
 
-
-    open fun init() {
-
-        binding.task = Occurrence(task = true)
+    private fun initNew() {
 
         bottomSheet = AssociateBottomSheet(
             viewModel.userCourses.value,
@@ -134,13 +171,28 @@ open class NewTaskActivity : AppCompatActivity() {
         }
 
         binding.associateTextView.setOnClickListener {
-            bottomSheet.show(supportFragmentManager, "NewTaskActivity")
+            bottomSheet.show(parentFragmentManager, "NewTaskActivity")
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.save_menu, menu)
-        return true
+    private fun initEdit() {
+        binding.toolbar.title = "Edit task"
+
+        if (binding.task!!.parentType != null) {
+            binding.associate = Associate(binding.task!!)
+        }
+
+        val colors = resources.getIntArray(R.array.colors)
+        for (i in colors.indices) {
+            if (colors[i] == Color.parseColor(binding.task!!.color)) {
+                binding.colorSlider.setSelection(i)
+            }
+        }
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.save_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -164,13 +216,13 @@ open class NewTaskActivity : AppCompatActivity() {
                             task = binding.task!!.apply {
                                 id = FirebaseDatabase.getInstance().reference.push().key!!
                             },
-                            complete = ::finish
+                            complete = requireActivity()::onBackPressed
                         )
 
                     } else {
                         viewModel.updateTask(
                             task = binding.task!!,
-                            complete = ::finish
+                            complete = requireActivity()::onBackPressed
                         )
                     }
 
@@ -179,7 +231,7 @@ open class NewTaskActivity : AppCompatActivity() {
                 }
             }
             R.id.help -> {
-                Convert.help(this)
+                Convert.help(requireContext())
             }
         }
         return true

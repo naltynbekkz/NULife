@@ -9,7 +9,7 @@ import com.naltynbekkz.nulife.model.UserRating
 import com.naltynbekkz.nulife.util.FirebaseQueryLiveData
 import javax.inject.Inject
 
-//@MarketScope
+@MarketScope
 class UserRatingsRepository @Inject constructor(
     val auth: FirebaseAuth,
     val database: FirebaseDatabase

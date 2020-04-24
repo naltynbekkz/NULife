@@ -6,7 +6,7 @@ import com.naltynbekkz.nulife.di.main.MainScope
 import com.naltynbekkz.nulife.model.Contact
 import javax.inject.Inject
 
-//@MainScope
+@MainScope
 class ContactsRepository @Inject constructor(val dao: ContactsDao) {
     val contacts by lazy {
         dao.getAll()

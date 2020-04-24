@@ -13,7 +13,7 @@ import com.naltynbekkz.nulife.util.FirebaseQueryLiveData
 import com.naltynbekkz.nulife.util.ImageCompressor
 import javax.inject.Inject
 
-//@CoursesScope
+@CoursesScope
 class AnswersRepository @Inject constructor(
     val auth: FirebaseAuth,
     val database: FirebaseDatabase,

@@ -8,7 +8,7 @@ import com.naltynbekkz.nulife.model.Item
 import com.naltynbekkz.nulife.util.value
 import javax.inject.Inject
 
-//@MarketScope
+@MarketScope
 class MyItemsRepository @Inject constructor(
     database: FirebaseDatabase,
     userRepository: UserRepository

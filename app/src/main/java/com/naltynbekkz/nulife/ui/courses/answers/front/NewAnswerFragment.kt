@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -20,6 +19,8 @@ import com.naltynbekkz.nulife.databinding.FragmentNewAnswerBinding
 import com.naltynbekkz.nulife.di.ViewModelProviderFactory
 import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.courses.answers.viewmodel.NewAnswerViewModel
+import com.naltynbekkz.nulife.util.Constant.Companion.PERMISSION_REQUEST_CODE
+import com.naltynbekkz.nulife.util.Constant.Companion.REQUEST_CODE_CHOOSE
 import com.naltynbekkz.nulife.util.Convert
 import com.naltynbekkz.nulife.util.ImagesAdapter
 import com.zhihu.matisse.Matisse
@@ -73,16 +74,30 @@ open class NewAnswerFragment : Fragment() {
                 onBackPressed()
             }
         }
-        init()
+        if (viewModel.answer.id.isEmpty()) {
+            initNew()
+        } else {
+            initEdit()
+        }
     }
 
-    open fun init() {
+    private fun initNew() {
 
         binding.answer = viewModel.answer
 
         adapter = ImagesAdapter(::selectImages)
         binding.recyclerView.adapter = adapter
 
+    }
+
+    private fun initEdit() {
+
+        binding.uploadImage.apply {
+            alpha = 0.5F
+            isEnabled = false
+        }
+        binding.answer = viewModel.answer
+        binding.anonymousSwitch.isChecked = (viewModel.answer.author.name == "Anonymous")
     }
 
     override fun onRequestPermissionsResult(
@@ -110,30 +125,44 @@ open class NewAnswerFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.save -> {
-                if (binding.answer!!.isValid()) {
+                if (binding.answer!!.isValid() && binding.loading != true) {
                     binding.loading = true
 
-                    adapter.setState(0)
+                    if (viewModel.answer.id.isEmpty()) {
+                        adapter.setState(0)
 
-                    viewModel.answer(
-                        anonymous = binding.anonymousSwitch.isChecked,
-                        failure = fun() {
-                            binding.loading = null
-                            Toast.makeText(
-                                requireContext(),
-                                "Something went wrong. Try again",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        },
-                        images = adapter.images,
-                        success = requireActivity()::onBackPressed,
-                        done = fun(position: Int) {
-                            adapter.setState(position + 1)
-                        }
-                    )
+                        viewModel.answer(
+                            anonymous = binding.anonymousSwitch.isChecked,
+                            failure = fun() {
+                                binding.loading = null
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Something went wrong. Try again",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            },
+                            images = adapter.images,
+                            success = requireActivity()::onBackPressed,
+                            done = fun(position: Int) {
+                                adapter.setState(position + 1)
+                            }
+                        )
 
-                } else {
-                    binding.loading = false
+                    } else {
+                        viewModel.editAnswer(
+                            anonymous = binding.anonymousSwitch.isChecked,
+                            failure = fun() {
+                                binding.loading = null
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Something went wrong. Try again",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            },
+                            success = requireActivity()::onBackPressed
+                        )
+                    }
+
                 }
             }
             R.id.help -> {
@@ -153,8 +182,7 @@ open class NewAnswerFragment : Fragment() {
                 Manifest.permission.READ_EXTERNAL_STORAGE
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
+            requestPermissions(
                 arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                 PERMISSION_REQUEST_CODE
             )
@@ -170,9 +198,5 @@ open class NewAnswerFragment : Fragment() {
         }
     }
 
-    companion object {
-        const val REQUEST_CODE_CHOOSE = 0
-        const val PERMISSION_REQUEST_CODE = 1
-    }
 
 }

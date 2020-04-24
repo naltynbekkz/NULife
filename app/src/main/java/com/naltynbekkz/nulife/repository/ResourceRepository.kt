@@ -14,7 +14,7 @@ import com.naltynbekkz.nulife.model.UserCourse
 import com.naltynbekkz.nulife.util.FirebaseQueryLiveData
 import javax.inject.Inject
 
-//@CoursesScope
+@CoursesScope
 class ResourceRepository @Inject constructor(
     val resourcesDao: ResourcesDao,
     val database: FirebaseDatabase,

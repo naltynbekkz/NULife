@@ -42,6 +42,15 @@ class CafeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_cafe, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        savedInstanceState?.getInt(Constant.COORDINATOR_LAYOUT_SCROLL_STATE)?.let {
+
+            binding.coordinatorLayout.scrollY = it
+        }
 
         viewModel.cafe.observe(viewLifecycleOwner, Observer { cafe ->
             binding.cafe = cafe
@@ -70,7 +79,7 @@ class CafeFragment : Fragment() {
         TabLayoutMediator(binding.tabLayout, binding.viewpager) { tab, position ->
             tab.text = resources.getStringArray(R.array.cafe)[position]
         }.attach()
-        return binding.root
+
     }
 
     // TODO databinding
@@ -96,6 +105,11 @@ class CafeFragment : Fragment() {
             fragment.arguments = bundle
             return fragment
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(Constant.COORDINATOR_LAYOUT_SCROLL_STATE, binding.coordinatorLayout.scrollY)
     }
 
 }

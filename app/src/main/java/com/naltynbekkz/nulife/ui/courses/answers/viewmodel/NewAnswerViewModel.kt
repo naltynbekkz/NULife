@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.naltynbekkz.nulife.di.ViewModelAssistedFactory
 import com.naltynbekkz.nulife.model.Answer
+import com.naltynbekkz.nulife.model.Question
 import com.naltynbekkz.nulife.model.Student
 import com.naltynbekkz.nulife.repository.AnswersRepository
 import com.naltynbekkz.nulife.repository.UserRepository
@@ -19,7 +20,7 @@ class NewAnswerViewModel @AssistedInject constructor(
     userRepository: UserRepository
 ) : ViewModel() {
 
-    val answer: Answer = if (savedStateHandle.contains(Constant.QUESTION)) {
+    val answer: Answer = if (savedStateHandle.get<Question>(Constant.QUESTION) != null) {
         Answer(question = savedStateHandle[Constant.QUESTION]!!)
     } else {
         savedStateHandle[Constant.ANSWER]!!

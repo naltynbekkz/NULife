@@ -20,6 +20,7 @@ import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.clubs.adapter.ClubEventsAdapter
 import com.naltynbekkz.nulife.ui.clubs.adapter.HeadsAdapter
 import com.naltynbekkz.nulife.ui.clubs.viewmodel.ClubViewModel
+import com.naltynbekkz.nulife.util.Constant
 import com.naltynbekkz.nulife.util.Convert
 import javax.inject.Inject
 
@@ -44,7 +45,8 @@ class ClubFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+        sharedElementEnterTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
 
     override fun onCreateView(
@@ -54,6 +56,11 @@ class ClubFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_club, container, false)
+
+        savedInstanceState?.let {
+            binding.coordinatorLayout.scrollY = it.getInt(Constant.COORDINATOR_LAYOUT_SCROLL_STATE)
+            binding.nestedScrollView.scrollY = it.getInt(Constant.NESTED_SCROLL_STATE)
+        }
 
         binding.back.setOnClickListener {
             requireActivity().onBackPressed()
@@ -100,6 +107,12 @@ class ClubFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(Constant.COORDINATOR_LAYOUT_SCROLL_STATE, binding.coordinatorLayout.scrollY)
+        outState.putInt(Constant.NESTED_SCROLL_STATE, binding.nestedScrollView.scrollY)
     }
 
 }

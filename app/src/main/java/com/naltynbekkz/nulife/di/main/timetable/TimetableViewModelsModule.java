@@ -7,6 +7,7 @@ import com.naltynbekkz.nulife.di.ViewModelKey;
 import com.naltynbekkz.nulife.ui.timetable.viewmodel.MonthViewModel;
 import com.naltynbekkz.nulife.ui.timetable.viewmodel.MonthViewModel_AssistedFactory;
 import com.naltynbekkz.nulife.ui.timetable.viewmodel.NewOccurrenceViewModel;
+import com.naltynbekkz.nulife.ui.timetable.viewmodel.NewOccurrenceViewModel_AssistedFactory;
 import com.naltynbekkz.nulife.ui.timetable.viewmodel.WeekdayViewModel;
 import com.naltynbekkz.nulife.ui.timetable.viewmodel.WeekdayViewModel_AssistedFactory;
 
@@ -20,7 +21,7 @@ public abstract class TimetableViewModelsModule {
     @Binds
     @IntoMap
     @ViewModelKey(NewOccurrenceViewModel.class)
-    abstract ViewModel bindNewOccurrenceViewModel(NewOccurrenceViewModel viewModel);
+    public abstract ViewModelAssistedFactory<? extends ViewModel> bindNewOccurrenceViewModel(NewOccurrenceViewModel_AssistedFactory viewModel);
 
     @Binds
     @IntoMap
@@ -31,5 +32,7 @@ public abstract class TimetableViewModelsModule {
     @IntoMap
     @ViewModelKey(WeekdayViewModel.class)
     public abstract ViewModelAssistedFactory<? extends ViewModel> bindWeekdayViewModel(WeekdayViewModel_AssistedFactory viewModelFactory);
+
+
 
 }

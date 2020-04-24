@@ -9,5 +9,12 @@
         android:id="@+id/timetableFragment"
         android:name="com.naltynbekkz.nulife.ui.timetable.front.TimetableFragment"
         android:label="fragment_timetable"
-        tools:layout="@layout/fragment_timetable" />
+        tools:layout="@layout/fragment_timetable">
+        <action
+            android:id="@+id/action_timetableFragment_to_newTaskFragment"
+            app:destination="@id/newTaskFragment" />
+    </fragment>
+
+    <include app:graph="@navigation/new_task_navigation" />
+
 </navigation>

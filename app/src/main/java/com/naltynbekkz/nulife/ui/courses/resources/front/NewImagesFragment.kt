@@ -22,6 +22,8 @@ import com.naltynbekkz.nulife.di.ViewModelProviderFactory
 import com.naltynbekkz.nulife.model.Resource
 import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.courses.resources.viewmodel.NewResourceViewModel
+import com.naltynbekkz.nulife.util.Constant.Companion.PERMISSION_REQUEST_CODE
+import com.naltynbekkz.nulife.util.Constant.Companion.REQUEST_CODE_CHOOSE
 import com.naltynbekkz.nulife.util.Convert
 import com.naltynbekkz.nulife.util.ImagesAdapter
 import com.zhihu.matisse.Matisse
@@ -163,8 +165,7 @@ class NewImagesFragment : Fragment() {
                 Manifest.permission.READ_EXTERNAL_STORAGE
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
+            requestPermissions(
                 arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                 PERMISSION_REQUEST_CODE
             )
@@ -178,11 +179,6 @@ class NewImagesFragment : Fragment() {
                 .imageEngine(GlideEngine())
                 .forResult(REQUEST_CODE_CHOOSE)
         }
-    }
-
-    companion object {
-        const val REQUEST_CODE_CHOOSE = 0
-        const val PERMISSION_REQUEST_CODE = 1
     }
 
 }

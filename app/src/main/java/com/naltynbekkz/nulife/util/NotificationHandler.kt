@@ -13,7 +13,7 @@ import com.naltynbekkz.nulife.model.Occurrence
 import com.naltynbekkz.nulife.util.notifications.NotificationReceiver
 import javax.inject.Inject
 
-//@MainScope
+@MainScope
 class NotificationHandler @Inject constructor(val context: Context) {
 
     fun scheduleRoutineNotification(routine: Occurrence) {

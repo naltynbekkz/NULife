@@ -7,6 +7,7 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnPreDraw
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -47,7 +48,6 @@ class FeedFragment : Fragment() {
 
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_feed, container, false)
-
 
         fancyEventsAdapter = FancyEventsAdapter(
             click = fun(eventId: String) {
@@ -121,6 +121,9 @@ class FeedFragment : Fragment() {
         binding.allEvents.setOnClickListener {
             startActivity(Intent(context, EventsActivity::class.java))
         }
+
+//        postponeEnterTransition()
+//        binding.myClubsRecyclerView.doOnPreDraw { startPostponedEnterTransition() }
 
         return binding.root
 

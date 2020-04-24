@@ -60,11 +60,12 @@ class RatingView : ConstraintLayout {
             binding.four = array[3].toString()
             binding.five = array[4].toString()
 
-            binding.ratingCount = array.sum()
-            binding.rating = if (binding.ratingCount == 0) {
+            val count = array.sum()
+            binding.ratingCount = count
+            binding.rating = if (count == 0) {
                 0f
             } else {
-                (five * 5 + four * 4 + three * 3 + two * 2 + one * 1).toFloat() / binding.ratingCount
+                (five * 5 + four * 4 + three * 3 + two * 2 + one * 1).toFloat() / count
             }
 
 

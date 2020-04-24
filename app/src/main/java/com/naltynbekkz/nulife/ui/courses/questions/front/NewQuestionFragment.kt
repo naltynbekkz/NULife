@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -20,9 +19,10 @@ import androidx.navigation.fragment.navArgs
 import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.databinding.FragmentNewQuestionBinding
 import com.naltynbekkz.nulife.di.ViewModelProviderFactory
-import com.naltynbekkz.nulife.model.Question
 import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.courses.questions.viewmodel.NewQuestionViewModel
+import com.naltynbekkz.nulife.util.Constant.Companion.PERMISSION_REQUEST_CODE
+import com.naltynbekkz.nulife.util.Constant.Companion.REQUEST_CODE_CHOOSE
 import com.naltynbekkz.nulife.util.Convert
 import com.naltynbekkz.nulife.util.ImagesAdapter
 import com.zhihu.matisse.Matisse
@@ -30,15 +30,13 @@ import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.engine.impl.GlideEngine
 import javax.inject.Inject
 
-open class NewQuestionFragment : Fragment() {
+class NewQuestionFragment : Fragment() {
+
     @Inject
     lateinit var viewModelProvider: ViewModelProviderFactory
     private val args: NewQuestionFragmentArgs by navArgs()
     val viewModel: NewQuestionViewModel by viewModels {
-        viewModelProvider.create(
-            this,
-            args.toBundle()
-        )
+        viewModelProvider.create(this, args.toBundle())
     }
 
     private lateinit var adapter: ImagesAdapter
@@ -49,6 +47,11 @@ open class NewQuestionFragment : Fragment() {
         (activity as MainActivity).coursesComponent.inject(this)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as MainActivity).hideBottomNavigation()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,13 +59,12 @@ open class NewQuestionFragment : Fragment() {
     ): View? {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_new_question, container, false)
-        (activity as MainActivity).hideBottomNavigation()
         setHasOptionsMenu(true)
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         (activity as MainActivity).showBottomNavigation()
     }
 
@@ -77,10 +79,16 @@ open class NewQuestionFragment : Fragment() {
             }
         }
 
-        init()
+        binding.question = viewModel.question
+
+        if (viewModel.question.id.isEmpty()) {
+            initNew()
+        } else {
+            initEdit()
+        }
     }
 
-    open fun init() {
+    private fun initNew() {
 
         viewModel.topics.observe(viewLifecycleOwner, Observer {
             binding.topic.setAdapter(
@@ -94,15 +102,35 @@ open class NewQuestionFragment : Fragment() {
 
         adapter = ImagesAdapter(::selectImages)
 
-        binding.question = Question()
         binding.recyclerView.adapter = adapter
 
     }
 
+    private fun initEdit() {
+        binding.toolbar.title = "Edit question"
+
+        binding.allSectionsSwitch.isChecked = viewModel.question.sectionId == 0L
+        binding.anonymousSwitch.isChecked = viewModel.question.author.name == "Anonymous"
+
+
+        arrayListOf(
+            binding.selectTopic,
+            binding.topic,
+            binding.allSections,
+            binding.allSectionsSwitch,
+            binding.uploadImage
+        ).forEach {
+            it.isEnabled = false
+            it.alpha = 0.5F
+        }
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
-        permissions: Array<String>, grantResults: IntArray
+        permissions: Array<out String>,
+        grantResults: IntArray
     ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             PERMISSION_REQUEST_CODE -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
@@ -111,6 +139,7 @@ open class NewQuestionFragment : Fragment() {
             }
         }
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -126,32 +155,48 @@ open class NewQuestionFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.save -> {
-                if (binding.question!!.isValid()) {
+
+                if (binding.question!!.isValid() && binding.loading != true) {
                     binding.loading = true
 
-                    adapter.setState(0)
+                    if (viewModel.question.id.isEmpty()) {
 
-                    viewModel.post(
-                        question = binding.question!!,
-                        anonymous = binding.anonymousSwitch.isChecked,
-                        allSections = binding.allSectionsSwitch.isChecked,
-                        success = requireActivity()::onBackPressed,
-                        failure = fun() {
-                            binding.loading = null
-                            Toast.makeText(
-                                requireContext(),
-                                "Something went wrong. Try again",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        },
-                        images = adapter.images,
-                        done = fun(position: Int) {
-                            adapter.setState(position + 1)
-                        }
-                    )
+                        adapter.setState(0)
 
-                } else {
-                    binding.loading = false
+                        viewModel.post(
+                            question = binding.question!!,
+                            anonymous = binding.anonymousSwitch.isChecked,
+                            allSections = binding.allSectionsSwitch.isChecked,
+                            success = requireActivity()::onBackPressed,
+                            failure = fun() {
+                                binding.loading = null
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Something went wrong. Try again",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            },
+                            images = adapter.images,
+                            done = fun(position: Int) {
+                                adapter.setState(position + 1)
+                            }
+                        )
+                    } else {
+                        viewModel.editQuestion(
+                            question = binding.question!!,
+                            anonymous = binding.anonymousSwitch.isChecked,
+                            success = requireActivity()::onBackPressed,
+                            failure = fun() {
+                                binding.loading = null
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Something went wrong. Try again",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        )
+                    }
+
                 }
             }
             R.id.help -> {
@@ -167,8 +212,7 @@ open class NewQuestionFragment : Fragment() {
                 Manifest.permission.READ_EXTERNAL_STORAGE
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
+            requestPermissions(
                 arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                 PERMISSION_REQUEST_CODE
             )
@@ -182,11 +226,6 @@ open class NewQuestionFragment : Fragment() {
                 .imageEngine(GlideEngine())
                 .forResult(REQUEST_CODE_CHOOSE)
         }
-    }
-
-    companion object {
-        const val REQUEST_CODE_CHOOSE = 0
-        const val PERMISSION_REQUEST_CODE = 1
     }
 
 }

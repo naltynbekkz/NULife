@@ -8,7 +8,7 @@ import com.naltynbekkz.nulife.model.Meal
 import com.naltynbekkz.nulife.util.FirebaseQueryLiveData
 import javax.inject.Inject
 
-//@FoodScope
+@FoodScope
 class CafesRepository @Inject constructor(val database: FirebaseDatabase) {
 
     private val reference = database.getReference("cafes")

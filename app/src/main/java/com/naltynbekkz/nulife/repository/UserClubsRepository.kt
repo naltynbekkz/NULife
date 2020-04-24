@@ -3,12 +3,12 @@ package com.naltynbekkz.nulife.repository
 import androidx.lifecycle.Transformations
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.naltynbekkz.nulife.di.main.clubs.ClubsScope
+import com.naltynbekkz.nulife.di.main.MainScope
 import com.naltynbekkz.nulife.model.UserClub
 import com.naltynbekkz.nulife.util.FirebaseQueryLiveData
 import javax.inject.Inject
 
-//@ClubsScope
+@MainScope
 class UserClubsRepository @Inject constructor(auth: FirebaseAuth, database: FirebaseDatabase) {
 
     private val reference =

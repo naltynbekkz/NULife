@@ -8,7 +8,7 @@ import com.naltynbekkz.nulife.model.UserCourse
 import com.naltynbekkz.nulife.util.FirebaseQueryLiveData
 import javax.inject.Inject
 
-//@CoursesScope
+@CoursesScope
 class DeadlineRepository @Inject constructor(val database: FirebaseDatabase) {
 
     fun getDeadlines(userCourse: UserCourse) = Transformations.map(

@@ -10,7 +10,7 @@ import com.naltynbekkz.nulife.util.FirebaseQueryLiveData
 import com.naltynbekkz.nulife.util.ImageCompressor
 import javax.inject.Inject
 
-//@MarketScope
+@MarketScope
 class ItemsRepository @Inject constructor(
     database: FirebaseDatabase,
     val storage: FirebaseStorage,

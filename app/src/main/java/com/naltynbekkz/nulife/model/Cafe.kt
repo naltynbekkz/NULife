@@ -14,22 +14,28 @@ class Cafe(
     var days: ArrayList<Day>,
     var details: String?,
     var logo: String,
-    var reviews: ArrayList<Review>,
-    var approved: Boolean
+    var reviews: ArrayList<Review>
 ) : Serializable {
 
+    val ratings = intArrayOf(0, 0, 0, 0, 0)
+
+    init {
+        reviews.forEach {
+            ratings[(it.rating - 1).toInt()]++
+        }
+    }
+
     val rating: Float
-        get() = 5F
-//        {
-//                if (reviews.size == 0) {
-//                    return 0f
-//                }
-//                var sum = 0f
-//                reviews.forEach {
-//                    sum += it.rating
-//                }
-//                return sum / reviews.size
-//        }
+        get() {
+            if (reviews.size == 0) {
+                return 0f
+            }
+            var sum = 0f
+            reviews.forEach {
+                sum += it.rating
+            }
+            return sum / reviews.size
+        }
 
     constructor(ds: DataSnapshot) : this(
         id = ds.key!!,
@@ -39,8 +45,7 @@ class Cafe(
         days = Day.getList(ds.child("days")),
         details = ds.child("details").value as String?,
         logo = ds.child("urls").child("logo").value as String,
-        reviews = Review.getData(ds.child("reviews")),
-        approved = ds.child("approved").value as Boolean
+        reviews = Review.getData(ds.child("reviews"))
     )
 
     fun myRating(): Float? {
@@ -127,8 +132,7 @@ class Cafe(
 
     override fun equals(other: Any?): Boolean {
         return if (other != null && other is Cafe) {
-            id == other.id && title == other.title && featured == other.featured && contacts == other.contacts && days == other.days && details == other.details && contacts == other.contacts && logo == other.logo && reviews == other.reviews && approved == other.approved
-
+            id == other.id && title == other.title && featured == other.featured && contacts == other.contacts && details == other.details && logo == other.logo && rating == other.rating
         } else false
     }
 

@@ -2,7 +2,6 @@ package com.naltynbekkz.nulife.di.main.courses
 
 import com.naltynbekkz.nulife.ui.courses.answers.front.AnswersFragment
 import com.naltynbekkz.nulife.ui.courses.answers.front.CommentsFragment
-import com.naltynbekkz.nulife.ui.courses.answers.front.EditAnswerFragment
 import com.naltynbekkz.nulife.ui.courses.answers.front.NewAnswerFragment
 import com.naltynbekkz.nulife.ui.courses.courses.front.CoursesFragment
 import com.naltynbekkz.nulife.ui.courses.courses.front.EditCourseFragment
@@ -10,7 +9,6 @@ import com.naltynbekkz.nulife.ui.courses.courses.front.EnrollCourseFragment
 import com.naltynbekkz.nulife.ui.courses.courses.front.EnrollFragment
 import com.naltynbekkz.nulife.ui.courses.deadlines.front.DeadlinesFragment
 import com.naltynbekkz.nulife.ui.courses.deadlines.front.NewDeadlineFragment
-import com.naltynbekkz.nulife.ui.courses.questions.front.EditQuestionFragment
 import com.naltynbekkz.nulife.ui.courses.questions.front.NewQuestionFragment
 import com.naltynbekkz.nulife.ui.courses.questions.front.QuestionsFragment
 import com.naltynbekkz.nulife.ui.courses.resources.front.NewImagesFragment
@@ -43,7 +41,6 @@ interface CoursesComponent {
 
     fun inject(fragment: QuestionsFragment)
     fun inject(fragment: NewQuestionFragment)
-    fun inject(fragment: EditQuestionFragment)
 
     fun inject(fragment: ResourcesFragment)
     fun inject(fragment: NewImagesFragment)
@@ -51,7 +48,6 @@ interface CoursesComponent {
 
     fun inject(fragment: AnswersFragment)
     fun inject(fragment: CommentsFragment)
-    fun inject(fragment: EditAnswerFragment)
     fun inject(fragment: NewAnswerFragment)
 
 }

@@ -16,6 +16,7 @@ import com.naltynbekkz.nulife.di.ViewModelProviderFactory
 import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.food.adapter.SmallReviewAdapter
 import com.naltynbekkz.nulife.ui.food.viewmodel.CafeDetailsViewModel
+import com.naltynbekkz.nulife.util.Constant
 import javax.inject.Inject
 
 class CafeDetailsFragment : Fragment() {
@@ -41,6 +42,11 @@ class CafeDetailsFragment : Fragment() {
     ): View? {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_cafe_details, container, false)
+
+        savedInstanceState?.getInt(Constant.NESTED_SCROLL_STATE)?.let {
+            binding.nestedScrollView.scrollY = it
+        }
+
 
         adapter = SmallReviewAdapter {
             findNavController().navigate(
@@ -75,4 +81,10 @@ class CafeDetailsFragment : Fragment() {
         return binding.root
 
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(Constant.NESTED_SCROLL_STATE, binding.nestedScrollView.scrollY)
+    }
+
 }

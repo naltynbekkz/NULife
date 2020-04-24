@@ -9,7 +9,7 @@ import com.naltynbekkz.nulife.model.Request
 import com.naltynbekkz.nulife.util.FirebaseQueryLiveData
 import javax.inject.Inject
 
-//@MarketScope
+@MarketScope
 class RequestsRepository @Inject constructor(
     val auth: FirebaseAuth,
     database: FirebaseDatabase

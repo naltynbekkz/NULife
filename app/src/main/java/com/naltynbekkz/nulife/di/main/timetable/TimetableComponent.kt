@@ -20,9 +20,8 @@ interface TimetableComponent {
     fun inject(fragment: MonthFragment)
     fun inject(fragment: WeekdayFragment)
     fun inject(activity: EditRoutineActivity)
-    fun inject(activity: EditTaskActivity)
     fun inject(activity: NewRoutineActivity)
-    fun inject(activity: NewTaskActivity)
+    fun inject(fragment: NewTaskFragment)
 
 }
 

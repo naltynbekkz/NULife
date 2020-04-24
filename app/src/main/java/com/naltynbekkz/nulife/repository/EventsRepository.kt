@@ -7,7 +7,7 @@ import com.naltynbekkz.nulife.model.Event
 import com.naltynbekkz.nulife.util.FirebaseQueryLiveData
 import javax.inject.Inject
 
-//@ClubsScope
+@ClubsScope
 class EventsRepository @Inject constructor(val database: FirebaseDatabase) {
 
     val data = Transformations.map(

@@ -4,13 +4,14 @@ import android.net.Uri
 import androidx.lifecycle.Transformations
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.naltynbekkz.nulife.di.main.courses.CoursesScope
 import com.naltynbekkz.nulife.model.Question
 import com.naltynbekkz.nulife.model.UserCourse
 import com.naltynbekkz.nulife.util.FirebaseQueryLiveData
 import com.naltynbekkz.nulife.util.ImageCompressor
 import javax.inject.Inject
 
-//@CoursesScope
+@CoursesScope
 class QuestionsRepository @Inject constructor(
     val database: FirebaseDatabase,
     val storage: FirebaseStorage,

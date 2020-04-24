@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.naltynbekkz.nulife.di.ViewModelAssistedFactory
 import com.naltynbekkz.nulife.model.Question
 import com.naltynbekkz.nulife.model.Student
+import com.naltynbekkz.nulife.model.UserCourse
 import com.naltynbekkz.nulife.repository.NotificationsRepository
 import com.naltynbekkz.nulife.repository.QuestionsRepository
 import com.naltynbekkz.nulife.repository.UserRepository
@@ -20,7 +21,7 @@ class NewQuestionViewModel @AssistedInject constructor(
     userRepository: UserRepository
 ) : ViewModel() {
 
-    val question: Question = if (savedStateHandle.contains(Constant.USER_COURSE)) {
+    val question: Question = if (savedStateHandle.get<UserCourse>(Constant.USER_COURSE) != null) {
         Question(userCourse = savedStateHandle[Constant.USER_COURSE]!!)
     } else {
         savedStateHandle[Constant.QUESTION]!!

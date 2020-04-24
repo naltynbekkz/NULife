@@ -16,7 +16,7 @@
     <string name="brackets">(%s)</string>
 
 
-    <string name="app_name">NULife</string>
+    <string name="app_name" translatable="false">NULife</string>
     <string name="courses">Courses</string>
     <string name="free">Free</string>
     <string name="unavailable">Unavailable</string>

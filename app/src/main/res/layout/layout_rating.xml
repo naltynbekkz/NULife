@@ -56,7 +56,8 @@
 
     </data>
 
-    <merge tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+    <merge tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
+        tools:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -355,5 +356,5 @@
 
         </LinearLayout>
 
-    </>
+    </merge>
 </layout>

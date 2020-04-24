@@ -91,7 +91,7 @@ class CourseFragment : Fragment() {
             when (binding.viewpager.currentItem) {
                 0 -> {
                     findNavController().navigate(
-                        CourseFragmentDirections.actionCourseFragmentToNewQuestionFragment(args.userCourse)
+                        CourseFragmentDirections.actionCourseFragmentToNewQuestionFragment(null, args.userCourse)
                     )
                 }
                 1 -> {

@@ -3,10 +3,11 @@ package com.naltynbekkz.nulife.repository
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.naltynbekkz.nulife.database.OccurrencesDao
+import com.naltynbekkz.nulife.di.main.MainScope
 import com.naltynbekkz.nulife.model.Occurrence
 import javax.inject.Inject
 
-//@MainScope
+@MainScope
 class OccurrencesRepository @Inject constructor(private val dao: OccurrencesDao) {
 
     fun getRoutinesAndDayTasks(day: Long, dayEnd: Long, week: String) =

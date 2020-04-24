@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
@@ -82,8 +83,11 @@ class TimetableFragment : Fragment() {
                     },
                     secondText = "New task",
                     second = fun() {
-                        val intent = Intent(context, NewTaskActivity::class.java)
-                        startActivity(intent)
+                        findNavController().navigate(
+                            TimetableFragmentDirections.actionTimetableFragmentToNewTaskFragment(
+                                null
+                            )
+                        )
                     }
                 ).show(parentFragmentManager, "TimetableFragment")
                 return true

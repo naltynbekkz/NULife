@@ -19,6 +19,7 @@ import androidx.databinding.InverseBindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.TextInputLayout
 import com.naltynbekkz.nulife.R
@@ -53,12 +54,12 @@ fun setDrawableEnd(button: AppCompatButton, drawable: Drawable?) {
     }
 }
 
-
 @BindingAdapter("imageUrl")
 fun imageUrl(image: ImageView, images: ArrayList<String>?) {
     if (images != null) {
         Glide.with(image.context)
             .load(images.firstOrNull())
+            .transition(DrawableTransitionOptions().crossFade())
             .into(image)
     }
 }
@@ -68,6 +69,7 @@ fun logoUrl(image: ImageView, logo: String?) {
     if (logo != null && logo.isNotEmpty()) {
         Glide.with(image.context)
             .load(logo)
+            .transition(DrawableTransitionOptions().crossFade())
             .into(image)
     }
 }
@@ -77,6 +79,7 @@ fun logoUrlWithZoom(image: ImageView, logo: String?) {
     if (logo != null && logo.isNotEmpty()) {
         Glide.with(image.context)
             .load(logo)
+            .transition(DrawableTransitionOptions().crossFade())
             .into(image)
         image.setOnClickListener {
             StfalconImageViewer.Builder(
@@ -127,6 +130,7 @@ fun setColor(view: View, color: String) {
 fun setUri(image: ImageView, uri: Uri) {
     Glide.with(image.context)
         .load(uri)
+        .transition(DrawableTransitionOptions().crossFade())
         .into(image)
 }
 

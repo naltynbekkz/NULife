@@ -7,7 +7,7 @@ import com.naltynbekkz.nulife.di.main.MainScope
 import com.naltynbekkz.nulife.util.FirebaseQueryLiveData
 import javax.inject.Inject
 
-//@MainScope
+@MainScope
 class FemaleRepository @Inject constructor(auth: FirebaseAuth, database: FirebaseDatabase) {
 
     private val reference = database.getReference("female_requests").child(auth.uid!!)

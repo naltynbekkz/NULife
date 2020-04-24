@@ -1,24 +1,38 @@
 package com.naltynbekkz.nulife.ui.timetable.viewmodel
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.naltynbekkz.nulife.di.ViewModelAssistedFactory
 import com.naltynbekkz.nulife.model.Associate
 import com.naltynbekkz.nulife.model.Occurrence
 import com.naltynbekkz.nulife.repository.OccurrencesRepository
 import com.naltynbekkz.nulife.repository.UserClubsRepository
 import com.naltynbekkz.nulife.repository.UserCoursesRepository
+import com.naltynbekkz.nulife.util.Constant
 import com.naltynbekkz.nulife.util.NotificationHandler
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class NewOccurrenceViewModel @Inject constructor(
+class NewOccurrenceViewModel @AssistedInject constructor(
+    @Assisted savedStateHandle: SavedStateHandle,
     userCoursesRepository: UserCoursesRepository,
     userClubsRepository: UserClubsRepository,
     val occurrencesRepository: OccurrencesRepository,
-    val notificationHandler: NotificationHandler
+    private val notificationHandler: NotificationHandler
 ) : ViewModel() {
+
+    val task: Occurrence = if (savedStateHandle.get<Occurrence>(Constant.TASK) != null) {
+        savedStateHandle[Constant.TASK]!!
+    } else {
+        Occurrence(task = true)
+    }
+
+    @AssistedInject.Factory
+    interface Factory : ViewModelAssistedFactory<NewOccurrenceViewModel>
 
     val userCourses = Transformations.map(
         userCoursesRepository.userCourses

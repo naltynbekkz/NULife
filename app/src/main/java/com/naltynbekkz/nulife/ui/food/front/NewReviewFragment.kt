@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -21,6 +20,8 @@ import com.naltynbekkz.nulife.di.ViewModelProviderFactory
 import com.naltynbekkz.nulife.model.Review
 import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.food.viewmodel.NewReviewViewModel
+import com.naltynbekkz.nulife.util.Constant.Companion.PERMISSION_REQUEST_CODE
+import com.naltynbekkz.nulife.util.Constant.Companion.REQUEST_CODE_CHOOSE
 import com.naltynbekkz.nulife.util.Convert
 import com.naltynbekkz.nulife.util.ImagesAdapter
 import com.zhihu.matisse.Matisse
@@ -33,7 +34,12 @@ class NewReviewFragment : Fragment() {
     @Inject
     lateinit var viewModelProvider: ViewModelProviderFactory
     private val args: NewReviewFragmentArgs by navArgs()
-    private val viewModel: NewReviewViewModel by viewModels { viewModelProvider.create(this, args.toBundle()) }
+    private val viewModel: NewReviewViewModel by viewModels {
+        viewModelProvider.create(
+            this,
+            args.toBundle()
+        )
+    }
 
     private lateinit var binding: FragmentNewReviewBinding
     private lateinit var adapter: ImagesAdapter
@@ -85,8 +91,7 @@ class NewReviewFragment : Fragment() {
                 Manifest.permission.READ_EXTERNAL_STORAGE
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
+            requestPermissions(
                 arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                 PERMISSION_REQUEST_CODE
             )
@@ -159,10 +164,5 @@ class NewReviewFragment : Fragment() {
             }
         }
         return true
-    }
-
-    companion object {
-        const val REQUEST_CODE_CHOOSE = 0
-        const val PERMISSION_REQUEST_CODE = 1
     }
 }

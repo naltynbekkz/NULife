@@ -1,7 +1,6 @@
 package com.naltynbekkz.nulife.ui.courses.questions.front
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +18,6 @@ import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.courses.courses.front.CourseFragmentDirections
 import com.naltynbekkz.nulife.ui.courses.questions.adapter.TopicsAdapter
 import com.naltynbekkz.nulife.ui.courses.questions.viewmodel.QuestionsViewModel
-import com.naltynbekkz.nulife.util.Constant
 import com.naltynbekkz.nulife.util.Convert
 import com.naltynbekkz.nulife.util.EditDeleteBottomSheet
 import kotlinx.android.synthetic.main.fragment_questions.*
@@ -41,6 +39,7 @@ class QuestionsFragment : Fragment() {
         super.onAttach(context)
         (activity as MainActivity).coursesComponent.inject(this)
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +63,7 @@ class QuestionsFragment : Fragment() {
                         EditDeleteBottomSheet(
                             edit = fun() {
                                 findNavController().navigate(
-                                    CourseFragmentDirections.actionCourseFragmentToEditQuestionFragment(question)
+                                    CourseFragmentDirections.actionCourseFragmentToNewQuestionFragment(question, null)
                                 )
                             },
                             delete = fun() {

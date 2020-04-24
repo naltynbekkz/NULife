@@ -33,6 +33,15 @@ class FoodFragment : Fragment() {
         (activity as MainActivity).foodComponent.inject(this)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        adapter = CafeAdapter { cafeId ->
+            findNavController().navigate(
+                FoodFragmentDirections.actionFoodFragmentToCafeFragment(cafeId)
+            )
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,12 +55,6 @@ class FoodFragment : Fragment() {
         viewModel.cafes.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
-
-        adapter = CafeAdapter { cafeId ->
-            findNavController().navigate(
-                FoodFragmentDirections.actionFoodFragmentToCafeFragment(cafeId)
-            )
-        }
 
         binding.recyclerView.adapter = adapter
         return binding.root

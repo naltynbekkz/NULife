@@ -11,7 +11,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -21,6 +20,8 @@ import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.databinding.ActivityNewItemBinding
 import com.naltynbekkz.nulife.model.Item
 import com.naltynbekkz.nulife.ui.market.viewmodel.NewItemViewModel
+import com.naltynbekkz.nulife.util.Constant.Companion.PERMISSION_REQUEST_CODE
+import com.naltynbekkz.nulife.util.Constant.Companion.REQUEST_CODE_CHOOSE
 import com.naltynbekkz.nulife.util.Convert
 import com.naltynbekkz.nulife.util.ImagesAdapter
 import com.naltynbekkz.nulife.util.contacts.ChooseContactsAdapter
@@ -174,8 +175,7 @@ open class NewItemActivity : AppCompatActivity() {
                 Manifest.permission.READ_EXTERNAL_STORAGE
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(
-                this,
+            requestPermissions(
                 arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                 PERMISSION_REQUEST_CODE
             )
@@ -189,11 +189,6 @@ open class NewItemActivity : AppCompatActivity() {
                 .imageEngine(GlideEngine())
                 .forResult(REQUEST_CODE_CHOOSE)
         }
-    }
-
-    companion object {
-        const val PERMISSION_REQUEST_CODE = 1
-        const val REQUEST_CODE_CHOOSE = 0
     }
 
 }

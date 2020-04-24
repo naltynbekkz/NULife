@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.di.ViewModelProviderFactory
 import com.naltynbekkz.nulife.model.Occurrence
@@ -63,9 +64,9 @@ class MonthFragment : Fragment() {
         TaskBottomSheet(
             task,
             fun(task: Occurrence) {
-                val intent = Intent(context, EditTaskActivity::class.java)
-                intent.putExtra("task", task)
-                startActivity(intent)
+                findNavController().navigate(
+                    TimetableFragmentDirections.actionTimetableFragmentToNewTaskFragment(task)
+                )
             },
             viewModel::delete
         ).show(

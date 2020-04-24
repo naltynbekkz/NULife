@@ -41,6 +41,43 @@ class AnswersFragment : Fragment() {
         (activity as MainActivity).coursesComponent.inject(this)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        adapter = AnswersAdapter(
+            user = viewModel.user.value!!,
+            click = fun(answer: Answer) {
+                findNavController().navigate(
+                    AnswersFragmentDirections.actionAnswersFragmentToCommentsFragment(answer)
+                )
+            },
+            longClick = fun(answer: Answer): Boolean {
+                if (user != null && answer.author.id == user!!.uid || answer.author.id == user!!.anonymousId) {
+                    EditDeleteBottomSheet(
+                        edit = fun() {
+                            findNavController().navigate(
+                                AnswersFragmentDirections.actionAnswersFragmentToNewAnswerFragment(null, answer)
+                            )
+                        },
+                        delete = fun() {
+                            MaterialAlertDialogBuilder(context)
+                                .setTitle("Are you sure?")
+                                .setPositiveButton("Delete") { _, _ ->
+                                    viewModel.delete(answer)
+                                }
+                                .setNegativeButton("Cancel") { _, _ ->
+
+                                }.show()
+                        }
+                    ).show(parentFragmentManager, "AnswersActivity")
+                    return true
+                } else {
+                    return false
+                }
+            },
+            vote = viewModel::vote
+        )
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.answers_menu, menu)
     }
@@ -49,7 +86,7 @@ class AnswersFragment : Fragment() {
         when (item.itemId) {
             R.id.answer -> {
                 findNavController().navigate(
-                    AnswersFragmentDirections.actionAnswersFragmentToNewAnswerFragment(viewModel.question.value!!)
+                    AnswersFragmentDirections.actionAnswersFragmentToNewAnswerFragment(viewModel.question.value!!, null)
                 )
             }
         }
@@ -83,39 +120,7 @@ class AnswersFragment : Fragment() {
             this.user = it
         })
 
-        adapter = AnswersAdapter(
-            user = viewModel.user.value!!,
-            click = fun(answer: Answer) {
-                findNavController().navigate(
-                    AnswersFragmentDirections.actionAnswersFragmentToCommentsFragment(answer)
-                )
-            },
-            longClick = fun(answer: Answer): Boolean {
-                if (user != null && answer.author.id == user!!.uid || answer.author.id == user!!.anonymousId) {
-                    EditDeleteBottomSheet(
-                        edit = fun() {
-                            findNavController().navigate(
-                                AnswersFragmentDirections.actionAnswersFragmentToEditAnswerFragment(answer)
-                            )
-                        },
-                        delete = fun() {
-                            MaterialAlertDialogBuilder(context)
-                                .setTitle("Are you sure?")
-                                .setPositiveButton("Delete") { _, _ ->
-                                    viewModel.delete(answer)
-                                }
-                                .setNegativeButton("Cancel") { _, _ ->
 
-                                }.show()
-                        }
-                    ).show(parentFragmentManager, "AnswersActivity")
-                    return true
-                } else {
-                    return false
-                }
-            },
-            vote = viewModel::vote
-        )
 
         binding.answersRecyclerView.adapter = adapter
         viewModel.answers.observe(viewLifecycleOwner, Observer {

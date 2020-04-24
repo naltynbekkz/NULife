@@ -3,14 +3,14 @@ package com.naltynbekkz.nulife.repository
 import androidx.lifecycle.Transformations
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.naltynbekkz.nulife.di.main.courses.CoursesScope
+import com.naltynbekkz.nulife.di.main.MainScope
 import com.naltynbekkz.nulife.model.Course
 import com.naltynbekkz.nulife.model.UserCourse
 import com.naltynbekkz.nulife.util.FirebaseQueryLiveData
 import com.naltynbekkz.nulife.util.single
 import javax.inject.Inject
 
-//@CoursesScope
+@MainScope
 class UserCoursesRepository @Inject constructor(
     val auth: FirebaseAuth,
     val database: FirebaseDatabase

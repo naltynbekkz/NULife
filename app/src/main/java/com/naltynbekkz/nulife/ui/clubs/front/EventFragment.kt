@@ -20,7 +20,6 @@ import com.naltynbekkz.nulife.model.Occurrence
 import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.clubs.viewmodel.EventViewModel
 import com.naltynbekkz.nulife.ui.timetable.front.AddTaskBottomSheet
-import com.naltynbekkz.nulife.ui.timetable.front.EditTaskActivity
 import com.naltynbekkz.nulife.ui.timetable.front.TaskBottomSheet
 import com.naltynbekkz.nulife.util.Convert
 import javax.inject.Inject
@@ -109,9 +108,9 @@ class EventFragment : Fragment() {
                 ).show(parentFragmentManager, "EventActivity")
             } else {
                 TaskBottomSheet(binding.task!!, fun(task: Occurrence) {
-                    val intent = Intent(requireContext(), EditTaskActivity::class.java)
-                    intent.putExtra("task", task)
-                    startActivity(intent)
+                    findNavController().navigate(
+                        EventFragmentDirections.actionEventFragmentToNewTaskFragment(task)
+                    )
                 }, viewModel::delete).show(
                     parentFragmentManager,
                     "weekdayFragment"

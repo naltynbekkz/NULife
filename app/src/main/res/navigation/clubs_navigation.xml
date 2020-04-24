@@ -40,5 +40,17 @@
         <action
             android:id="@+id/action_eventFragment_to_clubFragment"
             app:destination="@id/clubFragment" />
+        <action
+            android:id="@+id/action_eventFragment_to_newTaskFragment"
+            app:destination="@id/newTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newTaskFragment"
+        android:name="com.naltynbekkz.nulife.ui.timetable.front.NewTaskFragment"
+        tools:layout="@layout/fragment_new_task"
+        android:label="NewTaskFragment">
+        <argument
+            android:name="task"
+            app:argType="com.naltynbekkz.nulife.model.Occurrence" />
     </fragment>
 </navigation>

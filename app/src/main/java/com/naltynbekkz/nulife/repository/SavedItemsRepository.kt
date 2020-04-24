@@ -7,7 +7,7 @@ import com.naltynbekkz.nulife.di.main.market.MarketScope
 import com.naltynbekkz.nulife.model.Item
 import javax.inject.Inject
 
-//@MarketScope
+@MarketScope
 class SavedItemsRepository @Inject constructor(val itemsDao: ItemsDao) {
     val items: LiveData<List<Item>> = itemsDao.getAll()
 

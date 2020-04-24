@@ -11,6 +11,8 @@ class Constant {
         const val QUESTION = "question"
         const val ANSWER = "answer"
 
+        const val TASK = "task"
+
         const val CAFE_ID = "cafe_id"
 
         const val CLUB_ID = "club_id"
@@ -19,7 +21,11 @@ class Constant {
         const val TODAY = "today"
         const val MONTH = "MONTH"
 
+        const val COORDINATOR_LAYOUT_SCROLL_STATE = "coordinator_layout_scroll_state"
+        const val NESTED_SCROLL_STATE = "nested_scroll_state"
 
+        const val REQUEST_CODE_CHOOSE = 0
+        const val PERMISSION_REQUEST_CODE = 1
     }
 
 }

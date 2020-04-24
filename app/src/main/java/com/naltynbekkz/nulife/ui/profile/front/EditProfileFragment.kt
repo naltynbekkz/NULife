@@ -7,11 +7,11 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -25,6 +25,8 @@ import com.naltynbekkz.nulife.di.ViewModelProviderFactory
 import com.naltynbekkz.nulife.model.Contact
 import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.profile.viewmodel.EditProfileViewModel
+import com.naltynbekkz.nulife.util.Constant.Companion.PERMISSION_REQUEST_CODE
+import com.naltynbekkz.nulife.util.Constant.Companion.REQUEST_CODE_CHOOSE
 import com.naltynbekkz.nulife.util.Convert
 import com.naltynbekkz.nulife.util.contacts.NewContactDialog
 import com.naltynbekkz.nulife.util.contacts.NewContactsAdapter
@@ -35,6 +37,7 @@ import kotlinx.android.synthetic.main.activity_new_item.*
 import javax.inject.Inject
 
 class EditProfileFragment : Fragment() {
+
     @Inject
     lateinit var viewModelProvider: ViewModelProviderFactory
     private val viewModel: EditProfileViewModel by viewModels { viewModelProvider.create(this) }
@@ -91,8 +94,7 @@ class EditProfileFragment : Fragment() {
                     Manifest.permission.READ_EXTERNAL_STORAGE
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-                ActivityCompat.requestPermissions(
-                    requireActivity(),
+                requestPermissions(
                     arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                     PERMISSION_REQUEST_CODE
                 )
@@ -157,6 +159,16 @@ class EditProfileFragment : Fragment() {
                         )
                     )
                     binding.major.adapter = majorAdapter
+                    if (it.major == null) {
+                        it.major = majorAdapter.getItem(0)
+                    } else {
+                        for (j in 0 until majorAdapter.count) {
+                            if (it.major == majorAdapter.getItem(j)) {
+                                Log.d("tag", j.toString())
+                                binding.major.setSelection(j)
+                            }
+                        }
+                    }
 
                 }
 
@@ -186,14 +198,31 @@ class EditProfileFragment : Fragment() {
                 for (i in 0 until schoolAdapter.count) {
                     if (school == schoolAdapter.getItem(i)) {
                         binding.school.setSelection(i)
-                    }
-                }
-            }
 
-            user.major?.let { major ->
-                for (j in 0 until majorAdapter.count) {
-                    if (major == majorAdapter.getItem(j)) {
-                        binding.major.setSelection(j)
+                        majorAdapter = ArrayAdapter(
+                            requireContext(),
+                            R.layout.item_spinner_layout,
+                            resources.getStringArray(
+                                when (i) {
+                                    0 -> R.array.graduate_school_of_business
+                                    1 -> R.array.graduate_school_of_public_policy
+                                    2 -> R.array.school_of_engineering_and_digital_sciences
+                                    3 -> R.array.school_of_medicine
+                                    4 -> R.array.school_of_mining_and_geosciences
+                                    else -> R.array.school_of_sciences_and_humanities
+                                }
+                            )
+                        )
+                        binding.major.adapter = majorAdapter
+                        user.major?.let { major ->
+                            Log.d("tag", major)
+                            for (j in 0 until majorAdapter.count) {
+                                if (major == majorAdapter.getItem(j)) {
+                                    Log.d("tag", j.toString())
+                                    binding.major.setSelection(j)
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -311,11 +340,6 @@ class EditProfileFragment : Fragment() {
             .thumbnailScale(0.85f)
             .imageEngine(GlideEngine())
             .forResult(REQUEST_CODE_CHOOSE)
-    }
-
-    companion object {
-        const val REQUEST_CODE_CHOOSE = 0
-        const val PERMISSION_REQUEST_CODE = 1
     }
 
 }
