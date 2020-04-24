@@ -7,6 +7,7 @@ import com.naltynbekkz.nulife.di.ViewModelKey;
 import com.naltynbekkz.nulife.ui.clubs.viewmodel.ClubViewModel;
 import com.naltynbekkz.nulife.ui.clubs.viewmodel.ClubViewModel_AssistedFactory;
 import com.naltynbekkz.nulife.ui.clubs.viewmodel.ClubsViewModel;
+import com.naltynbekkz.nulife.ui.clubs.viewmodel.ClubsViewModel_AssistedFactory;
 import com.naltynbekkz.nulife.ui.clubs.viewmodel.EventViewModel;
 import com.naltynbekkz.nulife.ui.clubs.viewmodel.EventViewModel_AssistedFactory;
 import com.naltynbekkz.nulife.ui.clubs.viewmodel.EventsViewModel;
@@ -21,7 +22,7 @@ public abstract class ClubsViewModelsModule {
     @Binds
     @IntoMap
     @ViewModelKey(ClubsViewModel.class)
-    abstract ViewModel bindClubsViewModel(ClubsViewModel viewModel);
+    public abstract ViewModelAssistedFactory<? extends ViewModel> bindClubsViewModel(ClubsViewModel_AssistedFactory viewModelFactory);
 
     @Binds
     @IntoMap
@@ -37,5 +38,6 @@ public abstract class ClubsViewModelsModule {
     @IntoMap
     @ViewModelKey(ClubViewModel.class)
     public abstract ViewModelAssistedFactory<? extends ViewModel> bindClubViewModel(ClubViewModel_AssistedFactory viewModelFactory);
+
 
 }

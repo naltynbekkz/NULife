@@ -1,46 +1,78 @@
 package com.naltynbekkz.nulife.ui.timetable.front
 
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import android.view.*
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.FirebaseDatabase
 import com.naltynbekkz.nulife.R
-import com.naltynbekkz.nulife.databinding.ActivityNewRoutineBinding
+import com.naltynbekkz.nulife.databinding.FragmentNewRoutineBinding
 import com.naltynbekkz.nulife.di.ViewModelProviderFactory
 import com.naltynbekkz.nulife.model.Associate
 import com.naltynbekkz.nulife.model.Occurrence
+import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.timetable.viewmodel.NewOccurrenceViewModel
 import com.naltynbekkz.nulife.util.Convert
 import javax.inject.Inject
 
-open class NewRoutineActivity : AppCompatActivity() {
+class NewRoutineFragment : Fragment() {
     @Inject
     lateinit var viewModelProvider: ViewModelProviderFactory
-    lateinit var binding: ActivityNewRoutineBinding
-    val viewModel: NewOccurrenceViewModel by viewModels { viewModelProvider.create(this) }
+    val args: NewRoutineFragmentArgs by navArgs()
+    val viewModel: NewOccurrenceViewModel by viewModels {
+        viewModelProvider.create(this, args.toBundle())
+    }
+
+    lateinit var binding: FragmentNewRoutineBinding
     private lateinit var bottomSheet: AssociateBottomSheet
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as MainActivity).timetableComponent.inject(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_new_routine)
+        (activity as MainActivity).hideBottomNavigation()
+    }
 
-        setSupportActionBar(binding.toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener {
-            onBackPressed()
+    override fun onDestroy() {
+        super.onDestroy()
+        (activity as MainActivity).showBottomNavigation()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_new_routine, container, false)
+        setHasOptionsMenu(true)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        (activity as MainActivity).apply {
+            setSupportActionBar(binding.toolbar)
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            binding.toolbar.setNavigationOnClickListener {
+                onBackPressed()
+            }
         }
 
         binding.startText.setOnClickListener {
             TimePickerDialog(
-                this,
+                requireContext(),
                 TimePickerDialog.OnTimeSetListener { _, h, m ->
                     binding.routine =
                         binding.routine!!.apply { start = (h * 60 * 60 + m * 60).toLong() }
@@ -53,7 +85,7 @@ open class NewRoutineActivity : AppCompatActivity() {
 
         binding.endText.setOnClickListener {
             TimePickerDialog(
-                this, TimePickerDialog.OnTimeSetListener { _, h, m ->
+                requireContext(), TimePickerDialog.OnTimeSetListener { _, h, m ->
                     binding.routine =
                         binding.routine!!.apply { end = (h * 60 * 60 + m * 60).toLong() }
                 },
@@ -64,7 +96,7 @@ open class NewRoutineActivity : AppCompatActivity() {
         }
 
         binding.notify.setOnClickListener {
-            MaterialAlertDialogBuilder(this)
+            MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.set_reminder)
                 .setItems(
                     R.array.notify_string_array,
@@ -77,13 +109,17 @@ open class NewRoutineActivity : AppCompatActivity() {
                 .show()
         }
 
-        init()
+        binding.routine = viewModel.routine
+
+        if (viewModel.routine.isNew()) {
+            initNew()
+        } else {
+            initEdit()
+        }
 
     }
 
-    open fun init() {
-
-        binding.routine = Occurrence(intent.extras?.get("associate") as Associate?)
+    private fun initNew() {
 
         binding.titleEditText.doOnTextChanged { _, _, _, _ ->
             if (binding.titleEditText.text.toString() != binding.associate?.title) {
@@ -91,10 +127,7 @@ open class NewRoutineActivity : AppCompatActivity() {
             }
         }
 
-        bottomSheet = AssociateBottomSheet(
-            viewModel.userCourses.value,
-            viewModel.userClubs.value
-        ) {
+        bottomSheet = AssociateBottomSheet {
             binding.associate = it
             binding.titleEditText.setText(it.title)
             if (it.color != null) {
@@ -107,14 +140,58 @@ open class NewRoutineActivity : AppCompatActivity() {
             }
         }
 
+        viewModel.userCourses.observe(viewLifecycleOwner, Observer {
+            bottomSheet.userCourses = it
+        })
+        viewModel.userClubs.observe(viewLifecycleOwner, Observer {
+            bottomSheet.userClubs = it
+        })
+
         binding.associateTextView.setOnClickListener {
-            bottomSheet.show(supportFragmentManager, "NewRoutineActivity")
+            bottomSheet.show(parentFragmentManager, "NewRoutineActivity")
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.save_menu, menu)
-        return true
+    private fun initEdit() {
+
+        binding.toolbar.title = "Edit routine"
+
+        if (binding.routine!!.routineType != Occurrence.CUSTOM) {
+            binding.associate = Associate(binding.routine!!)
+        }
+
+        binding.associate?.let {
+            binding.associateEditText.text = it.title
+        }
+
+
+        val weekdays = listOf(
+            binding.mon,
+            binding.tue,
+            binding.wed,
+            binding.thu,
+            binding.fri,
+            binding.sat,
+            binding.sun
+        )
+
+        for (i in weekdays.indices) {
+            if (binding.routine!!.week!![i] == '1') {
+                weekdays[i].isChecked = true
+            }
+        }
+
+        val colors = resources.getIntArray(R.array.colors)
+        for (i in colors.indices) {
+            if (colors[i] == Color.parseColor(binding.routine!!.color)) {
+                binding.colorSlider.setSelection(i)
+            }
+        }
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.save_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -149,9 +226,9 @@ open class NewRoutineActivity : AppCompatActivity() {
                         viewModel.insertRoutine(binding.routine!!.apply {
                             id = binding.associate?.id
                                 ?: FirebaseDatabase.getInstance().reference.push().key!!
-                        }, ::finish)
+                        }, requireActivity()::finish)
                     } else {
-                        viewModel.updateRoutine(binding.routine!!, ::finish)
+                        viewModel.updateRoutine(binding.routine!!, requireActivity()::finish)
                     }
 
                 } else {
@@ -159,7 +236,7 @@ open class NewRoutineActivity : AppCompatActivity() {
                 }
             }
             R.id.help -> {
-                Convert.help(this)
+                Convert.help(requireContext())
             }
         }
         return true

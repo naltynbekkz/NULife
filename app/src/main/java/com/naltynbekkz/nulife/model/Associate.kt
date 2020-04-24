@@ -35,7 +35,7 @@ class Associate(
         fun getDataFromUserCourses(userCourses: ArrayList<UserCourse>): ArrayList<Associate> {
             return ArrayList<Associate>().apply {
                 userCourses.forEach {
-                    Associate(it)
+                    add(Associate(it))
                 }
             }
         }
@@ -43,7 +43,7 @@ class Associate(
         fun getDataFromUserClubs(userClubs: ArrayList<UserClub>): ArrayList<Associate> {
             return ArrayList<Associate>().apply {
                 userClubs.forEach {
-                    Associate(it)
+                    add(Associate(it))
                 }
             }
         }

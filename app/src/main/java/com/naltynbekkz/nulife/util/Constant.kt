@@ -12,11 +12,14 @@ class Constant {
         const val ANSWER = "answer"
 
         const val TASK = "task"
+        const val ROUTINE = "routine"
+        const val ASSOCIATE = "associate"
 
         const val CAFE_ID = "cafe_id"
 
         const val CLUB_ID = "club_id"
         const val EVENT_ID = "event_id"
+        const val ALL = "ALL"
 
         const val TODAY = "today"
         const val MONTH = "MONTH"

@@ -13,7 +13,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.databinding.FragmentCourseBinding
-import com.naltynbekkz.nulife.model.UserCourse
 import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.courses.deadlines.front.DeadlinesFragment
 import com.naltynbekkz.nulife.ui.courses.questions.front.QuestionsFragment
@@ -47,7 +46,7 @@ class CourseFragment : Fragment() {
         }
 
 
-        binding.viewpager.adapter = CoursePagerAdapter(args.userCourse)
+        binding.viewpager.adapter = CoursePagerAdapter()
         binding.viewpager.offscreenPageLimit = 2
         TabLayoutMediator(binding.tabLayout, binding.viewpager) { tab, position ->
             tab.text = resources.getStringArray(R.array.course)[position]
@@ -91,7 +90,10 @@ class CourseFragment : Fragment() {
             when (binding.viewpager.currentItem) {
                 0 -> {
                     findNavController().navigate(
-                        CourseFragmentDirections.actionCourseFragmentToNewQuestionFragment(null, args.userCourse)
+                        CourseFragmentDirections.actionCourseFragmentToNewQuestionFragment(
+                            null,
+                            args.userCourse
+                        )
                     )
                 }
                 1 -> {
@@ -125,11 +127,11 @@ class CourseFragment : Fragment() {
         return binding.root
     }
 
-    inner class CoursePagerAdapter(userCourse: UserCourse) :
+    inner class CoursePagerAdapter :
         FragmentStateAdapter(this) {
 
         val bundle = Bundle().apply {
-            putSerializable(USER_COURSE, userCourse)
+            putSerializable(USER_COURSE, args.userCourse)
         }
 
         override fun getItemCount(): Int = 3

@@ -108,19 +108,23 @@ class Convert {
             }
         }
 
-        fun eventsToDays(events: ArrayList<Event>): ArrayList<Map.Entry<Long, ArrayList<Event>>> {
-            return ArrayList(TreeMap<Long, ArrayList<Event>>().apply {
-                for (event in events) {
-                    val day = removeHours(event.start).timeInMillis / 1000
-                    if (containsKey(day)) {
-                        this[day]!!.add(event)
-                    } else {
-                        this[day] = ArrayList<Event>().apply {
-                            add(event)
+        fun eventsToDays(events: ArrayList<Event>?): ArrayList<Map.Entry<Long, ArrayList<Event>>>? {
+            return if (events != null) {
+                ArrayList(TreeMap<Long, ArrayList<Event>>().apply {
+                    for (event in events) {
+                        val day = removeHours(event.start).timeInMillis / 1000
+                        if (containsKey(day)) {
+                            this[day]!!.add(event)
+                        } else {
+                            this[day] = ArrayList<Event>().apply {
+                                add(event)
+                            }
                         }
                     }
-                }
-            }.entries)
+                }.entries)
+            } else {
+                null
+            }
         }
 
         fun tasksToDays(tasks: List<Occurrence>): ArrayList<Map.Entry<Long, ArrayList<Occurrence>>> {

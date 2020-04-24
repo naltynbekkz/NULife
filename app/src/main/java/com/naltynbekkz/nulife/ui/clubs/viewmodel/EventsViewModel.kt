@@ -18,4 +18,5 @@ class EventsViewModel @Inject constructor(
 
     val allEvents = eventsRepository.data
 
+
 }

@@ -58,10 +58,9 @@ class FeedFragment : Fragment() {
         )
 
         userClubsAdapter = UserClubsAdapter(
-            click = fun(clubId: String, view: View) {
+            click = fun(clubId: String) {
                 findNavController().navigate(
-                    FeedFragmentDirections.actionFeedFragmentToClubFragment(clubId),
-                    FragmentNavigatorExtras(view to "view")
+                    FeedFragmentDirections.actionFeedFragmentToClubFragment(clubId)
                 )
             }
         )
@@ -110,20 +109,20 @@ class FeedFragment : Fragment() {
             0
         )
 
-
         binding.eventsRecyclerView.adapter = fancyEventsAdapter
 
         binding.myClubsRecyclerView.adapter = userClubsAdapter
 
         binding.allClubs.setOnClickListener {
-            startActivity(Intent(context, ClubsActivity::class.java))
+            findNavController().navigate(
+                FeedFragmentDirections.actionFeedFragmentToAllClubsFragment()
+            )
         }
         binding.allEvents.setOnClickListener {
-            startActivity(Intent(context, EventsActivity::class.java))
+            findNavController().navigate(
+                FeedFragmentDirections.actionFeedFragmentToAllEventsFragment()
+            )
         }
-
-//        postponeEnterTransition()
-//        binding.myClubsRecyclerView.doOnPreDraw { startPostponedEnterTransition() }
 
         return binding.root
 

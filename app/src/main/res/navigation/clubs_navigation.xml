@@ -16,6 +16,12 @@
         <action
             android:id="@+id/action_feedFragment_to_eventFragment"
             app:destination="@id/eventFragment" />
+        <action
+            android:id="@+id/action_feedFragment_to_allEventsFragment"
+            app:destination="@id/allEventsFragment" />
+        <action
+            android:id="@+id/action_feedFragment_to_allClubsFragment"
+            app:destination="@id/allClubsFragment" />
     </fragment>
     <fragment
         android:id="@+id/clubFragment"
@@ -47,10 +53,29 @@
     <fragment
         android:id="@+id/newTaskFragment"
         android:name="com.naltynbekkz.nulife.ui.timetable.front.NewTaskFragment"
-        tools:layout="@layout/fragment_new_task"
-        android:label="NewTaskFragment">
+        android:label="NewTaskFragment"
+        tools:layout="@layout/fragment_new_task">
         <argument
             android:name="task"
-            app:argType="com.naltynbekkz.nulife.model.Occurrence" />
+            app:argType="com.naltynbekkz.nulife.model.Occurrence"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/allEventsFragment"
+        android:name="com.naltynbekkz.nulife.ui.clubs.front.AllEventsFragment"
+        android:label="AllEventsFragment"
+        tools:layout="@layout/fragment_all_events">
+        <action
+            android:id="@+id/action_allEventsFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allClubsFragment"
+        android:name="com.naltynbekkz.nulife.ui.clubs.front.AllClubsFragment"
+        android:label="AllClubsFragment"
+        tools:layout="@layout/fragment_all_clubs">
+        <action
+            android:id="@+id/action_allClubsFragment_to_clubFragment"
+            app:destination="@id/clubFragment" />
     </fragment>
 </navigation>

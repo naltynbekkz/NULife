@@ -22,8 +22,8 @@ interface ClubsComponent {
     fun inject(fragment: EventsFragment)
     fun inject(fragment: ClubFragment)
     fun inject(fragment: EventFragment)
-    fun inject(activity: ClubsActivity)
-    fun inject(activity: EventsActivity)
+    fun inject(fragment: AllClubsFragment)
+    fun inject(fragment: AllEventsFragment)
 
 }
 

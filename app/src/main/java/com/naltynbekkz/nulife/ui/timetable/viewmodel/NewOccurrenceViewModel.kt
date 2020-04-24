@@ -25,10 +25,20 @@ class NewOccurrenceViewModel @AssistedInject constructor(
     private val notificationHandler: NotificationHandler
 ) : ViewModel() {
 
-    val task: Occurrence = if (savedStateHandle.get<Occurrence>(Constant.TASK) != null) {
-        savedStateHandle[Constant.TASK]!!
-    } else {
-        Occurrence(task = true)
+    val task: Occurrence by lazy {
+        if (savedStateHandle.get<Occurrence>(Constant.TASK) != null) {
+            savedStateHandle[Constant.TASK]!!
+        } else {
+            Occurrence(task = true)
+        }
+    }
+
+    val routine: Occurrence by lazy {
+        if (savedStateHandle.get<Occurrence>(Constant.ROUTINE) != null) {
+            savedStateHandle[Constant.ROUTINE]!!
+        } else {
+            Occurrence(associate = savedStateHandle[Constant.ASSOCIATE])
+        }
     }
 
     @AssistedInject.Factory

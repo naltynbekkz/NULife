@@ -15,12 +15,12 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class AssociateBottomSheet(
-    var userCourses: ArrayList<Associate>?,
-    var userClubs: ArrayList<Associate>?,
-    var routines: List<Occurrence>? = null,
     private val click: (Associate) -> Unit
 ) : BottomSheetDialogFragment() {
 
+    var userCourses: ArrayList<Associate>? = null
+    var userClubs: ArrayList<Associate>? = null
+    var routines: List<Occurrence>? = null
 
     lateinit var binding: BottomSheetAssociateBinding
 

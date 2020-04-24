@@ -1,6 +1,5 @@
 package com.naltynbekkz.nulife.ui.timetable.front
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.*
@@ -78,8 +77,9 @@ class TimetableFragment : Fragment() {
                 TwoButtonsBottomSheet(
                     firstText = "New routine",
                     first = fun() {
-                        val intent = Intent(context, NewRoutineActivity::class.java)
-                        startActivity(intent)
+                        findNavController().navigate(
+                            TimetableFragmentDirections.actionTimetableFragmentToNewRoutineFragment(null, null)
+                        )
                     },
                     secondText = "New task",
                     second = fun() {

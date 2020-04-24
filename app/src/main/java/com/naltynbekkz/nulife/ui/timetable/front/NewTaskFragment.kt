@@ -9,6 +9,7 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
@@ -153,12 +154,7 @@ class NewTaskFragment : Fragment() {
     }
 
     private fun initNew() {
-
-        bottomSheet = AssociateBottomSheet(
-            viewModel.userCourses.value,
-            viewModel.userClubs.value,
-            viewModel.routines.value
-        ) {
+        bottomSheet = AssociateBottomSheet {
             binding.associate = it
             if (it.color != null) {
                 val colors = resources.getIntArray(R.array.colors)
@@ -169,6 +165,16 @@ class NewTaskFragment : Fragment() {
                 }
             }
         }
+
+        viewModel.userCourses.observe(viewLifecycleOwner, Observer {
+            bottomSheet.userCourses = it
+        })
+        viewModel.userClubs.observe(viewLifecycleOwner, Observer {
+            bottomSheet.userClubs = it
+        })
+        viewModel.routines.observe(viewLifecycleOwner, Observer {
+            bottomSheet.routines = it
+        })
 
         binding.associateTextView.setOnClickListener {
             bottomSheet.show(parentFragmentManager, "NewTaskActivity")

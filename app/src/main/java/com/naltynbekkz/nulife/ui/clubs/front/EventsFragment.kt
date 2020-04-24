@@ -1,68 +1,111 @@
 package com.naltynbekkz.nulife.ui.clubs.front
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.naltynbekkz.nulife.R
-import com.naltynbekkz.nulife.model.Event
+import com.naltynbekkz.nulife.di.ViewModelProviderFactory
+import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.clubs.adapter.EventDaysAdapter
 import com.naltynbekkz.nulife.ui.clubs.viewmodel.EventsViewModel
+import com.naltynbekkz.nulife.util.Constant
 import com.naltynbekkz.nulife.util.Convert
 import kotlinx.android.synthetic.main.fragment_events.*
+import javax.inject.Inject
 
-class EventsFragment(private val all: Boolean) : Fragment() {
+class EventsFragment : Fragment() {
+
+    @Inject
+    lateinit var viewModelProvider: ViewModelProviderFactory
+    private val viewModel: EventsViewModel by viewModels {
+        viewModelProvider.create(this)
+    }
 
     lateinit var adapter: EventDaysAdapter
-    lateinit var viewModel: EventsViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as MainActivity).clubsComponent.inject(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         adapter = EventDaysAdapter(
-            click = fun(event: Event) {
-                //TODO: Navigate to eventfragment
-//                val intent = Intent(context, EventActivity::class.java)
-//                intent.putExtra("id", event.id)
-//                startActivity(intent)
+            click = fun(id: String) {
+                findNavController().navigate(
+                    AllEventsFragmentDirections.actionAllEventsFragmentToEventFragment(id)
+                )
             }
         )
-
-        viewModel = (activity as EventsActivity).eventsViewModel
-        viewModel.tasks.observe(this@EventsFragment, Observer {
-            adapter.setSavedData(it)
-        })
-
-        if (all) {
-            viewModel.allEvents.observe(this, Observer {
-                adapter.setData(it)
-            })
-        } else {
-            viewModel.allEvents.observe(this@EventsFragment, Observer {
-                adapter.setData(Convert.sortMyEvents(viewModel.userClubs.value, it))
-            })
-            viewModel.userClubs.observe(this@EventsFragment, Observer {
-                adapter.setData(Convert.sortMyEvents(it, viewModel.allEvents.value))
-            })
-        }
-
-//        viewModel.userClubs.observe(this, Observer {
-//            userClubsAdapter.submitList(it)
-//            fancyEventsAdapter.submitList(Convert.sortSavedEvents(viewModel.tasks.value, Convert.sortMyEvents(it, viewModel.allEvents.value)))
-//        })
-//        viewModel.allEvents.observe(this, Observer {
-//            Convert.sortSavedEvents(viewModel.tasks.value, Convert.sortMyEvents(viewModel.userClubs.value, it))
-//        })
-//        viewModel.tasks.observe(this, Observer {
-//            Convert.sortSavedEvents(it, Convert.sortMyEvents(viewModel.userClubs.value, viewModel.allEvents.value))
-//        })
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (arguments!!.getBoolean(Constant.ALL)) {
+            viewModel.allEvents.observe(viewLifecycleOwner, Observer {
+                adapter.submitList(
+                    Convert.eventsToDays(
+                        Convert.sortSavedEvents(
+                            viewModel.tasks.value,
+                            it
+                        )
+                    )
+                )
+            })
+            viewModel.tasks.observe(viewLifecycleOwner, Observer {
+                adapter.submitList(
+                    Convert.eventsToDays(
+                        Convert.sortSavedEvents(
+                            it,
+                            viewModel.allEvents.value
+                        )
+                    )
+                )
+            })
+        } else {
+            viewModel.allEvents.observe(viewLifecycleOwner, Observer {
+                adapter.submitList(
+                    Convert.eventsToDays(
+                        Convert.sortSavedEvents(
+                            viewModel.tasks.value,
+                            Convert.sortMyEvents(viewModel.userClubs.value, it)
+                        )
+                    )
+                )
+            })
+            viewModel.userClubs.observe(viewLifecycleOwner, Observer {
+                adapter.submitList(
+                    Convert.eventsToDays(
+                        Convert.sortSavedEvents(
+                            viewModel.tasks.value,
+                            Convert.sortMyEvents(it, viewModel.allEvents.value)
+                        )
+                    )
+                )
+            })
+            viewModel.tasks.observe(viewLifecycleOwner, Observer {
+                adapter.submitList(
+                    Convert.eventsToDays(
+                        Convert.sortSavedEvents(
+                            it,
+                            Convert.sortMyEvents(
+                                viewModel.userClubs.value,
+                                viewModel.allEvents.value
+                            )
+                        )
+                    )
+                )
+            })
+        }
+
         recycler_view.adapter = adapter
     }
 

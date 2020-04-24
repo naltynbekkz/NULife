@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider,
     private val viewModel: MainViewModel by viewModels { viewModelProvider.create(this) }
 
     private lateinit var bottomNavController: BottomNavController
-    lateinit var mainBinding: ActivityMainBinding
+    private lateinit var mainBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

@@ -1,7 +1,6 @@
 package com.naltynbekkz.nulife.ui.timetable.front
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -79,9 +78,12 @@ class MonthFragment : Fragment() {
         RoutineBottomSheet(
             routine,
             fun(routine: Occurrence) {
-                val intent = Intent(context, EditRoutineActivity::class.java)
-                intent.putExtra("routine", routine)
-                startActivity(intent)
+                findNavController().navigate(
+                    TimetableFragmentDirections.actionTimetableFragmentToNewRoutineFragment(
+                        routine,
+                        null
+                    )
+                )
             },
             viewModel::delete
         ).show(parentFragmentManager, "weekdayFragment")

@@ -21,12 +21,6 @@
             android:label="@string/title_activity_settings"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.naltynbekkz.nulife.ui.timetable.front.NewRoutineActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.naltynbekkz.nulife.ui.timetable.front.EditRoutineActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.naltynbekkz.nulife.ui.clubs.front.EventsActivity"
             android:screenOrientation="portrait" />
         <activity

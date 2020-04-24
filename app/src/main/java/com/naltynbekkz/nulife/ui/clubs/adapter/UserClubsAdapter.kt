@@ -10,7 +10,7 @@ import com.naltynbekkz.nulife.databinding.ItemClubBinding
 import com.naltynbekkz.nulife.model.UserClub
 
 class UserClubsAdapter(
-    private val click: (String, View) -> Unit
+    private val click: (String) -> Unit
 ) : ListAdapter<UserClub, UserClubsAdapter.ClubViewHolder>(UserClubDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClubViewHolder {
@@ -28,11 +28,11 @@ class UserClubsAdapter(
     }
 
     class ClubViewHolder(val binding: ItemClubBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(userClub: UserClub, click: (String, View) -> Unit) {
+        fun bind(userClub: UserClub, click: (String) -> Unit) {
             binding.userClub = userClub
 
             binding.root.setOnClickListener {
-                click(userClub.id, binding.logo)
+                click(userClub.id)
             }
         }
     }

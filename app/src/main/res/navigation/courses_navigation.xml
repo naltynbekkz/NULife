@@ -171,5 +171,14 @@
             app:argType="com.naltynbekkz.nulife.model.UserCourse" />
     </fragment>
 
-    <include app:graph="@navigation/new_task_navigation" />
+    <fragment
+        android:id="@+id/newTaskFragment"
+        android:name="com.naltynbekkz.nulife.ui.timetable.front.NewTaskFragment"
+        android:label="NewTaskFragment"
+        tools:layout="@layout/fragment_new_task">
+        <argument
+            android:name="task"
+            app:argType="com.naltynbekkz.nulife.model.Occurrence"
+            app:nullable="true" />
+    </fragment>
 </navigation>

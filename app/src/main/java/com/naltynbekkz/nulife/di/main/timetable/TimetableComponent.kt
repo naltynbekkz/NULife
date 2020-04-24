@@ -1,6 +1,9 @@
 package com.naltynbekkz.nulife.di.main.timetable
 
-import com.naltynbekkz.nulife.ui.timetable.front.*
+import com.naltynbekkz.nulife.ui.timetable.front.MonthFragment
+import com.naltynbekkz.nulife.ui.timetable.front.NewRoutineFragment
+import com.naltynbekkz.nulife.ui.timetable.front.NewTaskFragment
+import com.naltynbekkz.nulife.ui.timetable.front.WeekdayFragment
 import dagger.Subcomponent
 import javax.inject.Scope
 
@@ -19,8 +22,7 @@ interface TimetableComponent {
 
     fun inject(fragment: MonthFragment)
     fun inject(fragment: WeekdayFragment)
-    fun inject(activity: EditRoutineActivity)
-    fun inject(activity: NewRoutineActivity)
+    fun inject(fragment: NewRoutineFragment)
     fun inject(fragment: NewTaskFragment)
 
 }

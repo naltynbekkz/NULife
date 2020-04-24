@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -164,7 +163,6 @@ class EditProfileFragment : Fragment() {
                     } else {
                         for (j in 0 until majorAdapter.count) {
                             if (it.major == majorAdapter.getItem(j)) {
-                                Log.d("tag", j.toString())
                                 binding.major.setSelection(j)
                             }
                         }
@@ -215,10 +213,8 @@ class EditProfileFragment : Fragment() {
                         )
                         binding.major.adapter = majorAdapter
                         user.major?.let { major ->
-                            Log.d("tag", major)
                             for (j in 0 until majorAdapter.count) {
                                 if (major == majorAdapter.getItem(j)) {
-                                    Log.d("tag", j.toString())
                                     binding.major.setSelection(j)
                                 }
                             }

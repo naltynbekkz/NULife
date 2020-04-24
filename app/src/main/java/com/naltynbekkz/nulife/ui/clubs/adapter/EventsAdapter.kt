@@ -8,7 +8,7 @@ import com.naltynbekkz.nulife.databinding.ItemEventBinding
 import com.naltynbekkz.nulife.model.Event
 
 class EventsAdapter(
-    private val click: (Event) -> Unit
+    private val click: (String) -> Unit
 ) : ListAdapter<Event, EventsAdapter.EventViewHolder>(EventDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder =
@@ -28,11 +28,11 @@ class EventsAdapter(
     class EventViewHolder(val binding: ItemEventBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(
             event: Event,
-            click: (Event) -> Unit
+            click: (String) -> Unit
         ) {
             binding.event = event
             binding.root.setOnClickListener {
-                click(binding.event!!)
+                click(binding.event!!.id)
             }
         }
     }
