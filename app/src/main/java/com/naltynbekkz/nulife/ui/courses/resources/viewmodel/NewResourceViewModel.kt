@@ -10,7 +10,7 @@ import com.naltynbekkz.nulife.model.Student
 import com.naltynbekkz.nulife.model.UserCourse
 import com.naltynbekkz.nulife.repository.ResourceRepository
 import com.naltynbekkz.nulife.repository.UserRepository
-import com.naltynbekkz.nulife.util.Constant
+import com.naltynbekkz.nulife.util.Constants
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 
@@ -23,7 +23,7 @@ class NewResourceViewModel @AssistedInject constructor(
     @AssistedInject.Factory
     interface Factory: ViewModelAssistedFactory<NewResourceViewModel>
 
-    val userCourse: UserCourse = savedStateHandle[Constant.USER_COURSE]!!
+    val userCourse: UserCourse = savedStateHandle[Constants.USER_COURSE]!!
 
     fun post(
         resource: Resource,

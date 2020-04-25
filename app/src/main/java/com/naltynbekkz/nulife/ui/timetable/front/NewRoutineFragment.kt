@@ -223,12 +223,12 @@ class NewRoutineFragment : Fragment() {
                     }
 
                     if (binding.routine!!.isNew()) {
-                        viewModel.insertRoutine(binding.routine!!.apply {
+                        viewModel.insert(binding.routine!!.apply {
                             id = binding.associate?.id
                                 ?: FirebaseDatabase.getInstance().reference.push().key!!
                         }, requireActivity()::finish)
                     } else {
-                        viewModel.updateRoutine(binding.routine!!, requireActivity()::finish)
+                        viewModel.update(binding.routine!!, requireActivity()::finish)
                     }
 
                 } else {

@@ -24,8 +24,8 @@ import com.naltynbekkz.nulife.di.ViewModelProviderFactory
 import com.naltynbekkz.nulife.model.Contact
 import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.profile.viewmodel.EditProfileViewModel
-import com.naltynbekkz.nulife.util.Constant.Companion.PERMISSION_REQUEST_CODE
-import com.naltynbekkz.nulife.util.Constant.Companion.REQUEST_CODE_CHOOSE
+import com.naltynbekkz.nulife.util.Constants.Companion.PERMISSION_REQUEST_CODE
+import com.naltynbekkz.nulife.util.Constants.Companion.REQUEST_CODE_CHOOSE
 import com.naltynbekkz.nulife.util.Convert
 import com.naltynbekkz.nulife.util.contacts.NewContactDialog
 import com.naltynbekkz.nulife.util.contacts.NewContactsAdapter

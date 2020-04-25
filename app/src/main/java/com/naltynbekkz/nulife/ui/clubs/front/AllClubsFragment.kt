@@ -12,7 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.databinding.FragmentAllClubsBinding
 import com.naltynbekkz.nulife.ui.MainActivity
-import com.naltynbekkz.nulife.util.Constant
+import com.naltynbekkz.nulife.util.Constants
 
 class AllClubsFragment : Fragment() {
 
@@ -59,12 +59,12 @@ class AllClubsFragment : Fragment() {
             return when (position) {
                 0 -> ClubsFragment().apply {
                     arguments = Bundle().apply {
-                        putBoolean(Constant.ALL, false)
+                        putBoolean(Constants.ALL, false)
                     }
                 }
                 1 -> ClubsFragment().apply {
                     arguments = Bundle().apply {
-                        putBoolean(Constant.ALL, true)
+                        putBoolean(Constants.ALL, true)
                     }
                 }
                 else -> throw RuntimeException("too many fragments")

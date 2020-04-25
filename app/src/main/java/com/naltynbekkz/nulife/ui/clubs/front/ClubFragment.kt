@@ -20,7 +20,7 @@ import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.clubs.adapter.ClubEventsAdapter
 import com.naltynbekkz.nulife.ui.clubs.adapter.HeadsAdapter
 import com.naltynbekkz.nulife.ui.clubs.viewmodel.ClubViewModel
-import com.naltynbekkz.nulife.util.Constant
+import com.naltynbekkz.nulife.util.Constants
 import com.naltynbekkz.nulife.util.Convert
 import javax.inject.Inject
 
@@ -58,8 +58,8 @@ class ClubFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_club, container, false)
 
         savedInstanceState?.let {
-            binding.coordinatorLayout.scrollY = it.getInt(Constant.COORDINATOR_LAYOUT_SCROLL_STATE)
-            binding.nestedScrollView.scrollY = it.getInt(Constant.NESTED_SCROLL_STATE)
+            binding.coordinatorLayout.scrollY = it.getInt(Constants.COORDINATOR_LAYOUT_SCROLL_STATE)
+            binding.nestedScrollView.scrollY = it.getInt(Constants.NESTED_SCROLL_STATE)
         }
 
         binding.back.setOnClickListener {
@@ -111,8 +111,8 @@ class ClubFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(Constant.COORDINATOR_LAYOUT_SCROLL_STATE, binding.coordinatorLayout.scrollY)
-        outState.putInt(Constant.NESTED_SCROLL_STATE, binding.nestedScrollView.scrollY)
+        outState.putInt(Constants.COORDINATOR_LAYOUT_SCROLL_STATE, binding.coordinatorLayout.scrollY)
+        outState.putInt(Constants.NESTED_SCROLL_STATE, binding.nestedScrollView.scrollY)
     }
 
 }

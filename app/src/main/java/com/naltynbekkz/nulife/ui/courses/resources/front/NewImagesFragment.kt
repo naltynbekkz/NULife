@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -22,8 +21,8 @@ import com.naltynbekkz.nulife.di.ViewModelProviderFactory
 import com.naltynbekkz.nulife.model.Resource
 import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.courses.resources.viewmodel.NewResourceViewModel
-import com.naltynbekkz.nulife.util.Constant.Companion.PERMISSION_REQUEST_CODE
-import com.naltynbekkz.nulife.util.Constant.Companion.REQUEST_CODE_CHOOSE
+import com.naltynbekkz.nulife.util.Constants.Companion.PERMISSION_REQUEST_CODE
+import com.naltynbekkz.nulife.util.Constants.Companion.REQUEST_CODE_CHOOSE
 import com.naltynbekkz.nulife.util.Convert
 import com.naltynbekkz.nulife.util.ImagesAdapter
 import com.zhihu.matisse.Matisse

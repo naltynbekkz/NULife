@@ -20,8 +20,8 @@ import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.databinding.ActivityNewItemBinding
 import com.naltynbekkz.nulife.model.Item
 import com.naltynbekkz.nulife.ui.market.viewmodel.NewItemViewModel
-import com.naltynbekkz.nulife.util.Constant.Companion.PERMISSION_REQUEST_CODE
-import com.naltynbekkz.nulife.util.Constant.Companion.REQUEST_CODE_CHOOSE
+import com.naltynbekkz.nulife.util.Constants.Companion.PERMISSION_REQUEST_CODE
+import com.naltynbekkz.nulife.util.Constants.Companion.REQUEST_CODE_CHOOSE
 import com.naltynbekkz.nulife.util.Convert
 import com.naltynbekkz.nulife.util.ImagesAdapter
 import com.naltynbekkz.nulife.util.contacts.ChooseContactsAdapter

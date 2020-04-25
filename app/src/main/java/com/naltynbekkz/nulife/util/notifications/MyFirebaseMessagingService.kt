@@ -9,11 +9,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         remoteMessage.notification?.let {
-
-            (ContextCompat.getSystemService(
-                applicationContext,
-                NotificationManager::class.java
-            ) as NotificationManager).sendCloudNotification(
+            sendCloudNotification(
                 it.title!!,
                 it.body!!,
                 applicationContext

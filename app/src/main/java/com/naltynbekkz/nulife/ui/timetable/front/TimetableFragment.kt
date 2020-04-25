@@ -10,7 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.ui.MainActivity
-import com.naltynbekkz.nulife.util.Constant
+import com.naltynbekkz.nulife.util.Constants
 import com.naltynbekkz.nulife.util.Convert
 import com.naltynbekkz.nulife.util.TwoButtonsBottomSheet
 import kotlinx.android.synthetic.main.fragment_timetable.*
@@ -144,7 +144,7 @@ class TimetableFragment : Fragment() {
             val fragment = WeekdayFragment()
             fragment.arguments = Bundle().apply {
                 putLong(
-                    Constant.TODAY,
+                    Constants.TODAY,
                     today.timeInMillis / 1000 + (position - 3) * 24 * 60 * 60
                 )
             }
@@ -159,7 +159,7 @@ class TimetableFragment : Fragment() {
             val fragment = MonthFragment()
             fragment.arguments = Bundle().apply {
                 putLong(
-                    Constant.MONTH,
+                    Constants.MONTH,
                     Convert.removeDays().apply {
                         set(Calendar.MONTH, Convert.getMonth() / 3 * 3)
                         add(Calendar.MONTH, position)

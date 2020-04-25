@@ -9,7 +9,7 @@ import com.naltynbekkz.nulife.model.Question
 import com.naltynbekkz.nulife.model.Student
 import com.naltynbekkz.nulife.repository.AnswersRepository
 import com.naltynbekkz.nulife.repository.UserRepository
-import com.naltynbekkz.nulife.util.Constant
+import com.naltynbekkz.nulife.util.Constants
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 
@@ -20,10 +20,10 @@ class NewAnswerViewModel @AssistedInject constructor(
     userRepository: UserRepository
 ) : ViewModel() {
 
-    val answer: Answer = if (savedStateHandle.get<Question>(Constant.QUESTION) != null) {
-        Answer(question = savedStateHandle[Constant.QUESTION]!!)
+    val answer: Answer = if (savedStateHandle.get<Question>(Constants.QUESTION) != null) {
+        Answer(question = savedStateHandle[Constants.QUESTION]!!)
     } else {
-        savedStateHandle[Constant.ANSWER]!!
+        savedStateHandle[Constants.ANSWER]!!
     }
 
 

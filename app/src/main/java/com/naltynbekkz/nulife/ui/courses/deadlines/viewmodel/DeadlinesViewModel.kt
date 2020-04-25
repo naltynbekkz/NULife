@@ -11,8 +11,8 @@ import com.naltynbekkz.nulife.model.UserCourse
 import com.naltynbekkz.nulife.repository.DeadlineRepository
 import com.naltynbekkz.nulife.repository.OccurrencesRepository
 import com.naltynbekkz.nulife.repository.UserRepository
-import com.naltynbekkz.nulife.util.Constant
-import com.naltynbekkz.nulife.util.NotificationHandler
+import com.naltynbekkz.nulife.util.Constants
+import com.naltynbekkz.nulife.util.notifications.NotificationHandler
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +26,7 @@ class DeadlinesViewModel @AssistedInject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    val userCourse: UserCourse = savedStateHandle[Constant.USER_COURSE]!!
+    val userCourse: UserCourse = savedStateHandle[Constants.USER_COURSE]!!
 
     @AssistedInject.Factory
     interface Factory : ViewModelAssistedFactory<DeadlinesViewModel>
@@ -58,7 +58,7 @@ class DeadlinesViewModel @AssistedInject constructor(
 
             if (task.notificationTime != null) {
                 task.notificationId = notificationId
-                notificationHandler.scheduleTaskNotification(task)
+                notificationHandler.scheduleNotification(task)
             }
         }
     }

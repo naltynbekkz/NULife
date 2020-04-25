@@ -17,7 +17,7 @@ import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.courses.deadlines.front.DeadlinesFragment
 import com.naltynbekkz.nulife.ui.courses.questions.front.QuestionsFragment
 import com.naltynbekkz.nulife.ui.courses.resources.front.ResourcesFragment
-import com.naltynbekkz.nulife.util.Constant.Companion.USER_COURSE
+import com.naltynbekkz.nulife.util.Constants.Companion.USER_COURSE
 import com.naltynbekkz.nulife.util.TwoButtonsBottomSheet
 
 class CourseFragment : Fragment() {

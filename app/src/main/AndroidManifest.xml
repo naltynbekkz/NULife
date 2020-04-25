@@ -21,12 +21,6 @@
             android:label="@string/title_activity_settings"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.naltynbekkz.nulife.ui.clubs.front.EventsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.naltynbekkz.nulife.ui.clubs.front.ClubsActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.naltynbekkz.nulife.ui.market.front.MyItemActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -55,11 +49,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <receiver
-            android:name="com.naltynbekkz.nulife.util.notifications.NotificationReceiver"
-            android:enabled="true"
-            android:exported="false" />
 
         <service
             android:name="com.naltynbekkz.nulife.util.notifications.MyFirebaseMessagingService"

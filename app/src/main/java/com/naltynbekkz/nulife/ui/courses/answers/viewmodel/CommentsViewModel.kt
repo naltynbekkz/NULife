@@ -8,7 +8,7 @@ import com.naltynbekkz.nulife.model.Comment
 import com.naltynbekkz.nulife.model.Student
 import com.naltynbekkz.nulife.repository.AnswersRepository
 import com.naltynbekkz.nulife.repository.UserRepository
-import com.naltynbekkz.nulife.util.Constant
+import com.naltynbekkz.nulife.util.Constants
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 
@@ -22,7 +22,7 @@ class CommentsViewModel @AssistedInject constructor(
     @AssistedInject.Factory
     interface Factory: ViewModelAssistedFactory<CommentsViewModel>
 
-    private val _answer: Answer = savedStateHandle[Constant.ANSWER]!!
+    private val _answer: Answer = savedStateHandle[Constants.ANSWER]!!
 
     val user = userRepository.user
     val answer = answersRepository.getAnswer(_answer)

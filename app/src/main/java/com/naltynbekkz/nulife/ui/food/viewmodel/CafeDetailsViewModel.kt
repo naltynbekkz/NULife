@@ -12,7 +12,7 @@ class CafeDetailsViewModel @AssistedInject constructor(
     cafesRepository: CafesRepository
 ) : ViewModel() {
 
-    val cafeId: String = savedStateHandle[com.naltynbekkz.nulife.util.Constant.CAFE_ID]!!
+    val cafeId: String = savedStateHandle[com.naltynbekkz.nulife.util.Constants.CAFE_ID]!!
 
 
     @AssistedInject.Factory

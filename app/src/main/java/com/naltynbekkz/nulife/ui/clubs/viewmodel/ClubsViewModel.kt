@@ -17,7 +17,7 @@ class ClubsViewModel @AssistedInject constructor(
     @AssistedInject.Factory
     interface Factory : ViewModelAssistedFactory<ClubsViewModel>
 
-    private val all: Boolean = savedStateHandle[com.naltynbekkz.nulife.util.Constant.ALL]!!
+    private val all: Boolean = savedStateHandle[com.naltynbekkz.nulife.util.Constants.ALL]!!
     val clubs = if (all) clubsRepository.data else userClubsRepository.userClubs
 
 }

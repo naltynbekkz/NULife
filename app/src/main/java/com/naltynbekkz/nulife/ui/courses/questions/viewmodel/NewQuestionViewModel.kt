@@ -10,7 +10,7 @@ import com.naltynbekkz.nulife.model.UserCourse
 import com.naltynbekkz.nulife.repository.NotificationsRepository
 import com.naltynbekkz.nulife.repository.QuestionsRepository
 import com.naltynbekkz.nulife.repository.UserRepository
-import com.naltynbekkz.nulife.util.Constant
+import com.naltynbekkz.nulife.util.Constants
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 
@@ -21,10 +21,10 @@ class NewQuestionViewModel @AssistedInject constructor(
     userRepository: UserRepository
 ) : ViewModel() {
 
-    val question: Question = if (savedStateHandle.get<UserCourse>(Constant.USER_COURSE) != null) {
-        Question(userCourse = savedStateHandle[Constant.USER_COURSE]!!)
+    val question: Question = if (savedStateHandle.get<UserCourse>(Constants.USER_COURSE) != null) {
+        Question(userCourse = savedStateHandle[Constants.USER_COURSE]!!)
     } else {
-        savedStateHandle[Constant.QUESTION]!!
+        savedStateHandle[Constants.QUESTION]!!
     }
 
     @AssistedInject.Factory

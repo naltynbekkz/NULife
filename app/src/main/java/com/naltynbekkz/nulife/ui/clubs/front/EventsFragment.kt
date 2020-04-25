@@ -14,7 +14,7 @@ import com.naltynbekkz.nulife.di.ViewModelProviderFactory
 import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.clubs.adapter.EventDaysAdapter
 import com.naltynbekkz.nulife.ui.clubs.viewmodel.EventsViewModel
-import com.naltynbekkz.nulife.util.Constant
+import com.naltynbekkz.nulife.util.Constants
 import com.naltynbekkz.nulife.util.Convert
 import kotlinx.android.synthetic.main.fragment_events.*
 import javax.inject.Inject
@@ -49,7 +49,7 @@ class EventsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (arguments!!.getBoolean(Constant.ALL)) {
+        if (arguments!!.getBoolean(Constants.ALL)) {
             viewModel.allEvents.observe(viewLifecycleOwner, Observer {
                 adapter.submitList(
                     Convert.eventsToDays(

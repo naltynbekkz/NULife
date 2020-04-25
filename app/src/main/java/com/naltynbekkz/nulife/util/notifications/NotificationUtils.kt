@@ -11,10 +11,14 @@ import com.naltynbekkz.nulife.model.Occurrence
 import com.naltynbekkz.nulife.ui.MainActivity
 
 
-fun NotificationManager.sendNotification(
+fun sendNotification(
     occurrence: Occurrence,
     context: Context
 ) {
+    val notificationManager = ContextCompat.getSystemService(
+        context,
+        NotificationManager::class.java
+    ) as NotificationManager
 
     val contentIntent = Intent(context, MainActivity::class.java)
     val contentPendingIntent = PendingIntent.getActivity(
@@ -25,9 +29,9 @@ fun NotificationManager.sendNotification(
     )
 
     val builder = NotificationCompat.Builder(
-            context,
-            context.getString(R.string.timetable_notification_channel_id)
-        )
+        context,
+        context.getString(R.string.timetable_notification_channel_id)
+    )
         .setSmallIcon(R.drawable.ic_small_notification)
         .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
         .setContentTitle(
@@ -42,10 +46,10 @@ fun NotificationManager.sendNotification(
         .setAutoCancel(true)
         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
-    notify(occurrence.notificationId.toInt(), builder.build())
+    notificationManager.notify(occurrence.notificationId.toInt(), builder.build())
 }
 
-fun NotificationManager.sendCloudNotification(
+fun sendCloudNotification(
     title: String,
     details: String,
     context: Context
@@ -60,9 +64,9 @@ fun NotificationManager.sendCloudNotification(
     )
 
     val builder = NotificationCompat.Builder(
-            context,
-            context.getString(R.string.cloud_notification_channel_id)
-        )
+        context,
+        context.getString(R.string.cloud_notification_channel_id)
+    )
         .setSmallIcon(R.drawable.ic_small_notification)
         .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
         .setContentTitle(title)
@@ -71,5 +75,8 @@ fun NotificationManager.sendCloudNotification(
         .setAutoCancel(true)
         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
-    notify(10101, builder.build())
+    (ContextCompat.getSystemService(
+        context,
+        NotificationManager::class.java
+    ) as NotificationManager).notify(10101, builder.build())
 }

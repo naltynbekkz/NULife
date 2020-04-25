@@ -218,16 +218,16 @@ class NewTaskFragment : Fragment() {
                     }
 
                     if (binding.task!!.isNew()) {
-                        viewModel.insertTask(
-                            task = binding.task!!.apply {
+                        viewModel.insert(
+                            occurrence = binding.task!!.apply {
                                 id = FirebaseDatabase.getInstance().reference.push().key!!
                             },
                             complete = requireActivity()::onBackPressed
                         )
 
                     } else {
-                        viewModel.updateTask(
-                            task = binding.task!!,
+                        viewModel.update(
+                            occurrence = binding.task!!,
                             complete = requireActivity()::onBackPressed
                         )
                     }

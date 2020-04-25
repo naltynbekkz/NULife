@@ -1,10 +1,12 @@
 package com.naltynbekkz.nulife.model
 
+import android.app.AlarmManager
 import android.graphics.Color
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.Gson
+import com.naltynbekkz.nulife.util.Constants
 import com.naltynbekkz.nulife.util.Convert
 import java.io.Serializable
 
@@ -18,6 +20,7 @@ open class Occurrence(
     var start: Long = 0,
     var end: Long = 0,
     var color: String? = null,
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "notification_id")
     var notificationId: Long = 0,
@@ -211,6 +214,19 @@ open class Occurrence(
             return string.toString()
         }
         return null
+    }
+
+    fun getTriggerTime(): Long {
+        if (taskType != null) {
+            return (start - notificationTime!!) * 1000L - System.currentTimeMillis()
+        } else {
+            var time =
+                ((start - notificationTime!!) * 1000 + Constants.MAX_NOTIFICATION_TIME) % AlarmManager.INTERVAL_DAY - System.currentTimeMillis() + Convert.removeHours().timeInMillis
+            if (time < 0) {
+                time += AlarmManager.INTERVAL_DAY
+            }
+            return time
+        }
     }
 
 }

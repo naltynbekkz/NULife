@@ -7,7 +7,7 @@ import com.naltynbekkz.nulife.di.ViewModelAssistedFactory
 import com.naltynbekkz.nulife.model.Resource
 import com.naltynbekkz.nulife.model.UserCourse
 import com.naltynbekkz.nulife.repository.ResourceRepository
-import com.naltynbekkz.nulife.util.Constant
+import com.naltynbekkz.nulife.util.Constants
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +21,7 @@ class ResourcesViewModel @AssistedInject constructor(
     @AssistedInject.Factory
     interface Factory : ViewModelAssistedFactory<ResourcesViewModel>
 
-    private val userCourse: UserCourse = savedStateHandle[Constant.USER_COURSE]!!
+    private val userCourse: UserCourse = savedStateHandle[Constants.USER_COURSE]!!
 
     val resources = resourceRepository.getResources(userCourse)
 

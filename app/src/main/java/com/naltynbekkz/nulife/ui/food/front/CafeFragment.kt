@@ -19,7 +19,7 @@ import com.naltynbekkz.nulife.di.ViewModelProviderFactory
 import com.naltynbekkz.nulife.model.Meal
 import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.food.viewmodel.CafeViewModel
-import com.naltynbekkz.nulife.util.Constant
+import com.naltynbekkz.nulife.util.Constants
 import javax.inject.Inject
 
 class CafeFragment : Fragment() {
@@ -47,7 +47,7 @@ class CafeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        savedInstanceState?.getInt(Constant.COORDINATOR_LAYOUT_SCROLL_STATE)?.let {
+        savedInstanceState?.getInt(Constants.COORDINATOR_LAYOUT_SCROLL_STATE)?.let {
 
             binding.coordinatorLayout.scrollY = it
         }
@@ -92,7 +92,7 @@ class CafeFragment : Fragment() {
     class PagerAdapter(fragment: Fragment, cafeId: String) : FragmentStateAdapter(fragment) {
 
         val bundle = Bundle().apply {
-            putString(Constant.CAFE_ID, cafeId)
+            putString(Constants.CAFE_ID, cafeId)
         }
 
         override fun getItemCount(): Int = 2
@@ -109,7 +109,7 @@ class CafeFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(Constant.COORDINATOR_LAYOUT_SCROLL_STATE, binding.coordinatorLayout.scrollY)
+        outState.putInt(Constants.COORDINATOR_LAYOUT_SCROLL_STATE, binding.coordinatorLayout.scrollY)
     }
 
 }

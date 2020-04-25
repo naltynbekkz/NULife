@@ -8,6 +8,7 @@ import com.naltynbekkz.nulife.di.ViewModelAssistedFactory
 import com.naltynbekkz.nulife.model.Occurrence
 import com.naltynbekkz.nulife.repository.OccurrencesRepository
 import com.naltynbekkz.nulife.util.Convert
+import com.naltynbekkz.nulife.util.notifications.NotificationHandler
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
@@ -18,13 +19,14 @@ import kotlin.collections.ArrayList
 
 class MonthViewModel @AssistedInject constructor(
     @Assisted savedStateHandle: SavedStateHandle,
-    val occurrencesRepository: OccurrencesRepository
+    val occurrencesRepository: OccurrencesRepository,
+    val notificationHandler: NotificationHandler
 ) : ViewModel() {
 
     @AssistedInject.Factory
     interface Factory: ViewModelAssistedFactory<MonthViewModel>
 
-    private val month: Long = savedStateHandle[com.naltynbekkz.nulife.util.Constant.MONTH]!!
+    private val month: Long = savedStateHandle[com.naltynbekkz.nulife.util.Constants.MONTH]!!
     private val monthEnd = Convert.monthEnd(month)
 
     val occurrences =
@@ -62,6 +64,7 @@ class MonthViewModel @AssistedInject constructor(
     fun delete(occurrence: Occurrence) {
         viewModelScope.launch(Dispatchers.IO) {
             occurrencesRepository.delete(occurrence)
+            notificationHandler.cancel(occurrence)
         }
     }
 }

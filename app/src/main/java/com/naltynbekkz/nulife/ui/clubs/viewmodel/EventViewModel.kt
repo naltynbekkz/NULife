@@ -8,7 +8,7 @@ import com.naltynbekkz.nulife.di.ViewModelAssistedFactory
 import com.naltynbekkz.nulife.model.Occurrence
 import com.naltynbekkz.nulife.repository.EventsRepository
 import com.naltynbekkz.nulife.repository.OccurrencesRepository
-import com.naltynbekkz.nulife.util.NotificationHandler
+import com.naltynbekkz.nulife.util.notifications.NotificationHandler
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +22,7 @@ class EventViewModel @AssistedInject constructor(
 ) : ViewModel() {
 
 
-    private val eventId: String = savedStateHandle[com.naltynbekkz.nulife.util.Constant.EVENT_ID]!!
+    private val eventId: String = savedStateHandle[com.naltynbekkz.nulife.util.Constants.EVENT_ID]!!
 
     @AssistedInject.Factory
     interface Factory : ViewModelAssistedFactory<EventViewModel>
@@ -40,7 +40,7 @@ class EventViewModel @AssistedInject constructor(
 
             if (task.notificationTime != null) {
                 task.notificationId = notificationId
-                notificationHandler.scheduleTaskNotification(task)
+                notificationHandler.scheduleNotification(task)
             }
         }
     }

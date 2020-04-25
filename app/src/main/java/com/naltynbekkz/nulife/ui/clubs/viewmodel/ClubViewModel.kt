@@ -19,7 +19,7 @@ class ClubViewModel @AssistedInject constructor(
     private val notificationsRepository: NotificationsRepository
 ) : ViewModel() {
 
-    private val clubId: String = savedStateHandle[com.naltynbekkz.nulife.util.Constant.CLUB_ID]!!
+    private val clubId: String = savedStateHandle[com.naltynbekkz.nulife.util.Constants.CLUB_ID]!!
 
     @AssistedInject.Factory
     interface Factory : ViewModelAssistedFactory<ClubViewModel>

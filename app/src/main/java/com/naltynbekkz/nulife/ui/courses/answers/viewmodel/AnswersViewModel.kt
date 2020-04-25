@@ -8,7 +8,7 @@ import com.naltynbekkz.nulife.model.Question
 import com.naltynbekkz.nulife.repository.AnswersRepository
 import com.naltynbekkz.nulife.repository.QuestionsRepository
 import com.naltynbekkz.nulife.repository.UserRepository
-import com.naltynbekkz.nulife.util.Constant
+import com.naltynbekkz.nulife.util.Constants
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 
@@ -20,7 +20,7 @@ class AnswersViewModel @AssistedInject constructor(
     userRepository: UserRepository
 ) : ViewModel() {
 
-    private val _question: Question = savedStateHandle[Constant.QUESTION]!!
+    private val _question: Question = savedStateHandle[Constants.QUESTION]!!
 
     @AssistedInject.Factory
     interface Factory : ViewModelAssistedFactory<AnswersViewModel>

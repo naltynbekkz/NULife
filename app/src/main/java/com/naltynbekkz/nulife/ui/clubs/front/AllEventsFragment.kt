@@ -12,7 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.databinding.FragmentAllEventsBinding
 import com.naltynbekkz.nulife.ui.MainActivity
-import com.naltynbekkz.nulife.util.Constant
+import com.naltynbekkz.nulife.util.Constants
 
 class AllEventsFragment : Fragment() {
 
@@ -57,12 +57,12 @@ class AllEventsFragment : Fragment() {
             return when (position) {
                 0 -> EventsFragment().apply {
                     arguments = Bundle().apply {
-                        putSerializable(Constant.ALL, false)
+                        putSerializable(Constants.ALL, false)
                     }
                 }
                 else -> EventsFragment().apply {
                     arguments = Bundle().apply {
-                        putSerializable(Constant.ALL, false)
+                        putSerializable(Constants.ALL, false)
                     }
                 }
             }

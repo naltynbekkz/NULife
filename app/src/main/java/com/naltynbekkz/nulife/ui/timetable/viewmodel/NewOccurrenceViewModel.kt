@@ -10,8 +10,8 @@ import com.naltynbekkz.nulife.model.Occurrence
 import com.naltynbekkz.nulife.repository.OccurrencesRepository
 import com.naltynbekkz.nulife.repository.UserClubsRepository
 import com.naltynbekkz.nulife.repository.UserCoursesRepository
-import com.naltynbekkz.nulife.util.Constant
-import com.naltynbekkz.nulife.util.NotificationHandler
+import com.naltynbekkz.nulife.util.Constants
+import com.naltynbekkz.nulife.util.notifications.NotificationHandler
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
@@ -26,18 +26,18 @@ class NewOccurrenceViewModel @AssistedInject constructor(
 ) : ViewModel() {
 
     val task: Occurrence by lazy {
-        if (savedStateHandle.get<Occurrence>(Constant.TASK) != null) {
-            savedStateHandle[Constant.TASK]!!
+        if (savedStateHandle.get<Occurrence>(Constants.TASK) != null) {
+            savedStateHandle[Constants.TASK]!!
         } else {
             Occurrence(task = true)
         }
     }
 
     val routine: Occurrence by lazy {
-        if (savedStateHandle.get<Occurrence>(Constant.ROUTINE) != null) {
-            savedStateHandle[Constant.ROUTINE]!!
+        if (savedStateHandle.get<Occurrence>(Constants.ROUTINE) != null) {
+            savedStateHandle[Constants.ROUTINE]!!
         } else {
-            Occurrence(associate = savedStateHandle[Constant.ASSOCIATE])
+            Occurrence(associate = savedStateHandle[Constants.ASSOCIATE])
         }
     }
 
@@ -58,13 +58,13 @@ class NewOccurrenceViewModel @AssistedInject constructor(
 
     val routines = occurrencesRepository.routines
 
-    fun insertTask(task: Occurrence, complete: () -> Unit) {
+    fun insert(occurrence: Occurrence, complete: () -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
-            val notificationId = occurrencesRepository.insert(task)
+            val notificationId = occurrencesRepository.insert(occurrence)
 
-            if (task.notificationTime != null) {
-                task.notificationId = notificationId
-                notificationHandler.scheduleTaskNotification(task)
+            if (occurrence.notificationTime != null) {
+                occurrence.notificationId = notificationId
+                notificationHandler.scheduleNotification(occurrence)
             }
 
             complete()
@@ -72,38 +72,17 @@ class NewOccurrenceViewModel @AssistedInject constructor(
     }
 
 
-    fun updateTask(task: Occurrence, complete: () -> Unit) {
+    fun update(occurrence: Occurrence, complete: () -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
-            occurrencesRepository.update(task)
+            occurrencesRepository.update(occurrence)
 
-            notificationHandler.cancel(task)
+            notificationHandler.cancel(occurrence)
 
-            if (task.notificationTime != null) {
-                notificationHandler.scheduleTaskNotification(task)
+            if (occurrence.notificationTime != null) {
+                notificationHandler.scheduleNotification(occurrence)
             }
 
             complete()
-        }
-    }
-
-    fun insertRoutine(routine: Occurrence, finish: () -> Unit) {
-        viewModelScope.launch(Dispatchers.IO) {
-            occurrencesRepository.insert(routine)
-            if (routine.notificationTime != null) {
-                notificationHandler.scheduleRoutineNotification(routine)
-            }
-            finish()
-        }
-    }
-
-    fun updateRoutine(routine: Occurrence, finish: () -> Unit) {
-        viewModelScope.launch(Dispatchers.IO) {
-            occurrencesRepository.update(routine)
-            notificationHandler.cancel(routine)
-            if (routine.notificationTime != null) {
-                notificationHandler.scheduleRoutineNotification(routine)
-            }
-            finish()
         }
     }
 
