@@ -168,15 +168,6 @@ class Convert {
             return events
         }
 
-        fun getFeaturedMeal(cafe: Cafe?, meals: ArrayList<Meal>?): Meal? {
-            meals?.forEach {
-                if (it.id == cafe?.featured) {
-                    return it
-                }
-            }
-            return null
-        }
-
         fun getAllItems(items: ArrayList<Item>?, femaleItems: ArrayList<Item>?): ArrayList<Item> {
             return ArrayList<Item>().apply {
                 items?.let { addAll(it) }

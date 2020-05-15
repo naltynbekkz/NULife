@@ -63,7 +63,7 @@ class ClubFragment : Fragment() {
         }
 
         binding.back.setOnClickListener {
-            requireActivity().onBackPressed()
+            findNavController().navigateUp()
         }
 
         binding.clubTitle.isSelected = true
@@ -93,11 +93,9 @@ class ClubFragment : Fragment() {
             }
             headsAdapter.submitList(club.heads)
         })
+
         viewModel.events.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(Convert.sortSavedEvents(viewModel.tasks.value, it))
-        })
-        viewModel.tasks.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(Convert.sortSavedEvents(it, viewModel.events.value))
+            adapter.submitList(it)
         })
 
         binding.appbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
@@ -111,7 +109,10 @@ class ClubFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(Constants.COORDINATOR_LAYOUT_SCROLL_STATE, binding.coordinatorLayout.scrollY)
+        outState.putInt(
+            Constants.COORDINATOR_LAYOUT_SCROLL_STATE,
+            binding.coordinatorLayout.scrollY
+        )
         outState.putInt(Constants.NESTED_SCROLL_STATE, binding.nestedScrollView.scrollY)
     }
 

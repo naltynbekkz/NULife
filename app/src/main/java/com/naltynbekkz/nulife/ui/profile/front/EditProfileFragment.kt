@@ -16,6 +16,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.naltynbekkz.nulife.R
@@ -83,7 +84,7 @@ class EditProfileFragment : Fragment() {
             setSupportActionBar(binding.toolbar)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             binding.toolbar.setNavigationOnClickListener {
-                onBackPressed()
+                findNavController().navigateUp()
             }
         }
 
@@ -309,7 +310,7 @@ class EditProfileFragment : Fragment() {
                 viewModel.editProfile(
                     user = binding.user!!,
                     image = imageUri,
-                    success = requireActivity()::onBackPressed,
+                    success = findNavController()::navigateUp,
                     failure = fun() {
                         binding.loading = null
                         Toast.makeText(

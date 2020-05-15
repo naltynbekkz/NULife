@@ -28,7 +28,7 @@ class NewResourceViewModel @AssistedInject constructor(
     fun post(
         resource: Resource,
         files: ArrayList<LocalFile>,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit,
         done: (Int) -> Unit
     ) {
@@ -40,7 +40,7 @@ class NewResourceViewModel @AssistedInject constructor(
 
     fun post(
         resource: Resource,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit,
         images: ArrayList<Uri>,
         compress: (Uri) -> ByteArray,

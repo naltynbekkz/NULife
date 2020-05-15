@@ -31,7 +31,7 @@ class UserRepository @Inject constructor(
 
     private fun post(
         user: User,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit
     ) {
         reference.updateChildren(
@@ -46,7 +46,7 @@ class UserRepository @Inject constructor(
     fun editProfile(
         user: User,
         image: Uri?,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit
     ) {
         image?.let { uri ->

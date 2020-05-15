@@ -25,7 +25,7 @@ class NotificationsRepository @Inject constructor(auth: FirebaseAuth, database: 
     fun follow(
         id: String,
         type: String,
-        success: (() -> Unit)? = null,
+        success: (() -> Boolean)? = null,
         fail: (() -> Unit)? = null
     ) {
         reference.child(id)

@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.FirebaseDatabase
@@ -66,7 +67,7 @@ class NewRoutineFragment : Fragment() {
             setSupportActionBar(binding.toolbar)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             binding.toolbar.setNavigationOnClickListener {
-                onBackPressed()
+                findNavController().navigateUp()
             }
         }
 
@@ -226,9 +227,9 @@ class NewRoutineFragment : Fragment() {
                         viewModel.insert(binding.routine!!.apply {
                             id = binding.associate?.id
                                 ?: FirebaseDatabase.getInstance().reference.push().key!!
-                        }, requireActivity()::finish)
+                        }, findNavController()::navigateUp)
                     } else {
-                        viewModel.update(binding.routine!!, requireActivity()::finish)
+                        viewModel.update(binding.routine!!, findNavController()::navigateUp)
                     }
 
                 } else {

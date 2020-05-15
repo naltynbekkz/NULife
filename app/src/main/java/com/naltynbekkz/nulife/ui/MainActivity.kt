@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import com.naltynbekkz.nulife.BaseApplication
 import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.databinding.ActivityMainBinding
@@ -113,7 +114,8 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider,
     }
 
     override fun onReselectNavItem(navController: NavController, fragment: Fragment) {
-//        TODO("Not yet implemented")
+        val navOptions = NavOptions.Builder().setPopUpTo(navController.graph.id, true).build()
+        navController.navigate(navController.graph.id, null, navOptions)
     }
 
     override fun onBackPressed() = bottomNavController.onBackPressed()

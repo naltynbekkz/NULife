@@ -7,7 +7,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.naltynbekkz.nulife.di.auth.AuthScope
 import javax.inject.Inject
 
 class AuthViewModel @Inject constructor(
@@ -46,5 +45,4 @@ class AuthViewModel @Inject constructor(
             fail()
         }
     }
-
 }

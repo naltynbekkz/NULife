@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.databinding.FragmentNewAnswerBinding
@@ -71,7 +72,7 @@ open class NewAnswerFragment : Fragment() {
             setSupportActionBar(binding.toolbar)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             binding.toolbar.setNavigationOnClickListener {
-                onBackPressed()
+                findNavController().navigateUp()
             }
         }
         if (viewModel.answer.id.isEmpty()) {
@@ -142,7 +143,7 @@ open class NewAnswerFragment : Fragment() {
                                 ).show()
                             },
                             images = adapter.images,
-                            success = requireActivity()::onBackPressed,
+                            success = findNavController()::navigateUp,
                             done = fun(position: Int) {
                                 adapter.setState(position + 1)
                             }
@@ -159,7 +160,7 @@ open class NewAnswerFragment : Fragment() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             },
-                            success = requireActivity()::onBackPressed
+                            success = findNavController()::navigateUp
                         )
                     }
 

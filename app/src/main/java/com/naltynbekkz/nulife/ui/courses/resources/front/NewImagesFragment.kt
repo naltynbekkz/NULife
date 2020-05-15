@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.databinding.FragmentNewImagesBinding
@@ -62,7 +63,7 @@ class NewImagesFragment : Fragment() {
             setSupportActionBar(binding.toolbar)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             binding.toolbar.setNavigationOnClickListener {
-                onBackPressed()
+                findNavController().navigateUp()
             }
         }
 
@@ -131,7 +132,7 @@ class NewImagesFragment : Fragment() {
                         resource = binding.resource!!.apply {
                             year = binding.yearEditText.text.toString().toLong()
                         },
-                        success = requireActivity()::onBackPressed,
+                        success = findNavController()::navigateUp,
                         failure = fun() {
                             binding.loading = null
                             Toast.makeText(

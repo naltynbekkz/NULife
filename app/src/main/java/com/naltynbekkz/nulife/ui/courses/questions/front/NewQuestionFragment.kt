@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.databinding.FragmentNewQuestionBinding
@@ -75,7 +76,7 @@ class NewQuestionFragment : Fragment() {
             setSupportActionBar(binding.toolbar)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             binding.toolbar.setNavigationOnClickListener {
-                onBackPressed()
+                findNavController().navigateUp()
             }
         }
 
@@ -167,7 +168,7 @@ class NewQuestionFragment : Fragment() {
                             question = binding.question!!,
                             anonymous = binding.anonymousSwitch.isChecked,
                             allSections = binding.allSectionsSwitch.isChecked,
-                            success = requireActivity()::onBackPressed,
+                            success = findNavController()::navigateUp,
                             failure = fun() {
                                 binding.loading = null
                                 Toast.makeText(
@@ -185,7 +186,7 @@ class NewQuestionFragment : Fragment() {
                         viewModel.editQuestion(
                             question = binding.question!!,
                             anonymous = binding.anonymousSwitch.isChecked,
-                            success = requireActivity()::onBackPressed,
+                            success = findNavController()::navigateUp,
                             failure = fun() {
                                 binding.loading = null
                                 Toast.makeText(

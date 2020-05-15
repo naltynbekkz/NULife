@@ -36,7 +36,7 @@ class NewAnswerViewModel @AssistedInject constructor(
         anonymous: Boolean,
         failure: () -> Unit,
         images: ArrayList<Uri>,
-        success: () -> Unit,
+        success: () -> Boolean,
         done: (Int) -> Unit
     ) {
         answer.apply {
@@ -52,7 +52,7 @@ class NewAnswerViewModel @AssistedInject constructor(
 
     fun editAnswer(
         anonymous: Boolean,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit
     ) {
         answer.apply {

@@ -28,7 +28,7 @@ class ReviewRepository @Inject constructor(
     fun post(
         cafeId: String,
         review: Review,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit,
         images: ArrayList<Uri>,
         callback: (Int) -> Unit

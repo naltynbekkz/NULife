@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.naltynbekkz.nulife.repository.EventsRepository
 import com.naltynbekkz.nulife.repository.OccurrencesRepository
 import com.naltynbekkz.nulife.repository.UserClubsRepository
+import com.zhuinden.livedatacombinetuplekt.combineTuple
 import javax.inject.Inject
 
 class EventsViewModel @Inject constructor(
@@ -11,6 +12,12 @@ class EventsViewModel @Inject constructor(
     userClubsRepository: UserClubsRepository,
     eventsRepository: EventsRepository
 ) : ViewModel() {
+
+    val events = combineTuple(
+        occurrencesRepository.events,
+        userClubsRepository.userClubs,
+        eventsRepository.data
+    )
 
     val tasks = occurrencesRepository.events
 

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.model.Item
 import com.naltynbekkz.nulife.ui.market.adapter.MarketSearchAdapter
@@ -74,7 +75,7 @@ class SearchFragment : Fragment() {
         toolbar.setNavigationOnClickListener {
             hideKeyboard()
 
-            (activity as AppCompatActivity).onBackPressed()
+            findNavController().navigateUp()
         }
 
         recycler_view.adapter = adapter

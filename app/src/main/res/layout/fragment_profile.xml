@@ -103,31 +103,31 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/saved_items"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:background="@color/transparent"
-                    android:drawableStart="@drawable/ic_cart"
-                    android:drawablePadding="12dp"
-                    android:foreground="?android:selectableItemBackground"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="20dp"
-                    android:text="@string/saved_items"
-                    android:textAppearance="@style/RegularText" />
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    android:id="@+id/saved_items"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="56dp"-->
+<!--                    android:background="@color/transparent"-->
+<!--                    android:drawableStart="@drawable/ic_cart"-->
+<!--                    android:drawablePadding="12dp"-->
+<!--                    android:foreground="?android:selectableItemBackground"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:paddingHorizontal="20dp"-->
+<!--                    android:text="@string/saved_items"-->
+<!--                    android:textAppearance="@style/RegularText" />-->
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/categories"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:background="@color/transparent"
-                    android:drawableStart="@drawable/ic_category"
-                    android:drawablePadding="12dp"
-                    android:foreground="?android:selectableItemBackground"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="20dp"
-                    android:text="@string/my_categories"
-                    android:textAppearance="@style/RegularText" />
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    android:id="@+id/categories"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="56dp"-->
+<!--                    android:background="@color/transparent"-->
+<!--                    android:drawableStart="@drawable/ic_category"-->
+<!--                    android:drawablePadding="12dp"-->
+<!--                    android:foreground="?android:selectableItemBackground"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:paddingHorizontal="20dp"-->
+<!--                    android:text="@string/my_categories"-->
+<!--                    android:textAppearance="@style/RegularText" />-->
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/terms"

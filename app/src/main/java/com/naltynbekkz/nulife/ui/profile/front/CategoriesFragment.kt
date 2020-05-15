@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.naltynbekkz.nulife.R
 import com.naltynbekkz.nulife.databinding.FragmentCategoriesBinding
 import com.naltynbekkz.nulife.di.ViewModelProviderFactory
@@ -41,7 +42,7 @@ class CategoriesFragment : Fragment() {
             setSupportActionBar(binding.toolbar)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             binding.toolbar.setNavigationOnClickListener {
-                onBackPressed()
+                findNavController().navigateUp()
             }
         }
 

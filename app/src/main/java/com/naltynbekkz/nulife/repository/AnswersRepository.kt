@@ -43,7 +43,7 @@ class AnswersRepository @Inject constructor(
         answer: Answer,
         failure: () -> Unit,
         images: ArrayList<Uri>,
-        success: () -> Unit,
+        success: () -> Boolean,
         done: (Int) -> Unit
     ) {
         val answerReference = database.getReference("answers").child(answer.courseId)
@@ -86,7 +86,7 @@ class AnswersRepository @Inject constructor(
 
     fun editAnswer(
         answer: Answer,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit
     ) {
         database.getReference("answers")

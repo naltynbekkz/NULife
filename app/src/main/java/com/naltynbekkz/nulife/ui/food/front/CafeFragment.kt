@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.appbar.AppBarLayout
@@ -72,7 +73,7 @@ class CafeFragment : Fragment() {
         })
 
         binding.back.setOnClickListener {
-            requireActivity().onBackPressed()
+            findNavController().navigateUp()
         }
         binding.viewpager.offscreenPageLimit = 2
         binding.viewpager.adapter = PagerAdapter(this, viewModel.cafeId)

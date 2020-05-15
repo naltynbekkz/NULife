@@ -38,7 +38,7 @@ class DeadlinesViewModel @AssistedInject constructor(
     fun post(
         deadline: Deadline,
         allSections: Boolean,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit
     ) {
         if (allSections){

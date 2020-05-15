@@ -58,7 +58,7 @@ class NewOccurrenceViewModel @AssistedInject constructor(
 
     val routines = occurrencesRepository.routines
 
-    fun insert(occurrence: Occurrence, complete: () -> Unit) {
+    fun insert(occurrence: Occurrence, complete: () -> Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
             val notificationId = occurrencesRepository.insert(occurrence)
 
@@ -72,7 +72,7 @@ class NewOccurrenceViewModel @AssistedInject constructor(
     }
 
 
-    fun update(occurrence: Occurrence, complete: () -> Unit) {
+    fun update(occurrence: Occurrence, complete: () -> Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
             occurrencesRepository.update(occurrence)
 

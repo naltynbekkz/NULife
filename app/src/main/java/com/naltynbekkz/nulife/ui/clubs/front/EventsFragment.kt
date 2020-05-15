@@ -49,62 +49,19 @@ class EventsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (arguments!!.getBoolean(Constants.ALL)) {
-            viewModel.allEvents.observe(viewLifecycleOwner, Observer {
-                adapter.submitList(
-                    Convert.eventsToDays(
-                        Convert.sortSavedEvents(
-                            viewModel.tasks.value,
-                            it
-                        )
+        viewModel.events.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(
+                Convert.eventsToDays(
+                    Convert.sortSavedEvents(
+                        it.first,
+                        if (arguments!!.getBoolean(Constants.ALL))
+                            it.third
+                        else
+                            Convert.sortMyEvents(it.second, it.third)
                     )
                 )
-            })
-            viewModel.tasks.observe(viewLifecycleOwner, Observer {
-                adapter.submitList(
-                    Convert.eventsToDays(
-                        Convert.sortSavedEvents(
-                            it,
-                            viewModel.allEvents.value
-                        )
-                    )
-                )
-            })
-        } else {
-            viewModel.allEvents.observe(viewLifecycleOwner, Observer {
-                adapter.submitList(
-                    Convert.eventsToDays(
-                        Convert.sortSavedEvents(
-                            viewModel.tasks.value,
-                            Convert.sortMyEvents(viewModel.userClubs.value, it)
-                        )
-                    )
-                )
-            })
-            viewModel.userClubs.observe(viewLifecycleOwner, Observer {
-                adapter.submitList(
-                    Convert.eventsToDays(
-                        Convert.sortSavedEvents(
-                            viewModel.tasks.value,
-                            Convert.sortMyEvents(it, viewModel.allEvents.value)
-                        )
-                    )
-                )
-            })
-            viewModel.tasks.observe(viewLifecycleOwner, Observer {
-                adapter.submitList(
-                    Convert.eventsToDays(
-                        Convert.sortSavedEvents(
-                            it,
-                            Convert.sortMyEvents(
-                                viewModel.userClubs.value,
-                                viewModel.allEvents.value
-                            )
-                        )
-                    )
-                )
-            })
-        }
+            )
+        })
 
         recycler_view.adapter = adapter
     }

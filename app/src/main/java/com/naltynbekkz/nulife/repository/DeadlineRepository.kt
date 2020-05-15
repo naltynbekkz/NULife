@@ -22,7 +22,7 @@ class DeadlineRepository @Inject constructor(val database: FirebaseDatabase) {
 
     fun post(
         deadline: Deadline,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit
     ) {
         database.getReference("deadlines").child(deadline.courseId).push()

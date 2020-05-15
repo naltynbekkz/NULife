@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
@@ -70,7 +71,7 @@ class NewTaskFragment : Fragment() {
             setSupportActionBar(binding.toolbar)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             binding.toolbar.setNavigationOnClickListener {
-                onBackPressed()
+                findNavController().navigateUp()
             }
         }
 
@@ -222,13 +223,13 @@ class NewTaskFragment : Fragment() {
                             occurrence = binding.task!!.apply {
                                 id = FirebaseDatabase.getInstance().reference.push().key!!
                             },
-                            complete = requireActivity()::onBackPressed
+                            complete = findNavController()::navigateUp
                         )
 
                     } else {
                         viewModel.update(
                             occurrence = binding.task!!,
-                            complete = requireActivity()::onBackPressed
+                            complete = findNavController()::navigateUp
                         )
                     }
 

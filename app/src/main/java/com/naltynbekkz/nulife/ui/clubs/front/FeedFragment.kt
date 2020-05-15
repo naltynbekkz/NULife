@@ -1,18 +1,15 @@
 package com.naltynbekkz.nulife.ui.clubs.front
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.doOnPreDraw
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.naltynbekkz.nulife.R
@@ -64,32 +61,16 @@ class FeedFragment : Fragment() {
                 )
             }
         )
-        viewModel.userClubs.observe(viewLifecycleOwner, Observer {
-            userClubsAdapter.submitList(it)
-            fancyEventsAdapter.submitList(
-                Convert.sortSavedEvents(
-                    viewModel.tasks.value,
-                    Convert.sortMyEvents(it, viewModel.allEvents.value)
-                )
-            )
-        })
-        viewModel.allEvents.observe(viewLifecycleOwner, Observer {
-            fancyEventsAdapter.submitList(
-                Convert.sortSavedEvents(
-                    viewModel.tasks.value,
-                    Convert.sortMyEvents(viewModel.userClubs.value, it)
-                )
-            )
-        })
-        viewModel.tasks.observe(viewLifecycleOwner, Observer {
-            fancyEventsAdapter.submitList(
-                Convert.sortSavedEvents(
-                    it,
-                    Convert.sortMyEvents(viewModel.userClubs.value, viewModel.allEvents.value)
-                )
-            )
-        })
 
+        viewModel.events.observe(viewLifecycleOwner, Observer {
+            userClubsAdapter.submitList(it.second)
+            fancyEventsAdapter.submitList(
+                Convert.sortSavedEvents(
+                    it.first,
+                    Convert.sortMyEvents(it.second, it.third)
+                )
+            )
+        })
 
         (activity as MainActivity).setToolbar(binding.toolbar)
 

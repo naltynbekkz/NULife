@@ -18,7 +18,6 @@ import com.naltynbekkz.nulife.databinding.FragmentProfileBinding
 import com.naltynbekkz.nulife.di.ViewModelProviderFactory
 import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.auth.AuthActivity
-import com.naltynbekkz.nulife.ui.market.front.MyItemsActivity
 import com.naltynbekkz.nulife.ui.profile.viewmodel.ProfileViewModel
 import com.naltynbekkz.nulife.util.Convert
 import javax.inject.Inject
@@ -48,15 +47,15 @@ class ProfileFragment : Fragment() {
             binding.user = it
         })
 
-        binding.savedItems.setOnClickListener {
-            val intent = Intent(context, MyItemsActivity::class.java)
-            startActivity(intent)
-        }
-        binding.categories.setOnClickListener {
-            findNavController().navigate(
-                ProfileFragmentDirections.actionProfileFragmentToCategoriesFragment()
-            )
-        }
+//        binding.savedItems.setOnClickListener {
+//            val intent = Intent(context, MyItemsActivity::class.java)
+//            startActivity(intent)
+//        }
+//        binding.categories.setOnClickListener {
+//            findNavController().navigate(
+//                ProfileFragmentDirections.actionProfileFragmentToCategoriesFragment()
+//            )
+//        }
         binding.terms.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("http://nulife.kz/terms")

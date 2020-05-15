@@ -102,6 +102,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0"
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
 
+    // LiveData
+    implementation 'com.github.Zhuinden:livedata-combinetuple-kt:1.0.0'
+
     // Material Design
     implementation 'com.google.android.material:material:1.2.0-alpha05'
 

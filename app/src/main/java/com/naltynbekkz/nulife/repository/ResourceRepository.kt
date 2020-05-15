@@ -35,7 +35,7 @@ class ResourceRepository @Inject constructor(
         resource: Resource,
         userCourse: UserCourse,
         files: ArrayList<LocalFile>,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit,
         done: (Int) -> Unit
     ) {
@@ -75,7 +75,7 @@ class ResourceRepository @Inject constructor(
     fun post(
         resource: Resource,
         userCourse: UserCourse,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit,
         images: ArrayList<Uri>,
         compress: (Uri) -> ByteArray,

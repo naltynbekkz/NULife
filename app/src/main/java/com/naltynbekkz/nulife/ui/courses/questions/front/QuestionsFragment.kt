@@ -18,7 +18,6 @@ import com.naltynbekkz.nulife.ui.MainActivity
 import com.naltynbekkz.nulife.ui.courses.courses.front.CourseFragmentDirections
 import com.naltynbekkz.nulife.ui.courses.questions.adapter.TopicsAdapter
 import com.naltynbekkz.nulife.ui.courses.questions.viewmodel.QuestionsViewModel
-import com.naltynbekkz.nulife.util.Convert
 import com.naltynbekkz.nulife.util.EditDeleteBottomSheet
 import kotlinx.android.synthetic.main.fragment_questions.*
 import javax.inject.Inject
@@ -63,7 +62,10 @@ class QuestionsFragment : Fragment() {
                         EditDeleteBottomSheet(
                             edit = fun() {
                                 findNavController().navigate(
-                                    CourseFragmentDirections.actionCourseFragmentToNewQuestionFragment(question, null)
+                                    CourseFragmentDirections.actionCourseFragmentToNewQuestionFragment(
+                                        question,
+                                        null
+                                    )
                                 )
                             },
                             delete = fun() {
@@ -101,33 +103,10 @@ class QuestionsFragment : Fragment() {
             this.user = it
         })
 
-        viewModel.allQuestions.observe(viewLifecycleOwner, Observer {
-            topicsAdapter.submitList(
-                Convert.getQuestions(
-                    it,
-                    viewModel.sectionQuestions.value,
-                    viewModel.following.value
-                )
-            )
+        viewModel.questions.observe(viewLifecycleOwner, Observer {
+            topicsAdapter.submitList(it)
         })
-        viewModel.sectionQuestions.observe(viewLifecycleOwner, Observer {
-            topicsAdapter.submitList(
-                Convert.getQuestions(
-                    viewModel.allQuestions.value,
-                    it,
-                    viewModel.following.value
-                )
-            )
-        })
-        viewModel.following.observe(viewLifecycleOwner, Observer {
-            topicsAdapter.submitList(
-                Convert.getQuestions(
-                    viewModel.allQuestions.value,
-                    viewModel.sectionQuestions.value,
-                    it
-                )
-            )
-        })
+
         recycler_view.adapter = topicsAdapter
 
     }

@@ -37,7 +37,7 @@ class EditProfileViewModel @Inject constructor(
     fun editProfile(
         user: User,
         image: Uri?,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit
     ) {
         userRepository.editProfile(user, image, success, failure)

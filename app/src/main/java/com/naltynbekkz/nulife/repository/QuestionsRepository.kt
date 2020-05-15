@@ -86,7 +86,7 @@ class QuestionsRepository @Inject constructor(
 
     fun editQuestion(
         question: Question,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit
     ) {
         reference

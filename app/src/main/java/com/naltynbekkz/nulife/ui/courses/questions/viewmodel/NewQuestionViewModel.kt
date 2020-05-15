@@ -38,7 +38,7 @@ class NewQuestionViewModel @AssistedInject constructor(
         question: Question,
         anonymous: Boolean,
         allSections: Boolean,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit,
         images: ArrayList<Uri>,
         done: (Int) -> Unit
@@ -63,7 +63,7 @@ class NewQuestionViewModel @AssistedInject constructor(
     fun editQuestion(
         question: Question,
         anonymous: Boolean,
-        success: () -> Unit,
+        success: () -> Boolean,
         failure: () -> Unit
     ) {
         question.author = Student(
