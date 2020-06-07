@@ -48,15 +48,28 @@ Please feel free to contact me at n.altynbek.kz@gmail.com if you have any questi
   <img src="screenshots/Screenshot_20200607-165511.jpg" height = 600/>
   <img src="screenshots/Screenshot_20200607-165807.jpg" height = 600/>
   <img src="screenshots/Screenshot_20200607-170231.jpg" height = 600/>
+</p>
+<hr>
+<p float="left">
   <img src="screenshots/Screenshot_20200607-170240.jpg" height = 600/>
   <img src="screenshots/Screenshot_20200607-170247.jpg" height = 600/>
   <img src="screenshots/Screenshot_20200607-170349.jpg" height = 600/>
+</p>
+<hr>
+<p float="left">
   <img src="screenshots/Screenshot_20200607-170358.jpg" height = 600/>
   <img src="screenshots/Screenshot_20200607-170431.jpg" height = 600/>
   <img src="screenshots/Screenshot_20200607-170805.jpg" height = 600/>
+</p>
+<hr>
+<p float="left">
   <img src="screenshots/Screenshot_20200607-170818.jpg" height = 600/>
   <img src="screenshots/Screenshot_20200607-170958.jpg" height = 600/>
   <img src="screenshots/Screenshot_20200607-171141.jpg" height = 600/>
+</p>
+<hr>  
+<p float="left">
   <img src="screenshots/Screenshot_20200607-171146.jpg" height = 600/>
   <img src="screenshots/Screenshot_20200607-171157.jpg" height = 600/>
 </p>
+<hr>
