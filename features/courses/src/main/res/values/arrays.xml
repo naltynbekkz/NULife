@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="types">
+        <item>Syllabus</item>
+        <item>Homework</item>
+        <item>Quiz</item>
+        <item>Midterm</item>
+        <item>Final</item>
+    </string-array>
+
+    <string-array name="semesters">
+        <item>Fall</item>
+        <item>Spring</item>
+        <item>Summer</item>
+    </string-array>
+
+
+    <string-array name="course">
+        <item>Questions</item>
+        <item>Deadlines</item>
+        <item>Resources</item>
+    </string-array>
+
+
+
+    <array name="priority_colors">
+        <item>@color/golden_tainoi</item>
+        <item>@color/red_orange</item>
+    </array>
+
+
+</resources>

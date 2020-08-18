@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="event"
+            type="com.naltynbekkz.clubs.model.Event" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="210dp"
+        android:layout_height="280dp"
+        app:cardCornerRadius="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_dot">
+
+            <ImageView
+                android:id="@+id/image"
+                imageUrl="@{event.images}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@{event.title}"
+                android:scaleType="centerCrop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:background="@drawable/background_gradient"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/background_event_date"
+                android:gravity="center"
+                android:lineSpacingExtra="-8dp"
+                android:padding="0dp"
+                android:text="@{event.getShortDate()}"
+                android:textAppearance="@style/EventTitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="04\nDec" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{event.getTime()}"
+                android:textAppearance="@style/EventDetail"
+                android:textColor="@color/white_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/date"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="14:00 - 17:00" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{event.location}"
+                android:textAppearance="@style/EventDetail"
+                android:textColor="@color/white_text"
+                app:layout_constraintBottom_toTopOf="@id/time"
+                app:layout_constraintEnd_toStartOf="@id/date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:visibility="@{event.location != null ? View.VISIBLE : View.GONE}"
+                tools:text="Main Atrium" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{event.title}"
+                android:textAppearance="@style/EventTitle"
+                android:textColor="@color/white_text"
+                app:layout_constraintBottom_toTopOf="@id/location"
+                app:layout_constraintEnd_toStartOf="@id/date"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Charity Fair" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

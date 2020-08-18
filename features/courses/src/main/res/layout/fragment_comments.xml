@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="anonymous"
+            type="Boolean" />
+
+        <variable
+            name="user"
+            type="com.google.firebase.auth.FirebaseUser" />
+
+        <variable
+            name="answer"
+            type="com.naltynbekkz.courses.model.Answer" />
+
+        <variable
+            name="myVote"
+            type="Boolean" />
+
+        <variable
+            name="comment"
+            type="com.naltynbekkz.courses.model.Comment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.naltynbekkz.courses.ui.answers.front.CommentsFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/Widget.Style.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/comments" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/editBar"
+            app:layout_constraintTop_toBottomOf="@id/appBar">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/item_answer"
+                    layout="@layout/item_answer"
+                    app:answer="@{answer}"
+                    app:myVote="@{myVote}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/commentsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:colorBackground"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical"
+                    android:paddingBottom="32dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_comment" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_author_left"
+            app:layout_constraintBottom_toBottomOf="@id/sendAs"
+            app:layout_constraintEnd_toStartOf="@id/sendAs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/sendAs" />
+
+        <TextView
+            android:id="@+id/sendAs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_author"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="4dp"
+            android:text="@{anonymous ? @string/send_anonymously : @string/_send_as(user.displayName)}"
+            android:textAppearance="@style/MediumDetailText"
+            app:layout_constraintBottom_toTopOf="@id/editBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            tools:text="Send as Altynbek Nurtaza" />
+
+        <LinearLayout
+            android:id="@+id/editBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_edit_bar"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+            app:visibility="@{comment.isOld()  ? View.VISIBLE : View.GONE}"
+            tools:visibility="visible">
+
+            <View
+                android:id="@+id/cancel"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="12dp"
+                android:background="@drawable/ic_cancel" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/colorPrimary" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginVertical="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit"
+                    android:textAppearance="@style/RatingText" />
+
+                <TextView
+                    android:id="@+id/editComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{comment.body}" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/semitransparent_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:id="@+id/send"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/ic_send"
+                android:backgroundTint="@{TextUtils.isEmpty(commentEditText.text) ? @color/icon_muted : @color/colorPrimary}"
+                android:foreground="?attr/selectableItemBackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <EditText
+                android:id="@+id/commentEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/comment"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"
+                android:text="@{comment.body}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/send"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

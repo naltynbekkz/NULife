@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="cafe"
+            type="com.naltynbekkz.food.model.Cafe" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="ifContentScrolls"
+        android:paddingBottom="40dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.naltynbekkz.food.CafeDetailsFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/about_us"
+                android:textAppearance="@style/TitleText" />
+
+            <TextView
+                android:id="@+id/details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:text="@{cafe.details}"
+                android:textAppearance="@style/RegularText"
+                tools:text="This delicious breakfast sandwich is an excellent source of protein and oh so delicious. melty American cheese. Pass the line when you use Mobile Order &amp; Pay, only on the McDonald’s App!" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/icon_muted" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/hours"
+                android:textAppearance="@style/TitleText" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="48dp"
+                    android:text="@string/mon_ntue_nwed_nthu_nfri_nsat_nsun"
+                    android:textAppearance="@style/BigDetail" />
+
+                <TextView
+                    android:id="@+id/hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{cafe.getHours()}"
+                    android:textAppearance="@style/TopicTitleText"
+                    tools:text="9:00-20:30\n9:00-20:30\n9:00-20:30\n9:00-20:30\n9:00-20:30\n10:30-16:00\nClosed" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/icon_muted" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/contacts"
+                android:textAppearance="@style/TitleText" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/contacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contactsAdapter="@{cafe.contacts}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_contact" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/icon_muted" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/reviews"
+                android:textAppearance="@style/TitleText" />
+
+            <!--            <com.naltynbekkz.nulife.util.custom.RatingView-->
+            <!--                android:id="@+id/constraintLayout"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginHorizontal="16dp" />-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="180dp" />
+
+                <TextView
+                    android:id="@+id/count5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="144dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{cafe.getCount(5)}"
+                    android:textColor="@color/text_muted"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/source_sans_pro"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="12" />
+
+                <TextView
+                    android:id="@+id/count4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="144dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{cafe.getCount(4)}"
+                    android:textColor="@color/text_muted"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/source_sans_pro"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/count5"
+                    tools:text="5" />
+
+                <TextView
+                    android:id="@+id/count3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="144dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{cafe.getCount(3)}"
+                    android:textColor="@color/text_muted"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/source_sans_pro"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/count4"
+                    tools:text="4" />
+
+                <TextView
+                    android:id="@+id/count2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="144dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{cafe.getCount(2)}"
+                    android:textColor="@color/text_muted"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/source_sans_pro"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/count3"
+                    tools:text="2" />
+
+                <TextView
+                    android:id="@+id/count1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="144dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{cafe.getCount(1)}"
+                    android:textColor="@color/text_muted"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/source_sans_pro"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/count2"
+                    tools:text="0" />
+
+
+                <View
+                    android:id="@+id/star55"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count5"
+                    app:layout_constraintEnd_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toTopOf="@id/count5" />
+
+                <View
+                    android:id="@+id/star45"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count4"
+                    app:layout_constraintEnd_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toTopOf="@id/count4" />
+
+                <View
+                    android:id="@+id/star35"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count3"
+                    app:layout_constraintEnd_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toTopOf="@id/count3" />
+
+                <View
+                    android:id="@+id/star25"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count2"
+                    app:layout_constraintEnd_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toTopOf="@id/count2" />
+
+                <View
+                    android:id="@+id/star15"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count1"
+                    app:layout_constraintEnd_toStartOf="@id/guideline"
+                    app:layout_constraintTop_toTopOf="@id/count1" />
+
+                <View
+                    android:id="@+id/star54"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count5"
+                    app:layout_constraintEnd_toStartOf="@id/star55"
+                    app:layout_constraintTop_toTopOf="@id/count5" />
+
+                <View
+                    android:id="@+id/star44"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count4"
+                    app:layout_constraintEnd_toStartOf="@id/star45"
+                    app:layout_constraintTop_toTopOf="@id/count4" />
+
+                <View
+                    android:id="@+id/star34"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count3"
+                    app:layout_constraintEnd_toStartOf="@id/star35"
+                    app:layout_constraintTop_toTopOf="@id/count3" />
+
+                <View
+                    android:id="@+id/star24"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count2"
+                    app:layout_constraintEnd_toStartOf="@id/star25"
+                    app:layout_constraintTop_toTopOf="@id/count2" />
+
+                <View
+                    android:id="@+id/star53"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count5"
+                    app:layout_constraintEnd_toStartOf="@id/star54"
+                    app:layout_constraintTop_toTopOf="@id/count5" />
+
+                <View
+                    android:id="@+id/star43"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count4"
+                    app:layout_constraintEnd_toStartOf="@id/star44"
+                    app:layout_constraintTop_toTopOf="@id/count4" />
+
+                <View
+                    android:id="@+id/star33"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count3"
+                    app:layout_constraintEnd_toStartOf="@id/star34"
+                    app:layout_constraintTop_toTopOf="@id/count3" />
+
+                <View
+                    android:id="@+id/star52"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count5"
+                    app:layout_constraintEnd_toStartOf="@id/star53"
+                    app:layout_constraintTop_toTopOf="@id/count5" />
+
+                <View
+                    android:id="@+id/star42"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count4"
+                    app:layout_constraintEnd_toStartOf="@id/star43"
+                    app:layout_constraintTop_toTopOf="@id/count4" />
+
+                <View
+                    android:id="@+id/star51"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/count5"
+                    app:layout_constraintEnd_toStartOf="@id/star52"
+                    app:layout_constraintTop_toTopOf="@id/count5" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/rating_bar"
+                    app:layout_constraintBottom_toBottomOf="@id/count5"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintTop_toTopOf="@id/count5"
+                    app:layout_width="@{cafe.barSize(4)}"
+                    tools:layout_width="112dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/rating_bar"
+                    app:layout_constraintBottom_toBottomOf="@id/count4"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintTop_toTopOf="@id/count4"
+                    app:layout_width="@{cafe.barSize(3)}"
+                    tools:layout_width="112dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/rating_bar"
+                    app:layout_constraintBottom_toBottomOf="@id/count3"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintTop_toTopOf="@id/count3"
+                    app:layout_width="@{cafe.barSize(2)}"
+                    tools:layout_width="112dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/rating_bar"
+                    app:layout_constraintBottom_toBottomOf="@id/count2"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintTop_toTopOf="@id/count2"
+                    app:layout_width="@{cafe.barSize(1)}"
+                    tools:layout_width="112dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/rating_bar"
+                    app:layout_constraintBottom_toBottomOf="@id/count1"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintTop_toTopOf="@id/count1"
+                    app:layout_width="@{cafe.barSize(0)}"
+                    tools:layout_width="112dp" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/star51"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textAppearance="@style/BigRatingText"
+                        app:text="@{cafe.rating}"
+                        tools:text="4.3" />
+
+                    <TextView
+                        android:id="@+id/ratingCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@{@string/_reviews(cafe.reviews.size)}"
+                        android:textAppearance="@style/RatingCount"
+                        tools:text="23 reviews" />
+
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/ratingTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="18dp"
+                android:gravity="center_horizontal"
+                android:text="@{cafe.myRating() == null ? @string/write_a_review : @string/your_review}"
+                android:textAppearance="@style/MainColor"
+                tools:text="@string/write_a_review" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="?attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:rating="@{cafe.myRating() == null ? 0f : cafe.myRating()}"
+                android:stepSize="1"
+                android:theme="@style/RatingBar" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_small_review" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

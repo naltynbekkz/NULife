@@ -1,2 +1,8 @@
 include ':app'
+include ':features:food'
 rootProject.name = "NULife"
+include ':core'
+include ':features:clubs'
+include ':features:timetable'
+include ':features:courses'
+include ':features:profile'

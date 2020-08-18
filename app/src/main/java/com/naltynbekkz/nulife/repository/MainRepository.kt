@@ -3,15 +3,21 @@ package com.naltynbekkz.nulife.repository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.iid.FirebaseInstanceId
-import com.naltynbekkz.nulife.di.main.MainScope
+import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 
-@MainScope
+@ActivityScoped
 class MainRepository @Inject constructor(
-    val auth: FirebaseAuth,
+    private val auth: FirebaseAuth,
     val database: FirebaseDatabase,
     private val instanceId: FirebaseInstanceId
 ) {
+
+    fun signOut(){
+        FirebaseAuth.getInstance().signOut()
+    }
+
+    fun isSignedIn() = auth.currentUser == null
 
     fun updateInstanceId() {
         auth.uid?.let {

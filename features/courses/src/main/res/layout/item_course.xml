@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="userCourse"
+            type="com.naltynbekkz.timetable.model.UserCourse" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="6dp"
+        android:elevation="1dp"
+        app:cardCornerRadius="6dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackground">
+
+            <View
+                android:id="@+id/side_color"
+                android:layout_width="6dp"
+                android:layout_height="0dp"
+                app:color="@{userCourse.color}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:ellipsize="end"
+                android:text="@{userCourse.id}"
+                android:textAppearance="@style/CourseTitle"
+                app:layout_constraintStart_toEndOf="@id/side_color"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="MATH 273" />
+
+            <TextView
+                android:id="@+id/section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="12dp"
+                android:textAppearance="@style/CourseDetail"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/side_color"
+                app:layout_constraintTop_toBottomOf="@+id/id"
+                android:text="@{@string/_section(userCourse.section)}"
+                tools:text="Section-7L" />
+
+            <View
+                android:id="@+id/dot"
+                android:layout_width="3dp"
+                android:layout_height="3dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/background_dot"
+                app:layout_constraintBottom_toBottomOf="@id/section"
+                app:layout_constraintStart_toEndOf="@+id/section"
+                app:layout_constraintTop_toTopOf="@id/section" />
+
+            <TextView
+                android:id="@+id/long_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{userCourse.longTitle}"
+                android:textAppearance="@style/CourseDetail"
+                app:layout_constraintEnd_toStartOf="@id/more"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/dot"
+                app:layout_constraintTop_toBottomOf="@+id/id"
+                tools:text="Linear Algebra" />
+
+            <View
+                android:id="@+id/more"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/ic_more"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

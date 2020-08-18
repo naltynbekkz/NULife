@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="loading"
+            type="Boolean" />
+
+        <variable
+            name="associate"
+            type="com.naltynbekkz.timetable.model.Associate" />
+
+        <variable
+            name="task"
+            type="com.naltynbekkz.timetable.model.Occurrence" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.naltynbekkz.timetable.ui.NewTaskActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="112dp">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                style="@style/Widget.Style.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:title="@string/add_task" />
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/appbar"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp">
+
+                <TextView
+                    android:id="@+id/associateTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/background_semitransparent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="@string/associate_with"
+                    android:textAppearance="@style/MainColor"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/associateEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="end"
+                    android:text="@{associate.title}"
+                    android:textAppearance="@style/BigDetail"
+                    app:layout_constraintBottom_toBottomOf="@id/associateTextView"
+                    app:layout_constraintEnd_toStartOf="@+id/associateArrow"
+                    app:layout_constraintTop_toTopOf="@id/associateTextView"
+                    tools:text="CSCI-270" />
+
+                <View
+                    android:id="@+id/associateArrow"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_arrow_right_small"
+                    app:layout_constraintBottom_toBottomOf="@id/associateTextView"
+                    app:layout_constraintEnd_toEndOf="@id/associateTextView"
+                    app:layout_constraintTop_toTopOf="@id/associateTextView" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/titleInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:enabled="@{task.isNew()}"
+                    android:hint="@string/title"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    app:errorMessage="@{loading}"
+                    app:layout_constraintTop_toBottomOf="@id/associateTextView">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/titleEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="50"
+                        android:text="@={task.title}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/startText"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/background_semitransparent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="@string/start"
+                    android:textAppearance="@style/MainColor"
+                    app:layout_constraintTop_toBottomOf="@+id/titleInputLayout" />
+
+                <TextView
+                    android:id="@+id/startEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="end"
+                    android:text="@{task.getStartDate()}"
+                    android:textAppearance="@style/BigDetail"
+                    app:layout_constraintBottom_toBottomOf="@id/startText"
+                    app:layout_constraintEnd_toStartOf="@+id/startArrow"
+                    app:layout_constraintTop_toTopOf="@id/startText"
+                    tools:text="09:00AM" />
+
+                <View
+                    android:id="@+id/startArrow"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_arrow_right_small"
+                    app:layout_constraintBottom_toBottomOf="@id/startText"
+                    app:layout_constraintEnd_toEndOf="@id/startText"
+                    app:layout_constraintTop_toTopOf="@id/startText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/endText"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/background_semitransparent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="@string/end"
+                    android:textAppearance="@style/MainColor"
+                    app:layout_constraintTop_toBottomOf="@id/startText" />
+
+                <TextView
+                    android:id="@+id/endEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="end"
+                    android:text="@{task.getEndDate()}"
+                    android:textAppearance="@style/BigDetail"
+                    app:layout_constraintBottom_toBottomOf="@id/endText"
+                    app:layout_constraintEnd_toStartOf="@+id/endArrow"
+                    app:layout_constraintTop_toTopOf="@id/endText"
+                    tools:text="09:00AM" />
+
+                <View
+                    android:id="@+id/endArrow"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_arrow_right_small"
+                    app:layout_constraintBottom_toBottomOf="@id/endText"
+                    app:layout_constraintEnd_toEndOf="@id/endText"
+                    app:layout_constraintTop_toTopOf="@id/endText" />
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    android:id="@+id/detailsInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/details"
+                    app:layout_constraintTop_toBottomOf="@id/endText">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/detailsEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={task.details}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    android:id="@+id/locationInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/location"
+                    app:layout_constraintTop_toBottomOf="@+id/detailsInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/locationEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:maxLines="1"
+                        android:text="@={task.location}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:id="@+id/notify"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/background_semitransparent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="@string/set_reminder"
+                    android:textAppearance="@style/MainColor"
+                    app:layout_constraintTop_toBottomOf="@id/locationInputLayout" />
+
+                <TextView
+                    android:id="@+id/notification"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="end"
+                    android:text="@{task.getStringNotificationTime()}"
+                    android:textAppearance="@style/BigDetail"
+                    app:layout_constraintBottom_toBottomOf="@id/notify"
+                    app:layout_constraintEnd_toStartOf="@+id/arrow"
+                    app:layout_constraintTop_toTopOf="@id/notify"
+                    tools:text="30 min before" />
+
+                <View
+                    android:id="@+id/arrow"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/ic_arrow_right_small"
+                    app:layout_constraintBottom_toBottomOf="@id/notify"
+                    app:layout_constraintEnd_toEndOf="@id/notify"
+                    app:layout_constraintTop_toTopOf="@id/notify" />
+
+
+                <com.github.naz013.colorslider.ColorSlider
+                    android:id="@+id/colorSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="24dp"
+                    app:cs_colors="@array/colors"
+                    app:layout_constraintTop_toBottomOf="@+id/notify" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

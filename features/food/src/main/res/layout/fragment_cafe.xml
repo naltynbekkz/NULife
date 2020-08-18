@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.naltynbekkz.core.R" />
+
+        <variable
+            name="featured"
+            type="com.naltynbekkz.food.model.Meal" />
+
+        <variable
+            name="cafe"
+            type="com.naltynbekkz.food.model.Cafe" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context="com.naltynbekkz.food.CafeFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            style="@style/Widget.Style.AppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <androidx.constraintlayout.motion.widget.MotionLayout
+                android:id="@+id/motion_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="104dp"
+                app:layoutDescription="@xml/activity_cafe"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    app:logoUrl="@{featured.images.cafe}"
+                    tools:ignore="MissingConstraints" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardView"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="8dp"
+                    tools:ignore="MissingConstraints"
+                    tools:src="@tools:sample/avatars">
+
+                    <ImageView
+                        android:id="@+id/logo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@{cafe.title}"
+                        android:scaleType="centerCrop"
+                        app:logoUrl="@{cafe.logo}"
+                        tools:src="@tools:sample/avatars" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    tools:ignore="MissingConstraints">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:text="@{cafe.title}"
+                        android:textAppearance="@style/TitleText"
+                        tools:text="Health Project" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:text="@{cafe.opensAt()}"
+                        android:textAppearance="@{cafe.isOpen() ? R.style.OpenedText : R.style.ClosedText}"
+                        tools:text="Open until 21:00" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/ratingIcon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/ic_star"
+                    app:layout_constraintBottom_toBottomOf="@id/rating"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/rating" />
+
+                <TextView
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/RatingText"
+                    app:text="@{cafe.rating}"
+                    tools:ignore="MissingConstraints"
+                    tools:text="4.7" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    style="@style/Widget.Style.Tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/transparent" />
+
+            </androidx.constraintlayout.motion.widget.MotionLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <View
+            android:id="@+id/back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="start|top"
+            android:layout_margin="16dp"
+            android:background="@drawable/ic_back"
+            android:elevation="16dp"
+            android:foreground="?android:selectableItemBackground" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

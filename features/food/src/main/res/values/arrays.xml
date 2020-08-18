@@ -1,0 +1,6 @@
+<resources>
+    <string-array name="cafe">
+        <item>Menu</item>
+        <item>Details</item>
+    </string-array>
+</resources>

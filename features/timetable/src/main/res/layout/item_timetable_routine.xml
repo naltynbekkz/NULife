@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="routine"
+            type="com.naltynbekkz.timetable.model.Occurrence" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/routine_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_routine"
+            android:backgroundTint="@{routine.getIntColor()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/routine_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:maxLines="1"
+            android:text="@{routine.title}"
+            android:textAppearance="@style/EventTitleFancy"
+            app:layout_constraintBottom_toTopOf="@id/routine_time"
+            app:layout_constraintEnd_toEndOf="@id/routine_layout"
+            app:layout_constraintStart_toStartOf="@id/routine_layout"
+            app:layout_constraintTop_toTopOf="@id/routine_layout"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="CSCI-152" />
+
+        <TextView
+            android:id="@+id/routine_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:maxLines="1"
+            android:text="@{routine.getRoutineTime()}"
+            android:textAppearance="@style/ImageCount"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/routine_title"
+            tools:text="09:00AM - 09:50AM" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/profile"
+    app:startDestination="@id/profileFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.naltynbekkz.profile.front.ProfileFragment"
+        android:label="ProfileFragment">
+
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_settingsActivity"
+            app:destination="@id/settingsActivity" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.naltynbekkz.profile.front.EditProfileFragment"
+        android:label="EditProfileFragment" />
+    <activity
+        android:id="@+id/settingsActivity"
+        android:name="com.naltynbekkz.profile.front.SettingsActivity"
+        android:label="SettingsActivity" />
+</navigation>

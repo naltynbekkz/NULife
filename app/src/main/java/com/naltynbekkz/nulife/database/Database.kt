@@ -1,28 +1,36 @@
 package com.naltynbekkz.nulife.database
 
+import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.naltynbekkz.nulife.model.Contact
-import com.naltynbekkz.nulife.model.Item
-import com.naltynbekkz.nulife.model.Occurrence
-import com.naltynbekkz.nulife.model.Resource
-import com.naltynbekkz.nulife.util.Convert
+import com.naltynbekkz.timetable.model.Occurrence
+import com.naltynbekkz.courses.model.Resource
+import com.naltynbekkz.core.Convert
+import com.naltynbekkz.timetable.database.OccurrencesDao
 
 @Database(
     entities = [
-        Item::class,
         Resource::class,
-        Occurrence::class,
-        Contact::class
+        Occurrence::class
     ],
     version = 1,
     exportSchema = false
 )
 @TypeConverters(Convert::class)
 abstract class BaseDatabase : RoomDatabase() {
-    abstract fun itemsDao(): ItemsDao
-    abstract fun resourcesDao(): ResourcesDao
+    abstract fun resourcesDao(): com.naltynbekkz.courses.database.ResourcesDao
     abstract fun occurrencesDao(): OccurrencesDao
-    abstract fun contactsDao(): ContactsDao
+
+    companion object {
+        fun getInstance(context: Context): BaseDatabase {
+            return Room.databaseBuilder(
+                context.applicationContext,
+                BaseDatabase::class.java,
+                "database"
+            ).build()
+        }
+    }
+
 }

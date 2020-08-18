@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="comment"
+            type="com.naltynbekkz.courses.model.Comment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:foreground="?attr/selectableItemBackground">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@{comment.body}"
+            android:textAppearance="@style/RegularText"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="To start out learning something like python, which is VERY beginner friendly, you will have a lot of resources online" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:text="@{comment.author.name}"
+            android:textAppearance="@style/CommentAuthorText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/body"
+            tools:text="Altynbek Nurtaza" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{comment.getTimePast()}"
+            android:textAppearance="@style/DetailText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/body"
+            tools:text="20:00, 23 Oct" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

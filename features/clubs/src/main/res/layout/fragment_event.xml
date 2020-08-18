@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="event"
+            type="com.naltynbekkz.clubs.model.Event" />
+
+        <variable
+            name="task"
+            type="com.naltynbekkz.timetable.model.Occurrence" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context="com.naltynbekkz.clubs.front.EventActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            style="@style/Widget.Style.AppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorSurface"
+                app:expandedTitleTextAppearance="@style/TransparentText"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="parallax">
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:contentDescription="@string/event_poster"
+                        android:scaleType="centerCrop"
+                        app:imageUrl="@{event.images}"
+                        app:layout_constraintDimensionRatio="0.75"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="gone" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:title="@string/event" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="24dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="@{event.title}"
+                    android:textAppearance="@style/CourseTitle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Halloween Party" />
+
+                <View
+                    android:id="@+id/time_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/ic_timetable"
+                    app:layout_constraintBottom_toBottomOf="@id/time"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/time" />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@{event.getTime()}"
+                    android:textAppearance="@style/BigDetail"
+                    app:layout_constraintStart_toEndOf="@id/time_icon"
+                    app:layout_constraintTop_toBottomOf="@id/title"
+                    tools:text="12:00 - 14:00" />
+
+                <View
+                    android:id="@+id/date_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/ic_calendar"
+                    app:layout_constraintBottom_toBottomOf="@id/date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/date" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{event.getDate()}"
+                    android:textAppearance="@style/BigDetail"
+                    app:layout_constraintStart_toEndOf="@id/time_icon"
+                    app:layout_constraintTop_toBottomOf="@id/time"
+                    tools:text="April 1, 2020" />
+
+                <View
+                    android:id="@+id/location_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/ic_location"
+                    app:layout_constraintBottom_toBottomOf="@id/location"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/location"
+                    app:visibility="@{event.location != null ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{event.location}"
+                    android:textAppearance="@style/BigDetail"
+                    app:layout_constraintStart_toEndOf="@id/location_icon"
+                    app:layout_constraintTop_toBottomOf="@id/date"
+                    app:visibility="@{event.location != null ? View.VISIBLE : View.GONE}"
+                    tools:text="Location" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/background_transparent_button"
+                    android:drawableStart="@drawable/ic_link"
+                    android:drawablePadding="8dp"
+                    android:enabled="@{event.registration.available()}"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="start"
+                    android:text="@{event.registration.available() ? event.registration.link : @string/unavailable}"
+                    android:textAppearance="@style/BigDetail"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location"
+                    app:visibility="@{event.registration != null ? View.VISIBLE : View.GONE}"
+                    tools:text="Link" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/share"
+                    style="@style/SecondaryButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/background_button"
+                    android:text="@string/share"
+                    app:layout_constraintEnd_toStartOf="@id/add_to_timetable"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/link" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/add_to_timetable"
+                    style="@style/PrimaryButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/background_button"
+                    android:paddingHorizontal="8dp"
+                    android:text="@{task == null ? @string/add_to_timetable : @string/added}"
+                    app:endDrawable="@{task != null ? @drawable/ic_resolved : null}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/share"
+                    app:layout_constraintTop_toBottomOf="@id/link"
+                    tools:text="@string/add_to_timetable" />
+
+                <TextView
+                    android:id="@+id/details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@{event.details}"
+                    android:textAppearance="@style/BigDetail"
+                    app:layout_constraintTop_toBottomOf="@id/share"
+                    tools:text="@string/lorem" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/icon_muted"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/details" />
+
+                <TextView
+                    android:id="@+id/posted_by"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/posted_by"
+                    android:textAppearance="@style/BigDetail"
+                    app:layout_constraintTop_toBottomOf="@id/divider" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/logo"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
+                    app:cardCornerRadius="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/posted_by">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@{ event.club.title}"
+                        android:scaleType="centerCrop"
+                        app:logoUrl="@{event.club.logo}"
+                        tools:text="Link" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/club_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@{event.club.title}"
+                    android:textAppearance="@style/RegularText"
+                    app:layout_constraintBottom_toBottomOf="@id/logo"
+                    app:layout_constraintStart_toEndOf="@id/logo"
+                    app:layout_constraintTop_toTopOf="@id/logo"
+                    tools:text="Volunteers Club" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="_discount">- %d%%</string>
+    <string name="_kzt">%d kzt</string>
+    <string name="brackets">(%s)</string>
+    <string name="_reviews">%d reviews</string>
+
+    <string name="your_review">Your review</string>
+
+    <string name="hated_it">Hated it</string>
+    <string name="disliked_it">Disliked it</string>
+    <string name="its_okay">It\'s okay</string>
+    <string name="liked_it">Liked it</string>
+    <string name="loved_it">Loved it</string>
+    <string name="rate_and_review">Rate and Review</string>
+
+    <string name="meal_image">Meal image</string>
+    <string name="price">Price:</string>
+    <string name="available">Available</string>
+    <string name="details">Details</string>
+    <string name="see_all">See all</string>
+
+
+    <string name="hours">Hours</string>
+    <string name="mon_ntue_nwed_nthu_nfri_nsat_nsun">Mon\nTue\nWed\nThu\nFri\nSat\nSun</string>
+
+    <string name="reviews">Reviews</string>
+    <string name="write_a_review">Write a review</string>
+    <string name="cafe">Cafe</string>
+    <string name="food">Food</string>
+    <string name="upload_images">Upload images</string>
+
+</resources>

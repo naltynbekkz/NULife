@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="question"
+            type="com.naltynbekkz.courses.model.Question" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/Widget.Style.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll"
+                app:title="@{question.topic}" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/question_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@{question.title}"
+                        android:textAppearance="@style/QuestionTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="What is the secret to apple's success?" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{question.details}"
+                        android:textAppearance="@style/RegularText"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/question_title"
+                        tools:text="The players play in turn: Each player must select a row, and from this row he must remove at least one stick." />
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        app:imagesAdapter="@{question.images}"
+                        app:layout_constraintDimensionRatio="1.33"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/body"
+                        app:visibility="@{question.images.size != 0 ? View.VISIBLE : View.GONE}" />
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tab_dots"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:background="@color/transparent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view_pager"
+                        app:tabBackground="@drawable/background_selector_tab_image_indicator"
+                        app:tabGravity="center"
+                        app:tabIndicatorHeight="0dp"
+                        app:tabMaxWidth="10dp"
+                        app:viewPager="@{viewPager}"
+                        app:visibility="@{question.images.size > 1 ? View.VISIBLE : View.GONE}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/author"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@{question.author.name}"
+                        android:textAppearance="@style/DetailText"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view_pager"
+                        tools:text="Altynbek Nurtaza" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{question.getTimePast()}"
+                        android:textAppearance="@style/Time"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view_pager"
+                        tools:text="a day ago" />
+
+                    <View
+                        android:id="@+id/dot"
+                        android:layout_width="3dp"
+                        android:layout_height="3dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/background_dot"
+                        app:layout_constraintBottom_toBottomOf="@id/date"
+                        app:layout_constraintEnd_toStartOf="@id/date"
+                        app:layout_constraintTop_toTopOf="@id/date" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/answerCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="4dp"
+                        android:text="@{question.answerCount}"
+                        android:textAppearance="@style/Time"
+                        app:layout_constraintEnd_toStartOf="@+id/dot"
+                        app:layout_constraintTop_toBottomOf="@id/view_pager"
+                        tools:text="45" />
+
+                    <View
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:background="@drawable/ic_chat"
+                        app:layout_constraintBottom_toBottomOf="@id/answerCount"
+                        app:layout_constraintEnd_toStartOf="@id/answerCount"
+                        app:layout_constraintTop_toTopOf="@id/answerCount" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="12dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/answers"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/DetailText" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/answersRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="64dp"
+                    android:orientation="vertical"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_answer" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

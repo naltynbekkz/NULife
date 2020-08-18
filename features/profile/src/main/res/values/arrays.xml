@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="schools">
+        <item>Graduate School of Business</item>
+        <item>Graduate School of Public Policy</item>
+        <item>School of Engineering and Digital Sciences</item>
+        <item>School of Medicine</item>
+        <item>School of Mining and Geosciences</item>
+        <item>School of Sciences and Humanities</item>
+    </string-array>
+    <string-array name="graduate_school_of_business">
+        <item>Full-Time MBA</item>
+        <item>MSc in Finance</item>
+        <item>Executive MBA</item>
+        <item>Executive Education</item>
+    </string-array>
+    <string-array name="graduate_school_of_public_policy">
+        <item>M.Sc. in Educational Leadership</item>
+        <item>M.A. in Multilingual Education</item>
+        <item>Ph.D. in Education</item>
+    </string-array>
+    <string-array name="school_of_engineering_and_digital_sciences">
+        <item>BEng in Chemical and Materials Engineering</item>
+        <item>BEng in Civil and Environmental Engineering</item>
+        <item>BEng in Electrical and Computer Engineering</item>
+        <item>BEng in Mechanical and Aerospace Engineering</item>
+        <item>BSc in Robotics and Mechatronics</item>
+        <item>BSc in Computer Sciences</item>
+        <item>Master of Engineering Management</item>
+        <item>MSc in Chemical and Materials Engineering</item>
+        <item>MSc in Civil and Environmental Engineering</item>
+        <item>MSc in Electrical and Computer Engineering</item>
+        <item>MSc in Mechanical and Aerospace Engineering</item>
+        <item>MSc in Robotics", "MSc in Computer Sciences</item>
+        <item>MSc in Data Sciences</item>
+        <item>PhD in Science, Engineering and Technology</item>
+    </string-array>
+    <string-array name="school_of_medicine">
+        <item>Doctor of Medicine</item>
+        <item>Master of Public Health</item>
+        <item>Master in Molecular Medicine</item>
+        <item>Residency Program in General Surgery</item>
+        <item>Residency Program in Obstetrics and Gynecology</item>
+        <item>Residency Program in Pediatrics</item>
+        <item>Residency Program in Internal Medicine</item>
+        <item>Residency Program in Family Medicine</item>
+        <item>Bachelor of Science In Nursing Program</item>
+        <item>Bachelor in Applied Nursing Program</item>
+        <item>Nursing Professional Development Program</item>
+    </string-array>
+    <string-array name="school_of_mining_and_geosciences">
+        <item>BSc in Geology</item>
+        <item>BSc in Petroleum Engineering</item>
+        <item>BSc in Mining Engineering</item>
+        <item>MSc in Petroleum Engineering</item>
+        <item>MSc in Mining Engineering</item>
+    </string-array>
+    <string-array name="school_of_sciences_and_humanities">
+        <item>Political Science and International Relations</item>
+        <item>Economics</item>
+        <item>History, Philosophy and Religious Studies</item>
+        <item>Languages, Linguistics, and Literature</item>
+        <item>Sociology", "Anthropology</item>
+        <item>Biology</item>
+        <item>Chemistry</item>
+        <item>Mathematics</item>
+        <item>Physics</item>
+        <item>Master of Arts in Political Science and International Relations</item>
+        <item>Master of Arts in Economics</item>
+        <item>Master of Arts in Eurasian Studies</item>
+        <item>Master of Science in Biological Sciences and Technologies</item>
+        <item>Master of Science in Chemistry</item>
+        <item>Master of Science in Applied Mathematics</item>
+        <item>Master of Science in Physics</item>
+        <item>Ph.D. in Eurasian Studies</item>
+        <item>Summer School in Russian and Eurasian Studies</item>
+    </string-array>
+
+    <string-array name="theme_entries">
+        <item>Default</item>
+        <item>Light</item>
+        <item>Dark</item>
+        <item>Set by Battery Saver</item>
+    </string-array>
+
+    <string-array name="theme_values">
+        <item>default</item>
+        <item>light</item>
+        <item>dark</item>
+        <item>battery</item>
+    </string-array>
+
+
+    <string-array name="profile_actions">
+        <item>Edit profile</item>
+        <item>Sign out</item>
+    </string-array>
+
+</resources>

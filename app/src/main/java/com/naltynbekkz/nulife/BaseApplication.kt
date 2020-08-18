@@ -8,9 +8,10 @@ import android.os.Build
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.database.FirebaseDatabase
-import com.naltynbekkz.nulife.di.AppComponent
-import com.naltynbekkz.nulife.di.DaggerAppComponent
+import dagger.hilt.android.HiltAndroidApp
 
+
+@HiltAndroidApp
 class BaseApplication : Application() {
 
     override fun onCreate() {
@@ -41,10 +42,6 @@ class BaseApplication : Application() {
             getString(R.string.cloud_notification_channel_description)
         )
 
-    }
-
-    val appComponent: AppComponent by lazy {
-        DaggerAppComponent.factory().create(applicationContext)
     }
 
     private fun createChannel(channelId: String, channelName: String, channelDescription: String) {

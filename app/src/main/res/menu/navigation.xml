@@ -4,16 +4,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/courses"
-            android:icon="@drawable/ic_book"
+            android:icon="@drawable/ic_courses"
             android:title="@string/courses" />
         <item
             android:id="@+id/timetable"
             android:icon="@drawable/ic_timetable"
-            android:title="@string/title_timetable" />
-        <!--        <item-->
-        <!--            android:id="@id/marketFragment"-->
-        <!--            android:icon="@drawable/ic_market"-->
-        <!--            android:title="@string/market" />-->
+            android:title="@string/timetable" />
         <item
             android:id="@+id/food"
             android:icon="@drawable/ic_cafes"

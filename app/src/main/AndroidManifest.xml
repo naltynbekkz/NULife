@@ -14,26 +14,11 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.naltynbekkz.nulife.ui.market.front.EditItemActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.naltynbekkz.nulife.ui.profile.front.SettingsActivity"
+            android:name="com.naltynbekkz.profile.front.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.naltynbekkz.nulife.ui.market.front.MyItemActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.naltynbekkz.nulife.ui.market.front.MyItemsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.naltynbekkz.nulife.ui.market.front.ItemActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.naltynbekkz.nulife.ui.market.front.NewItemActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.naltynbekkz.nulife.ui.auth.AuthActivity"
+            android:name="com.naltynbekkz.nulife.ui.AuthActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.naltynbekkz.nulife.ui.MainActivity"
@@ -51,7 +36,7 @@
         </activity>
 
         <service
-            android:name="com.naltynbekkz.nulife.util.notifications.MyFirebaseMessagingService"
+            android:name=".util.MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>

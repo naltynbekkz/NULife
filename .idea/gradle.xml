@@ -12,6 +12,13 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/clubs" />
+            <option value="$PROJECT_DIR$/features/courses" />
+            <option value="$PROJECT_DIR$/features/food" />
+            <option value="$PROJECT_DIR$/features/profile" />
+            <option value="$PROJECT_DIR$/features/timetable" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

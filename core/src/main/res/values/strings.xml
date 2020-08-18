@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="accept">Accept</string>
+    <string name="type">Type</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, conseleifend lorem, eu fermentum dui diam et ex. Maecenas tristique tincidunt facilisis. Duis rutrum neque vel suscipit dapibus. Etiam feugiat nec arcu sit amet suscipit. Vivamus et pretium ex. Quisque ac pellentesque elit. Phasellus vitae gravida magna. Vivamus sapien magna, imperdiet a nisi in, blandit aliquet erat.</string>
+    <string name="add_item">Add item</string>
+    <string name="empty">empty</string>
+    <string name="others">Others</string>
+    <string name="about_us">About Us</string>
+    <string name="contacts">Contacts</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="follow">Follow</string>
+    <string name="unfollow">Unfollow</string>
+    <string name="field_empty_error_message">This field should not be empty</string>
+    <string name="save">Save</string>
+    <string name="help">Help</string>
+</resources>

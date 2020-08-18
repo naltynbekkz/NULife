@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">#B3000000</item>
+        <item name="android:statusBarColor">#B3000000</item>
+    </style>
+
+    <style name="GreyText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/text_muted_night</item>
+    </style>
+
+    <style name="WhiteText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+</resources>

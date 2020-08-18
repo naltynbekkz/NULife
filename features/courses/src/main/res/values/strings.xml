@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="question_count">%d questions</string>
+    <string name="_section">Section-%d</string>
+    <string name="_comments">%d comments</string>
+    <string name="_members">%d members</string>
+    <string name="_students">%d student(s) are in this section</string>
+    <string name="_images">%d images</string>
+    <string name="_send_as">Send as %s</string>
+
+
+    <string name="courses">Courses</string>
+
+    <string name="new_class">New Class</string>
+    <string name="course_title">Course title</string>
+    <string name="add_course">Add course</string>
+    <string name="room">Room</string>
+    <string name="professor">Professor</string>
+    <string name="enroll">Enroll</string>
+    <string name="crate_new_course">Crate new course</string>
+    <string name="select_school">Select school</string>
+    <string name="select_major">Select major</string>
+    <string name="upload_files">Upload files</string>
+    <string name="new_question">New question</string>
+    <string name="syllabus">Syllabus</string>
+    <string name="question">Question</string>
+    <string name="topic">Topic</string>
+    <string name="send_anonymously">Send anonymously</string>
+    <string name="ask_a_question">Ask a question</string>
+    <string name="delete_course">Delete course</string>
+    <string name="edit_course">Edit course</string>
+    <string name="ask_all_sections">Ask all sections</string>
+    <string name="select_topic">Select topic</string>
+    <string name="new_answer">New Answer</string>
+    <string name="answer">Answer</string>
+    <string name="your_answer">Your answer</string>
+    <string name="comments">Comments</string>
+    <string name="set_priority">Set priority</string>
+    <string name="add_deadline">Add Deadline</string>
+    <string name="edit_question">Edit Question</string>
+    <string name="delete_question">Delete Question</string>
+    <string name="fall">Fall</string>
+    <string name="spring">Spring</string>
+    <string name="summer">Summer</string>
+    <string name="add_resource">Add resource</string>
+    <string name="semester">Semester</string>
+    <string name="add_answer">Add answer</string>
+    <string name="course_info">Course info</string>
+    <string name="answers">Answers</string>
+    <string name="size">Size</string>
+    <string name="open_folder">Open folder</string>
+    <string name="force_download">Force download</string>
+    <string name="all_sections">All sections</string>
+    <string name="priority">Priority</string>
+    <string name="you_will_be_the_first_student">You will be the first student</string>
+    <string name="section">Section</string>
+    <string name="students">Students</string>
+    <string name="leave">Leave</string>
+    <string name="resource_info">RESOURCE INFO</string>
+    <string name="year">Year</string>
+    <string name="comment">Comment</string>
+
+    <string name="publick">Public</string>
+    <string name="select_date">Select date</string>
+    <string name="add_button">Add button</string>
+
+    <string name="anonymous">Anonymous</string>
+    <string name="set_time_and_date">Set time and date</string>
+    <string name="upload_images">Upload images</string>
+
+</resources>

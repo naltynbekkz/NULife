@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="file"
+            type="com.naltynbekkz.courses.model.LocalFile" />
+
+        <variable
+            name="uploading"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <View
+            android:id="@+id/icon"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="@{context.getDrawable(file.getIcon())}"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:background="@drawable/ic_file" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:layout_marginStart="8dp"
+            android:text="@{file.name}"
+            android:textAppearance="@style/RegularText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/lorem" />
+
+        <View
+            android:id="@+id/cancel"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@drawable/ic_cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:visibility="@{uploading == null ? View.VISIBLE : View.GONE}" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="24dp"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp"
+            android:progress="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:visibility="@{uploading != null &amp;&amp; uploading ? View.VISIBLE : View.GONE}" />
+
+        <View
+            android:id="@+id/done"
+            android:layout_width="24dp"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp"
+            android:background="@drawable/ic_resolved"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:visibility="@{uploading != null &amp;&amp; !uploading ? View.VISIBLE : View.GONE}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

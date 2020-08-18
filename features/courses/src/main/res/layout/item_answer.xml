@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="answer"
+            type="com.naltynbekkz.courses.model.Answer" />
+
+        <variable
+            name="myVote"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:colorBackground"
+        android:foreground="?android:selectableItemBackground">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/author"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:text="@{answer.author.name}"
+            android:textAppearance="@style/AuthorText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Kuanysh Anarbay" />
+
+        <View
+            android:id="@+id/dot"
+            android:layout_width="3dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/background_dot"
+            app:layout_constraintBottom_toBottomOf="@id/author"
+            app:layout_constraintStart_toEndOf="@+id/author"
+            app:layout_constraintTop_toTopOf="@id/author" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{answer.getTime()}"
+            android:textAppearance="@style/DetailText"
+            app:layout_constraintBottom_toBottomOf="@id/author"
+            app:layout_constraintStart_toEndOf="@id/dot"
+            app:layout_constraintTop_toTopOf="@id/author"
+            tools:text="5d" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="0dp"
+            android:text="@{answer.body}"
+            android:textAppearance="@style/RegularText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/author"
+            app:layout_constraintVertical_bias="0"
+            tools:text="To start out learning something like python, which is VERY beginner friendly, you will have a lot of resources online. It can be difficult to sift through them and decide which have the best teaching methods." />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:imagesAdapter="@{answer.images}"
+            app:layout_constraintDimensionRatio="1.33"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/body"
+            app:visibility="@{answer.images.size != 0 ? View.VISIBLE : View.GONE}" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:background="@color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_pager"
+            app:tabBackground="@drawable/background_selector_tab_image_indicator"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="10dp"
+            app:viewPager="@{viewPager}"
+            app:visibility="@{answer.images.size > 1 ? View.VISIBLE : View.GONE}" />
+
+        <View
+            android:id="@+id/commentsIcon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/ic_chat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_pager" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{@string/_comments(answer.comments.size)}"
+            android:textAppearance="@style/CommentCount"
+            app:layout_constraintBottom_toBottomOf="@id/commentsIcon"
+            app:layout_constraintStart_toEndOf="@id/commentsIcon"
+            app:layout_constraintTop_toTopOf="@id/commentsIcon"
+            tools:text="45 comments" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/downvoteLayout"
+            android:layout_width="56dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="16dp"
+            android:alpha="0.2"
+            android:background="@drawable/background_vote"
+            android:backgroundTint="@{myVote != null &amp;&amp; !myVote ? @color/danger : @color/icon_muted}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_pager" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/downvoteLayout"
+            app:layout_constraintEnd_toEndOf="@id/downvoteLayout"
+            app:layout_constraintStart_toStartOf="@id/downvoteLayout"
+            app:layout_constraintTop_toTopOf="@id/downvoteLayout">
+
+            <TextView
+                android:id="@+id/downvotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@{Integer.toString(answer.downVotes())}"
+                android:textAppearance="@style/CommentCount"
+                android:textColor="@{myVote != null &amp;&amp; !myVote ? @color/danger : @color/icon_muted}"
+                tools:text="12" />
+
+            <View
+                android:id="@+id/downvotesIcon"
+                android:layout_width="13dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_downvote"
+                android:backgroundTint="@{myVote != null &amp;&amp; !myVote ? @color/danger : @color/icon_muted}" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/upvoteLayout"
+            android:layout_width="56dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="8dp"
+            android:alpha="0.2"
+            android:background="@drawable/background_vote"
+            android:backgroundTint="@{myVote != null &amp;&amp; myVote ? @color/success : @color/icon_muted}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/downvoteLayout"
+            app:layout_constraintTop_toBottomOf="@+id/view_pager" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/upvoteLayout"
+            app:layout_constraintEnd_toEndOf="@id/upvoteLayout"
+            app:layout_constraintStart_toStartOf="@id/upvoteLayout"
+            app:layout_constraintTop_toTopOf="@id/upvoteLayout">
+
+            <TextView
+                android:id="@+id/upvotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@{Integer.toString(answer.upVotes())}"
+                android:textAppearance="@style/CommentCount"
+                android:textColor="@{myVote != null &amp;&amp; myVote ? @color/success : @color/icon_muted}"
+                tools:text="13" />
+
+            <View
+                android:id="@+id/upvotesIcon"
+                android:layout_width="13dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_upvote"
+                android:backgroundTint="@{myVote != null &amp;&amp; myVote ? @color/success : @color/icon_muted}" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/icon_muted"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

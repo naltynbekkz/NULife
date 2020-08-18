@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="contact_type_array">
+        <item>phone</item>
+        <item>location</item>
+        <item>email</item>
+        <item>instagram</item>
+        <item>telegram</item>
+        <item>vk</item>
+        <item>facebook</item>
+        <item>link</item>
+    </string-array>
+
+    <array name="colors">
+        <item>@color/red_orange</item>
+        <item>@color/valencia</item>
+        <item>@color/lightning_yellow</item>
+        <item>@color/golden_tainoi</item>
+        <item>@color/persian_green</item>
+        <item>@color/elf_green</item>
+        <item>@color/pelorous</item>
+        <item>@color/navy_blue</item>
+        <item>@color/medium_purple</item>
+        <item>@color/moody_blue</item>
+        <item>@color/manatee</item>
+        <item>@color/kashmir_blue</item>
+    </array>
+
+</resources>

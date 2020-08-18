@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="routine"
+            type="com.naltynbekkz.timetable.model.Occurrence" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp">
+
+        <TextView
+            android:id="@+id/routine_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:lineSpacingExtra="2dp"
+            android:text="@{routine.getTime()}"
+            android:textAppearance="@style/CourseDetail"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/routine_layout"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="09:00AM\n09:50AM" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/routine_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="72dp"
+            android:background="@drawable/background_routine"
+            android:backgroundTint="@{routine.getIntColor()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/routine_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:maxLines="1"
+            android:text="@{routine.title}"
+            android:textAppearance="@style/EventTitleFancy"
+            app:layout_constraintBottom_toTopOf="@id/routine_details"
+            app:layout_constraintEnd_toEndOf="@id/routine_layout"
+            app:layout_constraintStart_toStartOf="@id/routine_layout"
+            app:layout_constraintTop_toTopOf="@id/routine_layout"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="CSCI-152" />
+
+        <TextView
+            android:id="@+id/routine_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="16dp"
+            android:maxLines="1"
+            android:text="@{routine.getDetail()}"
+            android:textAppearance="@style/EventDetail"
+            app:layout_constraintBottom_toBottomOf="@id/routine_layout"
+            app:layout_constraintEnd_toEndOf="@id/routine_layout"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toBottomOf="@id/routine_title"
+            tools:text="7e.429 | Selim Temizer" />
+
+        <View
+            android:id="@+id/icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/ic_location"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/routine_details"
+            app:layout_constraintStart_toStartOf="@id/routine_layout"
+            app:layout_constraintTop_toTopOf="@id/routine_details" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

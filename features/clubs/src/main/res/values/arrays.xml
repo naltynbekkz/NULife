@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="clubs">
+        <item>@string/my_favorites</item>
+        <item>@string/all_clubs</item>
+    </string-array>
+
+    <string-array name="events">
+        <item>@string/my_favorites</item>
+        <item>@string/all_events</item>
+    </string-array>
+</resources>

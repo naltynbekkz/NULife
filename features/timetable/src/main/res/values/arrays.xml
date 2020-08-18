@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="notify_string_array">
+        <item>30 min</item>
+        <item>1 hour</item>
+        <item>2 hours</item>
+        <item>4 hours</item>
+        <item>6 hours</item>
+        <item>12 hours</item>
+        <item>1 day</item>
+        <item>2 days</item>
+    </string-array>
+
+    <integer-array name="notify_integer_array">
+        <item>1800</item>
+        <item>3600</item>
+        <item>7200</item>
+        <item>14400</item>
+        <item>21600</item>
+        <item>43200</item>
+        <item>86400</item>
+        <item>172800</item>
+    </integer-array>
+
+    <string-array name="year">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
+
+    <string-array name="week">
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+        <item>Sun</item>
+    </string-array>
+
+
+</resources>

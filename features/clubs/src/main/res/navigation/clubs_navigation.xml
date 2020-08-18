@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clubs_navigation"
+    app:startDestination="@id/feedFragment">
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.naltynbekkz.clubs.front.FeedFragment"
+        android:label="fragment_feed"
+        tools:layout="@layout/fragment_feed">
+        <action
+            android:id="@+id/action_feedFragment_to_clubFragment"
+            app:destination="@id/clubFragment" />
+        <action
+            android:id="@+id/action_feedFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
+        <action
+            android:id="@+id/action_feedFragment_to_allEventsFragment"
+            app:destination="@id/allEventsFragment" />
+        <action
+            android:id="@+id/action_feedFragment_to_allClubsFragment"
+            app:destination="@id/allClubsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clubFragment"
+        android:name="com.naltynbekkz.clubs.front.ClubFragment"
+        android:label="ClubFragment"
+        tools:layout="@layout/fragment_club">
+        <argument
+            android:name="club_id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_clubFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventFragment"
+        android:name="com.naltynbekkz.clubs.front.EventFragment"
+        android:label="EventFragment"
+        tools:layout="@layout/fragment_event">
+        <argument
+            android:name="event_id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_eventFragment_to_clubFragment"
+            app:destination="@id/clubFragment" />
+        <action
+            android:id="@+id/action_eventFragment_to_newTaskFragment"
+            app:destination="@id/newTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newTaskFragment"
+        android:name="com.naltynbekkz.timetable.front.NewTaskFragment"
+        android:label="NewTaskFragment"
+        tools:layout="@layout/fragment_new_task">
+        <argument
+            android:name="task"
+            app:argType="com.naltynbekkz.timetable.model.Occurrence"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/allEventsFragment"
+        android:name="com.naltynbekkz.clubs.front.AllEventsFragment"
+        android:label="AllEventsFragment"
+        tools:layout="@layout/fragment_all_events">
+        <action
+            android:id="@+id/action_allEventsFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allClubsFragment"
+        android:name="com.naltynbekkz.clubs.front.AllClubsFragment"
+        android:label="AllClubsFragment"
+        tools:layout="@layout/fragment_all_clubs">
+        <action
+            android:id="@+id/action_allClubsFragment_to_clubFragment"
+            app:destination="@id/clubFragment" />
+    </fragment>
+</navigation>

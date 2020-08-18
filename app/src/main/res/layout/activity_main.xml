@@ -13,18 +13,18 @@
         <FrameLayout
             android:id="@+id/main_nav_host_fragment"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            app:paddingLeftSystemWindowInsets="true"
+            app:paddingRightSystemWindowInsets="true" />
 
-        <!--    TODO: Change height    -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation_view"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/navigation" />
+            app:menu="@menu/navigation"
+            app:paddingBottomSystemWindowInsets="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

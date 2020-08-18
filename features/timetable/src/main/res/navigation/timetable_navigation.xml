@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/timetable_navigation"
+    app:startDestination="@id/timetableFragment">
+
+    <fragment
+        android:id="@+id/timetableFragment"
+        android:name="com.naltynbekkz.timetable.ui.TimetableFragment"
+        android:label="fragment_timetable"
+        tools:layout="@layout/fragment_timetable">
+        <action
+            android:id="@+id/action_timetableFragment_to_newTaskFragment"
+            app:destination="@id/newTaskFragment" />
+        <action
+            android:id="@+id/action_timetableFragment_to_newRoutineFragment"
+            app:destination="@id/newRoutineFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newTaskFragment"
+        android:name="com.naltynbekkz.timetable.ui.NewTaskFragment"
+        android:label="NewTaskFragment"
+        tools:layout="@layout/fragment_new_task">
+        <argument
+            android:name="task"
+            app:argType="com.naltynbekkz.timetable.model.Occurrence"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/newRoutineFragment"
+        android:name="com.naltynbekkz.timetable.ui.NewRoutineFragment"
+        android:label="NewRoutineFragment"
+        tools:layout="@layout/fragment_new_routine">
+        <argument
+            android:name="routine"
+            app:argType="com.naltynbekkz.timetable.model.Occurrence"
+            app:nullable="true" />
+        <argument
+            android:name="associate"
+            app:argType="com.naltynbekkz.timetable.model.Associate"
+            app:nullable="true" />
+    </fragment>
+
+</navigation>

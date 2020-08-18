@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="_followers">%d followers</string>
+
+    <string name="my_favorites">My Favorites</string>
+    <string name="all_events">All Events</string>
+    <string name="all_clubs">All Clubs</string>
+    <string name="following">Following</string>
+    <string name="events">Events</string>
+    <string name="join_us">How can you join us?</string>
+    <string name="our_team">Our team</string>
+    <string name="my_clubs">My clubs</string>
+    <string name="club_logo">Club logo</string>
+    <string name="clubs">Clubs</string>
+    <string name="event">Event</string>
+    <string name="event_poster">Event poster</string>
+    <string name="share">Share</string>
+    <string name="posted_by">Posted by</string>
+    <string name="upcoming_events">Upcoming events</string>
+    <string name="added">Added</string>
+    <string name="unavailable">Unavailable</string>
+</resources>
